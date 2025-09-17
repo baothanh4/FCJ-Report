@@ -5,78 +5,66 @@ weight: 1
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
+<!-- {{% notice warning %}}
 ⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+{{% /notice %}} -->
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# AWS named as a Leader in 2025 Gartner Magic Quadrant for Cloud-Native Application Platforms and Container Management
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+A month ago, I shared that [Amazon Web Services (AWS)](https://aws.amazon.com/) is recognized as a [Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services (SCPS)](https://aws.amazon.com/blogs/aws/aws-named-as-a-leader-in-2025-gartner-magic-quadrant-for-strategic-cloud-platform-services-for-15-years-in-a-row/), with Gartner naming AWS a Leader for the fifteenth consecutive year.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+In 2024, AWS was named as a Leader in the Gartner Magic Quadrant for [AI Code Assistants](https://aws.amazon.com/blogs/aws/aws-named-as-a-leader-in-the-first-gartner-magic-quadrant-for-ai-code-assistants/), [Cloud-Native Application Platforms](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Cloud Database Management Systems](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Container Management](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Data Integration Tools](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Desktop as a Service (DaaS)](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), and [Data Science and Machine Learning Platforms](https://aws.amazon.com/blogs/machine-learning/aws-recognized-as-a-first-time-leader-in-the-2024-gartner-magic-quadrant-for-data-science-and-machine-learning-platforms/) as well as the SCPS. In 2025, we were also recognized as a Leader in the Gartner Magic Quadrant for [Contact Center as a Service (CCaaS)](https://aws.amazon.com/blogs/contact-center/aws-recognized-as-a-leader-in-the-2025-gartner-magic-quadrant-for-contact-center-as-a-service-ccaas-with-amazon-connect/), [Desktop as a Service](https://aws.amazon.com/blogs/desktop-and-application-streaming/aws-recognized-as-a-leader-in-2025-gartner-magic-quadrant-for-desktop-as-a-service/) and [Data Science and Machine Learning (DSML)](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-25-gartner-ardm-magic-quadrant-for-desktop-as-a-service-mq-learn.html?trk=8a887164-7100-4226-b322-ec08c02bbdaf&sc_channel=el) platforms. We strongly believe this means AWS provides the broadest and deepest range of services to customers.
 
----
+Today, I’m happy to share recent Magic Quadrant reports that named AWS as a Leader in more cloud technology markets: Cloud-Native Application Platforms (aka Cloud Application Platforms) and Container Management.
 
-## Architecture Guidance
-
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
-
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
-
-**The solution architecture is now as follows:**
-
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
 
 ---
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+## 2025 Gartner Magic Quadrant for Cloud-Native Application Platforms
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+AWS has been named a Leader in the Gartner Magic Quadrant for Cloud-Native Application Platforms for 2 consecutive years. AWS was positioned highest on “Ability to Execute”. Gartner defines cloud-native application platforms as those that provide managed application runtime environments for applications and integrated capabilities to manage the lifecycle of an application or application component in the cloud environment.
+The following image is the graphical representation of the 2025 Magic Quadrant for Cloud-Native Application Platforms.
+
+
+
+![Figure 1: Magic Quadrant for Cloud-Native Application Flatforms](/images/2025_Gartner_MQ_for_Cloud_Native.png)
+
+---
+Our comprehensive cloud-native application portfolio—[AWS Lambda](https://aws.amazon.com/lambda/), [AWS App Runner](https://aws.amazon.com/apprunner/), [AWS Amplify](https://aws.amazon.com/amplify/), and [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)—offers flexible options for building modern applications with strong AI capabilities, demonstrated through continued innovation and deep integration across our broader AWS service portfolio.
+
+You can simplify the service selection through comprehensive documentation, reference architectures, and prescriptive guidance available in the [AWS Solutions Library](https://aws.amazon.com/solutions/), along with AI-powered, contextual recommendations from [Amazon Q](https://aws.amazon.com/q/) based on your specific requirements. While AWS Lambda is optimized for AWS to provide the best possible serverless experience, it follows industry standards for serverless computing and supports common programming languages and frameworks. You can find all necessary capabilities within AWS, including advanced features for AI/ML, edge computing, and enterprise integration.
+
+You can build, deploy, and scale [generative AI](https://aws.amazon.com/ai/generative-ai/) agents and applications by integrating these compute offerings with [Amazon Bedrock](https://aws.amazon.com/bedrock/) for serverless inferences and [Amazon SageMaker](https://aws.amazon.com/sagemaker/) for [artificial intelligence and machine learning (AI/ML)](https://aws.amazon.com/training/learn-about/ai/) training and management.
+
+Access the complete [2025 Gartner Magic Quadrant for Cloud-Native Application Platforms](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-25-gartner-ardm-cloud-native-application-platforms-mq-learn.html?trk=81845190-f445-4d09-831c-3522c5125aae&sc_channel=el) to learn more.
+
+
+## 2025 Gartner Magic Quadrant for Container Management
+
+
+
+In the 2025 Gartner Magic Quadrant for Container Management, AWS has been named as a Leader for three years and was positioned furthest for “Completeness of Vision”. Gartner defines container management as offerings that support the deployment and operation of containerized workloads. This process involves orchestrating and overseeing the entire lifecycle of containers, covering deployment, scaling, and operations, to ensure their efficient and consistent performance across different environments.
+
+The following image is the graphical representation of the 2025 Magic Quadrant for Container Management.
+
+![Figure 1: Magic Quadrant for Container Management](/images/2025_Gartner_MQ_for_Cloud_Native.png)
 
 ---
 
-## Technology Choices and Communication Scope
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
 
----
+[AWS container services](https://aws.amazon.com/containers/) offer fully managed container orchestration with AWS native solutions and open-source technologies to focus on providing a wide range of deployment options, from Kubernetes to our native orchestrator.
 
-## The Pub/Sub Hub
+You can use [Amazon Elastic Container Service (Amazon ECS)](https://aws.amazon.com/ecs/) and [Amazon Elastic Kubernetes Service (Amazon EKS)](https://aws.amazon.com/eks/). Both can be used with [AWS Fargate](https://aws.amazon.com/fargate/) for serverless container deployment. Additionally, EKS Auto Mode simplifies Kubernetes management by automatically provisioning infrastructure, selecting optimal compute instances, and dynamically scaling resources for containerized applications.
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+You can connect on-premises and edge infrastructure back to AWS container services with [EKS Hybrid Nodes](https://docs.aws.amazon.com/eks/latest/userguide/hybrid-nodes-overview.html) and [ECS Anywhere](https://aws.amazon.com/ecs/anywhere/), or use [EKS Anywhere](https://aws.amazon.com/eks/eks-anywhere/) for a fully disconnected Kubernetes experience supported by AWS. With flexible compute and deployment options, you can reduce operational overhead and focus on innovation and drive business value faster.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+Access the complete [2025 Gartner Magic Quadrant for Container Management](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-25-gartner-ardm-magic-quadrant-for-container-management-mq-learn.html?trk=2765a1a5-81b0-48a5-aa7d-53ee27128caa&sc_channel=el) to learn more.
 
----
+— [Channy](https://www.linkedin.com/in/channy/)
 
-## Core Microservice
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
-
----
-
-## Front Door Microservice
+<!-- ## Front Door Microservice
 
 - Provides an API Gateway for external REST interaction  
 - Authentication & authorization based on **OIDC** via **Amazon Cognito**  
@@ -123,4 +111,4 @@ Outputs:
   CatalogArn:
     Value: !GetAtt Catalog.Arn
     Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+      Name: !Sub ${AWS::StackName}-CatalogArn -->
