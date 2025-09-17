@@ -5,104 +5,92 @@ weight: 1
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
+<!-- {{% notice warning %}}
+⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
+{{% /notice %}} -->
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# AWS được công nhận là Nhà lãnh đạo trong báo cáo Gartner Magic Quadrant 2025 về Nền tảng Ứng dụng Cloud-Native và Quản lý Container
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+Một tháng trước, mình đã chia sẻ rằng [Amazon Web Services (AWS)](https://aws.amazon.com/) được công nhận là[Leader in 2025 Gartner Magic Quadrant for Strategic Cloud Platform Services (SCPS)](https://aws.amazon.com/blogs/aws/aws-named-as-a-leader-in-2025-gartner-magic-quadrant-for-strategic-cloud-platform-services-for-15-years-in-a-row/),đánh dấu năm thứ mười lăm liên tiếp AWS được Gartner xếp hạng là Nhà lãnh đạo.
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Năm 2024, AWS được công nhận là Nhà lãnh đạo trong nhiều báo cáo Gartner Magic Quadrant, bao gồm: [AI Code Assistants](https://aws.amazon.com/blogs/aws/aws-named-as-a-leader-in-the-first-gartner-magic-quadrant-for-ai-code-assistants/), [Cloud-Native Application Platforms](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Cloud Database Management Systems](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Container Management](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Data Integration Tools](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), [Desktop as a Service (DaaS)](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-24-gartner-ardm-cloud-application-platforms-mq-learn.html?trk=6ae326d1-79b4-4355-9716-c4ed318beb74&sc_channel=el&wf_id=6729438c0029784a6c773920e5250b88), and [Data Science and Machine Learning Platforms](https://aws.amazon.com/blogs/machine-learning/aws-recognized-as-a-first-time-leader-in-the-2024-gartner-magic-quadrant-for-data-science-and-machine-learning-platforms/) as cũng như SCPS.Sang năm 2025, AWS tiếp tục được công nhận là Nhà lãnh đạo trong Gartner Magic Quadrant cho [Contact Center as a Service (CCaaS)](https://aws.amazon.com/blogs/contact-center/aws-recognized-as-a-leader-in-the-2025-gartner-magic-quadrant-for-contact-center-as-a-service-ccaas-with-amazon-connect/), [Desktop as a Service](https://aws.amazon.com/blogs/desktop-and-application-streaming/aws-recognized-as-a-leader-in-2025-gartner-magic-quadrant-for-desktop-as-a-service/) và [Data Science and Machine Learning (DSML)](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-25-gartner-ardm-magic-quadrant-for-desktop-as-a-service-mq-learn.html?trk=8a887164-7100-4226-b322-ec08c02bbdaf&sc_channel=el) nền tảng. Chúng tôi tin tưởng rằng điều này cho thấy AWS đang cung cấp danh mục dịch vụ rộng và sâu nhất cho khách hàng.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Hôm nay, mình vui mừng chia sẻ các báo cáo Magic Quadrant mới nhất, trong đó AWS được vinh danh là Nhà lãnh đạo trong nhiều thị trường công nghệ đám mây: Nền tảng Ứng dụng Cloud-Native (còn gọi là Nền tảng Ứng dụng Đám mây) và Quản lý Container.
 
----
-
-## Hướng dẫn kiến trúc
-
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
-
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
-
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
 
 ---
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+## 2025 Gartner Magic Quadrant for Cloud-Native Application Platforms
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+AWS đã được công nhận là Nhà lãnh đạo trong Gartner Magic Quadrant cho Nền tảng Ứng dụng Cloud-Native trong 2 năm liên tiếp. AWS được xếp hạng cao nhất về “Khả năng Thực thi”.
+
+Gartner định nghĩa nền tảng ứng dụng cloud-native là những dịch vụ cung cấp môi trường runtime được quản lý cho ứng dụng, cùng các khả năng tích hợp để quản lý vòng đời của ứng dụng hoặc thành phần ứng dụng trong môi trường đám mây.
+
+
+
+![Figure 1: Magic Quadrant for Cloud-Native Application Flatforms](/images/2025_Gartner_MQ_for_Cloud_Native.png)
+
+---
+Danh mục ứng dụng cloud-native toàn diện của chúng tôi—[AWS Lambda](https://aws.amazon.com/lambda/), [AWS App Runner](https://aws.amazon.com/apprunner/), [AWS Amplify](https://aws.amazon.com/amplify/), and [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)—mang đến sự linh hoạt để xây dựng các ứng dụng hiện đại với khả năng AI mạnh mẽ, nhờ đổi mới liên tục và tích hợp sâu rộng trong toàn bộ danh mục dịch vụ AWS.
+
+Khách hàng có thể dễ dàng lựa chọn dịch vụ thông qua tài liệu chi tiết, kiến trúc tham chiếu, và hướng dẫn có sẵn trong [AWS Solutions Library](https://aws.amazon.com/solutions/), cùng với khuyến nghị ngữ cảnh được hỗ trợ bởi AI từ [Amazon Q](https://aws.amazon.com/q/) dựa trên yêu cầu cụ thể. Mặc dù AWS Lambda được tối ưu hóa cho AWS để mang lại trải nghiệm serverless (không máy chủ) tốt nhất, nhưng nó vẫn tuân theo các tiêu chuẩn của ngành về điện toán serverless và hỗ trợ các ngôn ngữ lập trình cũng như framework phổ biến. Bạn có thể tìm thấy tất cả các khả năng cần thiết trong AWS, bao gồm các tính năng nâng cao cho AI/ML, điện toán biên (edge computing) và tích hợp doanh nghiệp.
+
+Bạn có thể xây dựng, triển khai, và mở rộng các ứng dụng [generative AI](https://aws.amazon.com/ai/generative-ai/) bằng cách tích hợp các dịch vụ compute này với [Amazon Bedrock](https://aws.amazon.com/bedrock/) để thực hiện suy luận serverless, và[Amazon SageMaker](https://aws.amazon.com/sagemaker/) cho cho việc huấn luyện và quản lý [artificial intelligence and machine learning (AI/ML)](https://aws.amazon.com/training/learn-about/ai/).
+
+Truy cập [2025 Gartner Magic Quadrant for Cloud-Native Application Platforms](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-25-gartner-ardm-cloud-native-application-platforms-mq-learn.html?trk=81845190-f445-4d09-831c-3522c5125aae&sc_channel=el) để xem thêm thông tin.
+
+
+## Gartner Magic Quadrant 2025 cho Quản lý Container
+
+
+
+Trong báo cáo Gartner Magic Quadrant 2025 cho Quản lý Container, AWS tiếp tục được công nhận là Nhà lãnh đạo trong 3 năm liên tiếp và được xếp hạng xa nhất về “Độ hoàn thiện Tầm nhìn”.
+
+Gartner định nghĩa quản lý container là các dịch vụ hỗ trợ triển khai và vận hành workloads được container hóa. Quá trình này bao gồm việc điều phối và giám sát toàn bộ vòng đời container—từ triển khai, mở rộng, đến vận hành—để đảm bảo hiệu năng và tính nhất quán trên nhiều môi trường khác nhau.
+
+![Figure 1: Magic Quadrant for Container Management](/images/2025_Gartner_MQ_for_Cloud_Native.png)
 
 ---
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
 
----
+[AWS container services](https://aws.amazon.com/containers/) cung cấp quản lý container được AWS vận hành toàn phần, kết hợp giữa công nghệ gốc của AWS và mã nguồn mở, mang lại nhiều lựa chọn triển khai từ Kubernetes cho đến bộ điều phối native.
 
-## The pub/sub hub
+Bạn có thể sử dụng [Amazon Elastic Container Service (Amazon ECS)](https://aws.amazon.com/ecs/) và [Amazon Elastic Kubernetes Service (Amazon EKS)](https://aws.amazon.com/eks/). cả hai đều có thể chạy với [AWS Fargate](https://aws.amazon.com/fargate/) để triển khai container serverless. Ngoài ra, EKS Auto Mode đơn giản hóa việc quản lý Kubernetes bằng cách tự động cung cấp hạ tầng, chọn instance tối ưu, và mở rộng tài nguyên động cho ứng dụng container.
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Để kết nối hạ tầng on-premises hoặc edge với dịch vụ container của AWS, bạn có thể dùng [EKS Hybrid Nodes](https://docs.aws.amazon.com/eks/latest/userguide/hybrid-nodes-overview.html) and [ECS Anywhere](https://aws.amazon.com/ecs/anywhere/), hoặc dùng [EKS Anywhere](https://aws.amazon.com/eks/eks-anywhere/) cho trải nghiệm Kubernetes tách biệt hoàn toàn nhưng vẫn được AWS hỗ trợ. Với các tùy chọn compute và triển khai linh hoạt, bạn có thể giảm chi phí vận hành, tập trung đổi mới, và mang lại giá trị kinh doanh nhanh hơn.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Truy cập vào [2025 Gartner Magic Quadrant for Container Management](https://pages.awscloud.com/GLOBAL-brand-awareness-content-download-25-gartner-ardm-magic-quadrant-for-container-management-mq-learn.html?trk=2765a1a5-81b0-48a5-aa7d-53ee27128caa&sc_channel=el) để xem thêm thông tin.
 
----
+— [Channy](https://www.linkedin.com/in/channy/)
 
-## Core microservice
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+<!-- ## Front Door Microservice
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+- Provides an API Gateway for external REST interaction  
+- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
+- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
+  1. SNS deduplication TTL is only 5 minutes  
+  2. SNS FIFO requires SQS FIFO  
+  3. Ability to proactively notify the sender that the message is a duplicate  
 
 ---
 
-## Front door microservice
+## Staging ER7 Microservice
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
-
----
-
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
+- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
+- Step Functions Express Workflow to convert ER7 → JSON  
+- Two Lambdas:  
+  1. Fix ER7 formatting (newline, carriage return)  
   2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+- Result or error is pushed back into the pub/sub hub  
 
 ---
 
-## Tính năng mới trong giải pháp
+## New Features in the Solution
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
+### 1. AWS CloudFormation Cross-Stack References
+Example *outputs* in the core microservice:
 ```yaml
 Outputs:
   Bucket:
@@ -124,4 +112,4 @@ Outputs:
   CatalogArn:
     Value: !GetAtt Catalog.Arn
     Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+      Name: !Sub ${AWS::StackName}-CatalogArn -->
