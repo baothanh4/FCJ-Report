@@ -12,48 +12,43 @@ pre: " <b> 1.2. </b> "
 
 ### Mục tiêu tuần 2:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Học về Amazon RDS,AWS S3, AWS EC2 Auto Scaling, AWS DynamoDB và Amazon LightSail.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
 | 2   | - Tìm hiểu AWS DynamoDB,AWS RDS,Amazon Aurora <br>-**Practice:**<br>&emsp; +Tạo AWS CloudFront và AWS S3 tập                                                                                             | 14/09/2025   | 15/09/2025      |<https://render.skillbuilder.aws/?module_id=B1DGAV8S16%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=c9de1df5-b12f-5abf-84c4-aac56a36dcae&navigation=digital&parentId=Y4YASRJEVX>
-| 3   | -**Thực hành:**<br>&emsp;+Tạo AWS RDS <br>&esmp;+Tạo DynamoDB bằng cách sử dụng Python và AWS CLI                                                | 15/09/2025   | 16/09/2025      | <https://render.skillbuilder.aws/?module_id=B1DGAV8S16%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=c9de1df5-b12f-5abf-84c4-aac56a36dcae&navigation=digital&parentId=Y4YASRJEVX> |
+| 3   | -**Thực hành:**<br>&emsp;+Tạo AWS RDS <br>&emsp;+Tạo DynamoDB bằng cách sử dụng Python và AWS CLI                                                | 15/09/2025   | 16/09/2025      | <https://render.skillbuilder.aws/?module_id=B1DGAV8S16%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=c9de1df5-b12f-5abf-84c4-aac56a36dcae&navigation=digital&parentId=Y4YASRJEVX> |
 | 4   | - Dịch blog  | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 5   | - Tìm hiểu EC2 Auto Scaling cơ bản, điện toán đơn giản hóa cùng Amazon LightSail <br> - **Thực hành:** <br>&emsp; +Tạo Database trong AWS RDS  <br>&emsp;+Sử dụng Amazon LightSail               | 19/09/2025   | 20/09/2025      | <https://000005.awsstudygroup.com/> <br> <https://000045.awsstudygroup.com/>  |
+| 6   | - **Thực hành:** <br>&emsp; + Tạo RDS, VPC, EC2 cùng dịch vụ AWS EC2 Auto Scaling                      | 20/09/2025   | 21/09/2025      | <https://000006.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 2:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Lưu trữ và triển khai websites tĩnh với Amazon S3: 
+  * Biết cách tạo bucket S3, tải file lên và quản lý quyền truy cập.
+  * Biết cách bật tính năng Static Website Hosting cho bucket. 
+  * Học cách cấu hình quyền public để website có thể truy cập qua Internet.
+  * Học cách cấu hình Bucket policy để chỉ cho phép truy cập đọc công khai.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Cơ sở dữ liệu thiết yếu cùng với Amazon Relational Databases Services:
+  * Hỗ trợ nhiều engine phổ biến như MySQL,PostgreSQL,Oracle, và SQL Server.
+  * Học cách kết nối đến RDS từ EC2.
+  * Hiểu về endpoint, port,username/password để truy cập DB.
+  * Học cách sử dụng VPC, subnet, security group để bảo vệ RDS instance. 
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Ứng dụng mở rộng quy mô với EC2 Auto Scaling:
+  * Là dịch vụ giúp tự động tăng hoặc giảm số lượng Amazon EC2 instance dựa trên nhu cầu ứng dụng.
+  * Thành phần của Auto Scaling:
+    * Launch Configuration/ Launch Template
+    * Auto Scaling Group(ASG)
+    * Chính sách mở rộng: Dynamic Scaling và Schedule Scaling
+    * Health checks
+  * Dựa vào Amazon CloudWatch để thu thập metrics như: CPU utilization, network traffic, request const.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
 
 
