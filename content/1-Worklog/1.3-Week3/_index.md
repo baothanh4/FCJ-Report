@@ -5,53 +5,43 @@ weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}} 
+<!-- {{% notice warning %}} 
 ⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+{{% /notice %}} -->
 
 
 ### Week 3 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand about security
+* Understand about services like AWS KMS, AWS Macie và AWS Certificate Manager.
+* Understand how to protect the infrasturement
 
 ### Tasks to be carried out this week:
 | Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | -Learn how to protect data by using AWS built-in data protection(Amazon S3, Amazon EBS, Amazon DynamoDB) and AWS data protection services(AWS KMS, Amazon Macie, AWS Certificate Manager)                                                                                                   | 22/09/2025 | 23/09/2025      |<https://render.skillbuilder.aws/?module_id=TNAPD78T9R%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=c9de1df5-b12f-5abf-84c4-aac56a36dcae&navigation=digital&parentId=Y4YASRJEVX>
+| 3   | -Learn how to protect networks and applications by using AWS protection through infrastructure(Security groups, ELB, AWS regions) and AWS protection through services(AWS shield, AWS WAF)                                            | 23/09/2025 | 24/09/2025      | <https://render.skillbuilder.aws/?module_id=TNAPD78T9R%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=c9de1df5-b12f-5abf-84c4-aac56a36dcae&navigation=digital&parentId=Y4YASRJEVX> |
+| 4   | -Learn Detecting and Responding to Security Incidents by using Amazon Inspector, Amazon GuardDuty,Amazon Detective,Amazon Security Hub| 24/09/2025 | 25/09/2025      | <https://render.skillbuilder.aws/?module_id=TNAPD78T9R%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=c9de1df5-b12f-5abf-84c4-aac56a36dcae&navigation=digital&parentId=Y4YASRJEVX> |
+| 5   | - Learn how to preventing Unauthorized Acces, using additional access management services like AWS IAM Identity Center, AWS Secrets Manager, AWS Systems Manager                           | 25/09/2025 | 26/09/2025      | <https://render.skillbuilder.aws/?module_id=TNAPD78T9R%3A001.000.000&product_id=8D79F3AVR7%3A002.000.000&registration_id=c9de1df5-b12f-5abf-84c4-aac56a36dcae&navigation=digital&parentId=Y4YASRJEVX> |
+| 6   | - **Practice:** <br>&emsp; + Identity Federation with AWS Single Sign-On                                                      | 26/09/2025 | 29/09/2025      | <https://000012.awsstudygroup.com/> |
 
 
 ### Week 3 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Understand the basics of AWS data security, including:
+  * Encryption and key management with AWS KMS
+  * Secure sensitive data with Amazon Macie
+  * Manage certificates with AWS Certification Manager
+  * Data security mode of S3, EBS, DynamoDB
 
-* Successfully created and configured an AWS Free Tier account.
+* Learn the concepts of layered and application protection:
+  * Security groups, Elastic Load Balancers (ELB), AWS Regions
+  * How AWS Shield and AWS WAF work
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* Learn the role of services in the process of detecting and responding to security incidents:
+  * Amazon Inspector, GuardDuty, Amazon Detective, AWS Security Center
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Understand the basics of preventing unauthorized access:
+  * IAM Identity Center (SSO)
+  * AWS Secret Manager
+  * AWS System Administrator
