@@ -5,36 +5,92 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+# Metropolitano Railway Service System with AWS: A Scalable, Cost-Optimized Cloud Architecture for Smart Urban Mobility
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+<!-- ## A Unified AWS Serverless Solution for Real-Time Weather Monitoring -->
 
-### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+### 1. Introduction
+As Ho Chi Minh City continues to experience rapid urbanization, traffic congestion and air pollution have become critical challenges. Private vehicles dominate transportation, overloading existing roads and reducing mobility efficiency. To address this, a modern Metropolitano railway system is being developed to provide safe, fast, and sustainable public transport.
+This proposal outlines how Amazon Web Services (AWS) will be used to build the system’s digital infrastructure — focusing on core and beginner-friendly cloud services to achieve reliability, security, and cost efficiency.
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+### 2. Objectives
+* <b>General Objective:</b>
+Establish a smart, efficient, and sustainable Metropolitano system that improves urban mobility and reduces road congestion.
+* <b>Specific Objectives:</b>
+    + Construct Metropolitano Line 1 (19.7 km) connecting Ben Thanh and Suoi Tien stations.
+    + Reduce private vehicle usage by 20% within 5 years.
+    + Implement a secure, cashless e-ticketing system accessible via mobile/web.
+    + Use AWS cloud services to manage passenger data, ensure operational safety, and enhance the travel experience.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+### 3. Scope
++ Location:  Ho Chi Minh City, Line 1 — Ben Thanh → Suoi Tien
++ Target Users:  Citizens, commuters, and tourists
++ Duration: 12 years (from feasibility study to full operation)
++ Limitations: Focus on metro infrastructure and essential AWS integration. Feeder transport and IoT automation will be addressed in later phases.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
 
-### AWS Services Used
+### 4. AWS Cloud Architecture
+* Frontend Layer (Client Side)
+    * Web App (React / Angular) and Mobile App (for passengers and staff).
+    * Both communicate with the backend through HTTPS API endpoints.
+    * AWS Services:
+        * Amazon S3 – Hosts static frontend assets (HTML, JS, CSS).(~5$/month)
+        * Amazon CloudFront (optional) – Speeds up content delivery globally.(~10$/month)
+* Backend Layer (Application Services)
+    * Amazon API Gateway – Entry point for all client API requests.(10$/month)
+    * AWS Lambda – Handles business logic for(15$/month):
+        * Ticket booking & scheduling
+        * Payment transactions
+        * Notifications (email/SMS)
+    * Amazon Cognito – User authentication & role management (Admin, Staff, Passenger)(5$/month).
+* Data Layer
+    * Amazon RDS (PostgreSQL) – Stores structured data (passengers, tickets, schedules).(100$/month)
+    * Amazon DynamoDB – Stores real-time train operation data (train status, seat availability).(20$/month)
+    * Amazon S3 – Stores backups, reports, and logs.(5$/month)
+*  Monitoring & Analytics Layer
+    * Amazon CloudWatch – Collects system metrics, application logs, and error alerts.(5$/month)
+    * AWS Glue + Athena – Data transformation and querying for analytics.(15$/month)
+    * Amazon QuickSight – Dashboards for operations and management insights.(18$/month)
+*  Security & Networking Layer
+    * AWS WAF – Protects API endpoints from common web attacks (SQLi, XSS).
+    * AWS Shield – DDoS protection for public endpoints.
+    * Amazon VPC – Isolates backend and databases in a secure private network
+    * AWS IAM – Manages internal roles and access permissions.
+        * Estimated monthly cost: ~$8 total for WAF + Shield (others free-tier).
+![IoT Weather Station Architecture](/images/2-Proposal/AWS-Architecture.png)
+
+### 5. Implementation Plan
+* Week 1–2: Configure AWS core infrastructure (S3, API Gateway, Lambda, RDS)
+* Week 3–4: Build e-ticketing and authentication with Cognito
+* Week 5–6: Enable CloudWatch, dashboards, and WAF/Shield security
+### 6. Budget & Resources
+* Total Estimated Cloud Cost: ≈ USD 211/month (~USD 1,266/year)
+* Optimization Tools: AWS Cost Explorer, Auto Scaling, and usage of Free Tier where possible
+* Team Composition:
+    * Cloud Architect
+    * Backend Developer (Lambda/API)
+    * Frontend Developer
+    * Metro Operations & Maintenance Engineers
+### 7. Expected Outcomes
+* Reduced traffic congestion and air pollution.
+* Cashless e-ticketing system powered by AWS backend.
+* Secure, scalable digital foundation for future expansion.
+* Enhanced passenger convenience and operational transparency.
+* Knowledge transfer and skill development in AWS technologies
+
+### 8. Conclusion
+The Metropolitano Railway System integrated with AWS Cloud Infrastructure represents a forward-looking step toward sustainable transportation in Ho Chi Minh City.
+ By adopting core AWS services (API Gateway, Lambda, RDS, S3, Cognito, CloudWatch), the system remains simple, cost-efficient, and secure.
+Future phases can incorporate IoT, AI/ML, and predictive analytics for optimization once the foundational system stabilizes.
+
+
+
+
+<!-- ### AWS Services Used
 - **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
 - **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
 - **Amazon API Gateway**: Facilitates web app communication.
@@ -112,4 +168,4 @@ Real-time data and analytics replace manual processes.
 Scalable to 10-15 stations.
 #### Long-term Value
 1-year data foundation for AI research.  
-Reusable for future projects.
+Reusable for future projects. -->
