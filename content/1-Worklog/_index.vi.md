@@ -19,9 +19,9 @@ Thông thường và cũng là tiêu chuẩn, một worklog được thực hi�
 
 **Tuần 2:** [Làm công việc với Amazon RDS,AWS DynamoDB, LightSail và EC2 Auto Scaling](1.2-week2/)
 
-**Tuần 3:** [Làm công việc B...](1.3-week3/)
+**Tuần 3:** [Học về AWS Security](1.3-week3/)
 
-**Tuần 4:** [Làm công việc C...](1.4-week4/)
+**Tuần 4:** [Học về AWS DynamoDB và Relational Database Services](1.4-week4/)
 
 **Tuần 5:** [Làm công việc D...](1.5-week5/)
 
