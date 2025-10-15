@@ -10,46 +10,44 @@ pre: " <b> 1.5. </b> "
 
 ### Week 5 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Explore and practice authentication and storage using AWS Amplify.
+* Understand and deploy serverless applications with AWS SAM (Serverless Application Model).
+* Learn and implement user authentication using Amazon Cognito.
 
 ### Tasks to be carried out this week:
 | Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
 | 2   | - Learn AWS Amplify                                                                                                   | 05/10/2025 | 06/10/2025      | <https://aws.amazon.com/vi/amplify/>
 | 3   | - **Practice:** Using Amplify authentication and storage for serverless applications                                          | 06/10/2025 | 09/10/2025      | <https://000134.awsstudygroup.com/> |
-| 4   | - Learn AWS SAM : <br>&emsp; +AWS SAM templates and AWS SAM CLI <br>&emsp; +AWS SAM Accelerate and AWS SAM CLI Integration | 08/13/2025 | 08/13/2025      | <https://aws.amazon.com/vi/serverless/sam/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Learn AWS SAM : <br>&emsp; +AWS SAM templates and AWS SAM CLI <br>&emsp; +AWS SAM Accelerate and AWS SAM CLI Integration | 09/10/2025 | 10/10/2025      | <https://aws.amazon.com/vi/serverless/sam/> |
+| 5   | - **Practice:** <br>&emsp;+ Install SAM CLI <br>&emsp;+ Deploy front-end and Lambda function <br>&emsp;+ Config API Gateway and Test API by Postman                             | 10/10/2025 | 11/10/2025      | <https://000080.awsstudygroup.com/> |
+| 6   | -Learn: Amazon Cognito <br>-**Practice:**Authentication with Amazon Cognito                                                                                   | 11/10/2025 | 13/10/2025      | <https://000081.awsstudygroup.com/> |
 
 
 ### Week 5 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Learned and practiced using AWS Amplify, including: 
+  * Understanding Amplify architecture and its integration with serverless applications
+  * Implementing Amplify Authentication for user login and registration.
+  * Using Amplify Storage to manage file uploads and access via S3.
+  * Managing Amplify projects through the CLI and connecting to the front-end.
 
-* Successfully created and configured an AWS Free Tier account.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* Studied and applied AWS SAM (Serverless Application Model):
+  * Learned about SAM templates, Lambda functions, and API Gateway integration.
+  * Installed and configured the SAM CLI.
+  * Practiced deploying a serverless application using SAM Accelerate.
+  * Deployed Lambda functions and tested APIs using Postman.
+  * Understood the workflow between SAM, CloudFormation, and serverless infrastructure.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+* Learned and practiced Amazon Cognito:
 
-* Used AWS CLI to perform basic operations such as:
+  * Understood Cognito User Pools and Identity Pools.
+  * Implemented user authentication and authorization using Cognito.
+  * Integrated Cognito authentication into a front-end application with AWS Amplify.
+  * Successfully tested sign-up, sign-in, and token verification workflows.
+  
+* Built the ability to combine Amplify, SAM, and Cognito to form a fully functional serverless application that supports authentication, API interaction, and deployment on AWS.
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+* Strengthened understanding of serverless architecture, preparing for more advanced cloud-native development tasks.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
