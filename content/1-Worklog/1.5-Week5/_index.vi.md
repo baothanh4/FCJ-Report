@@ -18,40 +18,34 @@ pre: " <b> 1.5. </b> "
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
 | 2   | - Tìm hiểu AWS Amplify                                                                                      | 05/10/2025   | 06/10/2025      | <https://aws.amazon.com/vi/amplify/>
 | 3   | - **Thực hành:** Serverless - Sử dụng authentication và storage                                          | 06/10/2025   | 09/10/2025      | <https://000134.awsstudygroup.com/> |
-| 4   | - Tìm hiểu về AWS SAM : <br>&emsp; +AWS SAM templates và AWS SAM CLI <br>&emsp; +AWS SAM Accelerate và AWS SAM CLI Integration | 13/08/2025   | 13/08/2025      | <https://aws.amazon.com/vi/serverless/sam/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Tìm hiểu về AWS SAM : <br>&emsp; +AWS SAM templates và AWS SAM CLI <br>&emsp; +AWS SAM Accelerate và AWS SAM CLI Integration | 09/10/2025   | 10/10/2025      | <https://aws.amazon.com/vi/serverless/sam/> |
+| 5   | - **Thực hành:** <br>&emsp;+ Tải SAM CLI <br>&emsp;+ Deploy front-end và Lambda function <br>&emsp;+ Cấu hình API Gateway và kiểm thử API by Postman                    | 10/10/2025   | 11/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | -Tìm hiểu: Amazon Cognito <br>-**Thực hành:**Bảo mật cùng với Amazon Cognito                                                                                      | 11/10/2025   | 13/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 5:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Tìm hiểu và thực hành với AWS Amplify, bao gồm: 
+  * Hiểu kiến trúc của Amplify và cách tích hợp với ứng dụng serverless.
+  * Triển khai xác thực người dùng (Amplify Authentication) cho tính năng đăng nhập và đăng ký.
+  * Sử dụng Amplify Storage để quản lý tải lên và truy cập tệp tin thông qua S3.
+  * Quản lý dự án Amplify bằng CLI và kết nối với ứng dụng front-end.
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+* Nghiên cứu và áp dụng AWS SAM (Serverless Application Model):
+  * Hiểu về SAM templates, Lambda functions và tích hợp với API Gateway.
+  * Cài đặt và cấu hình SAM CLI.
+  * Thực hành triển khai ứng dụng serverless bằng SAM Accelerate.
+  * Triển khai hàm Lambda và kiểm thử API bằng Postman.
+  * Hiểu quy trình hoạt động giữa SAM, CloudFormation và hạ tầng serverless.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+* Tìm hiểu và thực hành với Amazon Cognito:
+  * Nắm được khái niệm User Pools và Identity Pools trong Cognito.
+  * Thực hiện xác thực và phân quyền người dùng thông qua Cognito.
+  * Tích hợp Cognito Authentication vào ứng dụng front-end bằng AWS Amplify.
+  * Thành công trong việc kiểm thử các quy trình đăng ký, đăng nhập và xác thực token.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Xây dựng được khả năng kết hợp Amplify, SAM và Cognito để tạo nên một ứng dụng serverless hoàn chỉnh, có khả năng xác thực, tương tác API và triển khai trực tiếp trên AWS.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* Củng cố kiến thức về kiến trúc serverless, sẵn sàng cho các bài thực hành nâng cao về phát triển ứng dụng cloud-native.
 
 
