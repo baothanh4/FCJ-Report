@@ -5,9 +5,7 @@ weight: 1
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+
 
 
 ### Week 7 Objectives:
@@ -18,9 +16,9 @@ pre: " <b> 1.7. </b> "
 ### Tasks to be carried out this week:
 | Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | - Learn the AWS EKS : <br>&emsp; + Control Plane(AWS managed) <br>&emsp; + Workder Nodes(user-managed) <br>&emsp; + All component in EKS :Cluster, Node group, Pod, Deployment Service                                                                                                   | 20/10/2025 | 21/10/2025      |<https://000126.awsstudygroup.com/1-introduce/>
+| 3   | - **Practice:** : <br>&emsp; + Create network:VPC, subnets, internet gateway <br>&emsp; + Create Auth for control plane <br>&emsp; + Create EKS cluster <br>&emsp; + Setting the addon: VPC-cni, kube proxy <br>&emsp; + Create Auth for worker node <br>&emsp; + Create worker node <br>&emsp; + Install addon: coredns <br>&emsp; + Test nginx deployment                                              | 21/10/2025 | 22/10/2025      | <https://000126.awsstudygroup.com/1-introduce> |
+| 4   | - Learn AWS ECS: <br>&emsp; + Cluster, task denifition, task, service, container agent <br>&emsp; + ECS launch types <br>&emsp; + Networking in ECS <br>&emsp; + Integrate with another services <br>&emsp; + ECS Auto Scaling  | 22/10/2025 | 24/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
 | 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 | 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 

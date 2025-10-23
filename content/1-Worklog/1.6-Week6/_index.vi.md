@@ -5,54 +5,31 @@ weight: 1
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+
 
 
 ### Mục tiêu tuần 6:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Hiểu và thực hành **AWS Backup**, bao gồm Backup Vault, Backup Plan, và triển khai bằng **AWS CloudFormation**.  
+- Nắm bắt cách hoạt động của **AWS WAF (Web Application Firewall)** và **AWS PrivateLink**, hiểu các thành phần như ACL, Rule, Rule Group, VPC Endpoint Service và Network Load Balancer.  
+- Tìm hiểu **AWS KMS (Key Management Service)** — bao gồm symmetric/asymmetric keys và vai trò của mã hóa trong bảo mật hệ thống.  
+- Nắm vững khái niệm **Containerization với Docker**, hiểu quy trình tạo và triển khai ứng dụng bằng **Docker Image** và **Docker Compose**.  
+- Thực hành tạo, cấu hình, và triển khai tài nguyên AWS theo mô hình **Infrastructure as Code** và container-based deployment.  
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | - TÌm hiểu AWS Backup: <br>&emsp; + Backup vault <br>&emsp; + Backup plan <br>&emsp; + Sử dụng cloudFormation để tạo backup plan                                                                                            | 13/10/2025   | 15/10/2025      |<https://000013.awsstudygroup.com/>
+| 3   |  - **Thực hành:** <br>&emsp; + Tạo backup plan <br>&emsp; +Tạo on-demand backup <br>&emsp; + Tạo backup vaults                                     | 13/10/2025   | 15/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Tìm hiểu AWS WAF và AWS privateLink : <br>&emsp; + ACL <br>&emsp; + Rules <br>&emsp; + Rules groups <br>&emsp; + VPC Endpoint Service <br>&emsp; + VPC Endpoint <br>&emsp; + Network Load Balancer| 15/10/2025   | 17/10/2025      | <https://000026.awsstudygroup.com/>  <br> <https://000111.awsstudygroup.com/> |
+| 5   | - Tìm hiểu AWS KMS : <br>&emsp; + Symetric Key <br>&emsp; + Asymetric Key <br> -**Practice:** <br>&emsp; + Tạo ACLs <br>&emsp; + Create rules and rules group                   | 17/10/2025   | 19/10/2025      | <https://000033.awsstudygroup.com/> |
+| 6   | - Tìm hiểu sự vận chuyển hàng container cùng với Docker:  <br>&emsp; + Docker là gì <br>&emsp; + Triển khai chỉ sử dụng Docker Image  <br&emsp; + Triển khai Docker compose và đẩy image                                     | 19/10/2025   | 21/10/2025      | <https://000015.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Hoàn thành việc học và thực hành **AWS Backup**, tạo thành công **Backup Vault**, **Backup Plan**, và **On-demand Backup** thông qua giao diện AWS và CloudFormation template.  
+- Thiết lập và thử nghiệm **AWS WAF**, bao gồm việc tạo **ACLs**, **Rules**, và **Rule Groups** để bảo vệ ứng dụng web.  
+- Hiểu rõ cơ chế hoạt động của **AWS PrivateLink**, triển khai **VPC Endpoint Service** và **VPC Endpoint** kết nối qua **Network Load Balancer**.  
+- Nghiên cứu và áp dụng **AWS KMS**, tạo và quản lý **Symmetric** và **Asymmetric keys** để mã hóa dữ liệu.  
+- Tạo và triển khai ứng dụng bằng **Docker**, thực hành build Docker Image, chạy container, triển khai với **Docker Compose**, và push image lên Docker Hub.  
+- Củng cố kiến thức về **Cloud Security** và **Containerization**, chuẩn bị nền tảng cho việc triển khai hệ thống thực tế trên môi trường **AWS Cloud**. 

@@ -1,89 +1,111 @@
 ---
-title: "Proposal"
+title: "Đề Xuất Dự Án"
 date: 2025-09-07
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
 
+# Hệ Thống Dịch Vụ Đường Sắt Đô Thị — Kiến Trúc AWS An Toàn, Mở Rộng và Tối Ưu Chi Phí
 
-# Hệ thống dịch vụ đường sắt Metropolitano với AWS: Kiến trúc đám mây có khả năng mở rộng và tối ưu hóa chi phí cho giao thông đô thị thông minh
+### 1. Giới thiệu
+Khi Thành phố Hồ Chí Minh phát triển nhanh chóng, hệ thống giao thông đô thị đang đối mặt với tình trạng tắc nghẽn và ô nhiễm môi trường. Dự án Đường sắt đô thị được triển khai nhằm cung cấp một giải pháp giao thông thông minh, bền vững và hiệu quả, góp phần giảm sự phụ thuộc vào phương tiện cá nhân.  
+Để đảm bảo tính tin cậy và an toàn, đề xuất này giới thiệu kiến trúc hạ tầng số dựa trên **AWS Cloud**, hỗ trợ các chức năng như đặt vé, thanh toán, quản lý lịch trình và phân tích vận hành — tất cả đều hoạt động trong mô hình **serverless**, tiết kiệm chi phí và thân thiện với người mới bắt đầu.
 
+---
 
-<!-- ## A Unified AWS Serverless Solution for Real-Time Weather Monitoring -->
+### 2. Mục tiêu
+* **Mục tiêu chung:**  
+Phát triển nền tảng số an toàn, có khả năng mở rộng và thân thiện với người dùng cho hệ thống Đường sắt đô thị.
 
-### 1.Giới thiệu
-Trong bối cảnh Thành phố Hồ Chí Minh tiếp tục đô thị hóa nhanh chóng, ùn tắc giao thông và ô nhiễm không khí đã trở thành những thách thức nghiêm trọng. Phương tiện cá nhân chiếm ưu thế trong giao thông, gây quá tải cho các tuyến đường hiện có và làm giảm hiệu quả di chuyển. Để giải quyết vấn đề này, một hệ thống đường sắt Metropolitano hiện đại đang được phát triển để cung cấp giao thông công cộng an toàn, nhanh chóng và bền vững.
-Đề xuất này nêu rõ cáchDịch vụ web của Amazon (AWS)sẽ được sử dụng để xây dựng cơ sở hạ tầng kỹ thuật số của hệ thống — tập trung vào dịch vụ đám mây cốt lõi và thân thiện với người mới bắt đầu để đạt được độ tin cậy, bảo mật và hiệu quả về chi phí
+* **Mục tiêu cụ thể:**  
+    + Xây dựng kiến trúc AWS serverless để tối ưu chi phí và khả năng mở rộng linh hoạt.  
+    + Hỗ trợ hệ thống **vé điện tử**, **đặt lịch trực tuyến**, và **cập nhật thời gian thực**.  
+    + Bảo vệ dữ liệu hành khách bằng **mã hóa**, **IAM**, và **WAF**.  
+    + Thiết lập hệ thống **giám sát và cảnh báo tự động** nhằm đảm bảo độ tin cậy khi vận hành.
 
+---
 
+### 3. Phạm vi
++ **Địa điểm triển khai:** Tuyến Metro số 1 TP.HCM (Bến Thành – Suối Tiên)  
++ **Đối tượng sử dụng:** Hành khách, nhân viên vận hành và ban quản lý  
++ **Thời gian:** 12 năm (từ khi triển khai đến vận hành)  
++ **Giới hạn:** Giai đoạn 1 tập trung vào các chức năng đặt vé, thanh toán và quản lý lịch trình; các tính năng IoT tự động hóa và phân tích dự đoán sẽ được mở rộng ở giai đoạn sau.
 
-### 2. Mục tiêu
-* <b>Mục tiêu chung:</b>
-Thiết lập một hệ thống Metropolitano thông minh, hiệu quả và bền vững nhằm cải thiện khả năng di chuyển trong đô thị và giảm tắc nghẽn giao thông.
-* <b>Mục tiêu cụ thể:</b>
-    + Xây dựng Tuyến Metropolitan số 1(19,7 km) nối ga Bến Thành và ga Suối Tiên.
-    + Giảm việc sử dụng xe cá nhân bằng cách 20% trong vòng 5 năm
-    + Thực hiện một hệ thống bán vé điện tử an toàn, không dùng tiền mặt có thể truy cập qua điện thoại di động/web.
-    + Sử dụng Dịch vụ đám mây AWS để quản lý dữ liệu hành khách, đảm bảo an toàn vận hành và nâng cao trải nghiệm du lịch
+---
 
-### 3. Phạm vi
-+ Vị trí: Ho Chi Minh City, Line 1 — Ben Thanh → Suoi Tien
-+ Đối tượng người dùng: Người dân, người đi làm và khách du lịch
-+ Khoảng thời gian: 12 năm (từ nghiên cứu khả thi đến khi đưa vào vận hành)
-+ Hạn chế:Tập trung vào cơ sở hạ tầng đô thị và tích hợp AWS thiết yếu. Vận tải trung chuyển và tự động hóa IoT sẽ được đề cập trong các giai đoạn sau.
+### 4. Kiến trúc AWS Cloud
 
+* **Lớp Bảo mật (Security Layer)**  
+    * **AWS WAF & AWS Shield** – Bảo vệ API và endpoint khỏi các tấn công (SQLi, XSS, DDoS).  
+    * Đảm bảo mọi kết nối đều sử dụng giao thức HTTPS an toàn.
 
-### 4. Kiến trúc đám mây AWS
-* Lớp Frontend (Phía máy khách)
-    * Ứng dụng web (React / Angular) Và Ứng dụng di động(dành cho hành khách và nhân viên).
-    * Cả hai đều giao tiếp với phần phụ trợ thông qua Điểm cuối API HTTPS.
-    * Dịch vụ AWS:
-        * Amazon S3– Lưu trữ các tài sản giao diện tĩnh (HTML, JS, CSS).(~5$/tháng)
-        * Amazon CloudFront(tùy chọn) – Tăng tốc độ phân phối nội dung trên toàn cầu. (~10$/tháng)
-* Lớp Backend (Dịch vụ ứng dụng)
-    * Cổng API của Amazon– Điểm vào cho tất cả các yêu cầu API của khách hàng. (10$/tháng)
-    * AWS Lambda– Xử lý logic kinh doanh với giá (15$/tháng):
-        * Đặt vé và lên lịch
-        * Giao dịch thanh toán
-        * Thông báo (email/SMS)
-    * Amazon Cognito– Xác thực người dùng và quản lý vai trò (Quản trị viên, Nhân viên, Hành khách) (5$/tháng).
-* Lớp dữ liệu
-    * Amazon RDS (PostgreSQL)– Lưu trữ dữ liệu có cấu trúc (hành khách, vé, lịch trình).(100$/tháng)
-    * Amazon DynamoDB– Lưu trữ dữ liệu hoạt động tàu theo thời gian thực (trạng thái tàu, tình trạng chỗ ngồi).(20$/tháng)
-    * Amazon S3– Lưu trữ bản sao lưu, báo cáo và nhật ký. (5$/tháng)
-*  Lớp giám sát và phân tích
-    * Amazon CloudWatch– Thu thập số liệu hệ thống, nhật ký ứng dụng và cảnh báo lỗi. (5$/tháng)
-    * Keo AWS + Athena– Chuyển đổi dữ liệu và truy vấn để phân tích. (15$/tháng)
-    * Amazon QuickSight– Bảng thông tin chi tiết về hoạt động và quản lý. (18$/tháng)
-*  Lớp bảo mật và mạng
-    * AWS WAF– Bảo vệ các điểm cuối API khỏi các cuộc tấn công web phổ biến (SQLi, XSS).
-    * Lá chắn AWS– Bảo vệ DDoS cho các điểm cuối công cộng.
-    * Amazon VPC– Cô lập phần phụ trợ và cơ sở dữ liệu trong một mạng riêng an toàn.
-    * AWS IAM– Quản lý vai trò nội bộ và quyền truy cập.
-        * Chi phí ước tính hàng tháng:Tổng cộng ~$8 cho WAF + Shield (các gói khác miễn phí).
-![IoT Weather Station Architecture](/images/2-Proposal/AWS-Architecture.png)
+* **Lớp API & Xác thực (API & Authentication Layer)**  
+    * **Amazon API Gateway** – Cổng vào cho ứng dụng web/mobile, điều hướng yêu cầu đến backend.  
+    * **Amazon Cognito** – Quản lý đăng nhập, đăng ký, khôi phục mật khẩu, và JWT token.  
+    * Đảm bảo quyền truy cập được kiểm soát và xác thực danh tính người dùng.
 
-### 5. Implementation Plan
-* Tuần 1-2: Cấu hình cơ sở hạ tầng cốt lõi của AWS (S3, API Gateway, Lambda, RDS)
-* Tuần 3–4: Xây dựng hệ thống vé điện tử và xác thực với Cognito
-* Tuần 5–6: Kích hoạt CloudWatch, bảng điều khiển và bảo mật WAF/Shield
-### 6. Ngân sách và Nguồn lực
-* Tổng chi phí đám mây ước tính:≈211 đô la Mỹ/tháng(~1.266 đô la Mỹ/năm)
-* Công cụ tối ưu hóa:AWS Cost Explorer, Auto Scaling và sử dụng Free Tier khi có thể.
-* Thành phần đội:
-    * Kiến trúc sư đám mây
-    * Nhà phát triển Backend (Lambda/API)
-    * Nhà phát triển giao diện người dùng
-    * Kỹ sư vận hành và bảo trì tàu điện ngầm
+* **Lớp Backend (Serverless Layer)**  
+    * Mỗi chức năng chạy trong **VPC riêng biệt** để tăng bảo mật và kết nối với tài nguyên nội bộ.  
+    * **AWS Lambda Functions:**  
+        * *Ticket Booking Lambda* – Xử lý tạo vé, xác thực và sinh mã vé.  
+        * *Train Schedule Lambda* – Quản lý và cập nhật lịch trình tàu.  
+        * *Payment Lambda* – Tích hợp với các cổng thanh toán bên thứ ba (VNPay, Momo).  
+        * *Notification Lambda* – Gửi email hoặc tin nhắn xác nhận cho người dùng.  
+    * Chi phí trung bình hàng tháng cho Lambda: khoảng **15 USD** (bao gồm Free Tier).
+
+* **Lớp Dữ liệu (Data Layer)**  
+    * **Amazon RDS (SQL Server)** – Lưu thông tin hành khách, vé và lịch trình.  
+    * **Amazon DynamoDB** – Xử lý dữ liệu tốc độ cao như trạng thái tàu hoặc số ghế trống theo thời gian thực.  
+    * Dữ liệu được **mã hóa bằng khóa KMS** để đảm bảo tuân thủ bảo mật.
+
+* **Lớp Quản lý Bí mật & Mã hóa (Secret & Encryption Layer)**  
+    * **AWS Secrets Manager** – Lưu trữ an toàn các thông tin nhạy cảm (API key, chuỗi kết nối DB, mật khẩu).  
+    * **AWS KMS (Key Management Service)** – Quản lý khóa mã hóa cho S3, RDS và Lambda.  
+    * Đảm bảo không có thông tin bí mật nào được lưu ở dạng rõ trong mã nguồn.
+
+* **Lớp Lưu trữ & Sao lưu (Storage & Backup Layer)**  
+    * **Amazon S3** – Lưu trữ giao diện web (React/Angular), dữ liệu backup, log và hóa đơn tải lên.  
+    * **Chính sách Lifecycle** tự động chuyển dữ liệu cũ sang **S3 Glacier** để giảm chi phí.  
+    * Chi phí ước tính: **khoảng 5 USD/tháng**.
+
+* **Lớp Giám sát & Cảnh báo (Monitoring & Alerting Layer)**  
+    * **Amazon CloudWatch** – Theo dõi log Lambda, chỉ số API Gateway, và tỷ lệ lỗi hệ thống.  
+
+* **Phân tích dữ liệu & Báo cáo (Giai đoạn 2)**  
+    * **Amazon Athena** – Tạo bảng phân tích về lượng hành khách, hiệu suất tuyến và thống kê thanh toán.
+
+![Sơ đồ kiến trúc hệ thống AWS Metro Train](/images/2-Proposal/aws_metropolitano_train_service.drawio.png)
+
+---
+
+### 5. Kế hoạch triển khai
+* **Tuần 1–2:** Cấu hình hạ tầng AWS (S3, API Gateway, Lambda, RDS, DynamoDB)  
+* **Tuần 3–4:** Xây dựng chức năng **đặt vé điện tử** và **xác thực người dùng bằng Cognito**  
+* **Tuần 5–6:** Kích hoạt **CloudWatch**, thiết lập dashboard giám sát và cấu hình bảo mật WAF  
+
+---
+
+### 6. Ngân sách & Nguồn lực
+* **Tổng chi phí ước tính:** ≈ **100 USD/tháng**  
+* **Công cụ tối ưu hóa chi phí:** AWS Cost Explorer, Auto Scaling, và Free Tier  
+* **Thành phần đội ngũ:**  
+    * Kiến trúc sư AWS Cloud  
+    * Lập trình viên Backend (Lambda/API)  
+    * Lập trình viên Frontend  
+    * Kỹ sư vận hành & bảo trì Metro  
+
+---
+
 ### 7. Kết quả mong đợi
-* Giảm tắc nghẽn giao thông và ô nhiễm không khí
-* Hệ thống bán vé điện tử không dùng tiền mặt được hỗ trợ bởi AWS
-* Nền tảng số an toàn, có khả năng mở rộng cho sự mở rộng trong tương lai
-* Nâng cao sự tiện lợi cho hành khách và tính minh bạch trong hoạt động
-* Chuyển giao kiến ​​thức và phát triển kỹ năng trong công nghệ AWS
+* Giảm ùn tắc giao thông và ô nhiễm không khí.  
+* Hệ thống **vé điện tử không tiền mặt** được vận hành trên AWS.  
+* Hạ tầng số **an toàn, dễ mở rộng và tiết kiệm chi phí**.  
+* Nâng cao sự tiện lợi cho hành khách và tính minh bạch trong vận hành.  
+* Chuyển giao kiến thức và kỹ năng về công nghệ AWS cho đội ngũ nội bộ.  
 
-### 8. Kết luận
-Các Hệ thống đường sắt Metropolitano tích hợp với Cơ sở hạ tầng đám mây AWS đại diện cho bước tiến hướng tới giao thông bền vững tại Thành phố Hồ Chí Minh.
-Bằng cách áp dụng các dịch vụ cốt lõi của AWS (API Gateway, Lambda, RDS, S3, Cognito, CloudWatch), hệ thống vẫn đơn giản, tiết kiệm chi phí và an toàn.
-Các giai đoạn tương lai có thể kết hợp IoT, AI/ML và phân tích dự đoán để tối ưu hóa khi hệ thống nền tảng ổn định.
+---
+
+### 8. Kết luận
+Hệ thống Dịch vụ Đường sắt Đô thị được triển khai trên nền tảng **AWS Cloud** mang lại một kiến trúc **an toàn, linh hoạt và tiết kiệm**, tạo tiền đề cho quá trình hiện đại hóa giao thông đô thị.  
+Bằng việc tận dụng **AWS Lambda, API Gateway, RDS, Cognito và CloudWatch**, hệ thống duy trì mô hình **serverless hoàn toàn**, giúp giảm chi phí vận hành và dễ dàng mở rộng sang các sáng kiến **Smart City** trong tương lai.

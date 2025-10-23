@@ -5,9 +5,7 @@ weight: 1
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+
 
 
 ### Mục tiêu tuần 7:
@@ -18,9 +16,9 @@ pre: " <b> 1.7. </b> "
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | - Tìm hiểu AWS EKS : <br>&emsp; + Control Plane(AWS managed) <br>&emsp; + Workder Nodes(user-managed) <br>&emsp; + Tất cả thành phần trong EKS :Cluster, Node group, Pod, Deployment/Service                                                                                                 | 20/10/2025   | 21/10/2025      |<https://000126.awsstudygroup.com/1-introduce/>
+| 3   | - **Thực hành:** : <br>&emsp; + Tạo network:VPC, subnets, internet gateway <br>&emsp; + Tạo quyền cho control plane <br>&emsp; + Khởi tạo EKS cluster <br>&emsp; + Cài đặt addon: vpc-cni, kube-proxy <br>&emsp; + Tạo quyền cho worker node <br>&emsp; + Khởi tạo worker node <br>&emsp; + Cài đặt addon: coredns <br>&emsp; + Test nginx deployment                                             | 21/10/2025   | 22/10/2025      | <https://000126.awsstudygroup.com/1-introduce> |
+| 4   | - Tìm hiểu AWS ECS: <br>&emsp; + Cluster, task denifition, task, service, container agent <br>&emsp; + ECS launch types <br>&emsp; + Networking trong ECS <br>&emsp; + Tích hợp với dịch vụ khác <br>&emsp; + ECS Auto Scaling | 22/10/2025   | 24/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
 | 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 | 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 

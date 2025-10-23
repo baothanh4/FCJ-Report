@@ -7,68 +7,73 @@ pre: " <b> 2. </b> "
 ---
 
 
-# Metropolitano Railway Service System with AWS: A Scalable, Cost-Optimized Cloud Architecture for Smart Urban Mobility
+# Metropolitan Railway Service System with AWS — Secure, Scalable, and Cost-Efficient Cloud Architecture
 
-<!-- ## A Unified AWS Serverless Solution for Real-Time Weather Monitoring -->
+
 
 ### 1. Introduction
-As Ho Chi Minh City continues to experience rapid urbanization, traffic congestion and air pollution have become critical challenges. Private vehicles dominate transportation, overloading existing roads and reducing mobility efficiency. To address this, a modern Metropolitano railway system is being developed to provide safe, fast, and sustainable public transport.
-This proposal outlines how Amazon Web Services (AWS) will be used to build the system’s digital infrastructure — focusing on core and beginner-friendly cloud services to achieve reliability, security, and cost efficiency.
+As Ho Chi Minh City expands rapidly, its transportation system faces congestion and environmental challenges. The Metropolitan Railway Project aims to provide a smart, sustainable, and efficient public transport solution that reduces private vehicle dependency.
+To ensure reliability and security, this proposal introduces an AWS-based digital architecture that powers ticket booking, payments, scheduling, and operational analytics — all within a serverless, cost-optimized, and beginner-friendly environment.
 
 
 
 ### 2. Objectives
 * <b>General Objective:</b>
-Establish a smart, efficient, and sustainable Metropolitano system that improves urban mobility and reduces road congestion.
+Develop a secure, scalable, and user-friendly digital backbone for the Metropolitan Railway system.
 * <b>Specific Objectives:</b>
-    + Construct Metropolitano Line 1 (19.7 km) connecting Ben Thanh and Suoi Tien stations.
-    + Reduce private vehicle usage by 20% within 5 years.
-    + Implement a secure, cashless e-ticketing system accessible via mobile/web.
-    + Use AWS cloud services to manage passenger data, ensure operational safety, and enhance the travel experience.
+    + Implement a serverless AWS architecture for cost efficiency and elasticity.
+    + Enable cashless e-ticketing, online scheduling, and real-time train updates.
+    + Protect passenger data with encryption, IAM, and WAF security layers.
+    + Establish monitoring and alerting for operational reliability.
 
 ### 3. Scope
-+ Location:  Ho Chi Minh City, Line 1 — Ben Thanh → Suoi Tien
-+ Target Users:  Citizens, commuters, and tourists
-+ Duration: 12 years (from feasibility study to full operation)
-+ Limitations: Focus on metro infrastructure and essential AWS integration. Feeder transport and IoT automation will be addressed in later phases.
++ Location:  Ho Chi Minh City Metro Line 1 (Bến Thành – Suối Tiên)
++ Target Users: Passengers, Metro staff, Administrators
++ Duration: 12 years (from deployment to operation)
++ Limitations: Phase 1 focuses on booking, payment, and schedule management; IoT train automation and predictive analytics will be introduced later.
 
 
 ### 4. AWS Cloud Architecture
-* Frontend Layer (Client Side)
-    * Web App (React / Angular) and Mobile App (for passengers and staff).
-    * Both communicate with the backend through HTTPS API endpoints.
-    * AWS Services:
-        * Amazon S3 – Hosts static frontend assets (HTML, JS, CSS).(~5$/month)
-        * Amazon CloudFront (optional) – Speeds up content delivery globally.(~10$/month)
-* Backend Layer (Application Services)
-    * Amazon API Gateway – Entry point for all client API requests.(10$/month)
-    * AWS Lambda – Handles business logic for(15$/month):
-        * Ticket booking & scheduling
-        * Payment transactions
-        * Notifications (email/SMS)
-    * Amazon Cognito – User authentication & role management (Admin, Staff, Passenger)(5$/month).
-* Data Layer
-    * Amazon RDS (PostgreSQL) – Stores structured data (passengers, tickets, schedules).(100$/month)
-    * Amazon DynamoDB – Stores real-time train operation data (train status, seat availability).(20$/month)
-    * Amazon S3 – Stores backups, reports, and logs.(5$/month)
-*  Monitoring & Analytics Layer
-    * Amazon CloudWatch – Collects system metrics, application logs, and error alerts.(5$/month)
-    * AWS Glue + Athena – Data transformation and querying for analytics.(15$/month)
-    * Amazon QuickSight – Dashboards for operations and management insights.(18$/month)
-*  Security & Networking Layer
-    * AWS WAF – Protects API endpoints from common web attacks (SQLi, XSS).
-    * AWS Shield – DDoS protection for public endpoints.
-    * Amazon VPC – Isolates backend and databases in a secure private network
-    * AWS IAM – Manages internal roles and access permissions.
-        * Estimated monthly cost: ~$8 total for WAF + Shield (others free-tier).
-![IoT Weather Station Architecture](/images/2-Proposal/AWS-Architecture.png)
+* Security Layer
+    * AWS WAF – Protect APIs and endpoints from attacks (SQLi, XSS, DDoS).
+    * Ensures all communication passes through secure HTTPS channels.
+* API & Authentication Layer
+    * Amazon API Gateway – Entry point for mobile/web clients, routing requests to backend functions.
+    * Amazon Cognito – Manages authentication, sign-up, password recovery, and JWT tokens.
+    * Ensures controlled access and user identity verification.
+* Backend Layer (Serverless)
+    * Each function resides inside a VPC for security and connectivity to private resources:
+        * AWS Lambda Functions:
+            * Ticket Booking Lambda – Handles booking creation, validation, and ticket code generation.
+            * Train Schedule Lambda – Manages train timetables and updates.
+            * Payment Lambda – Integrates with third-party payment APIs (e.g., VNPay, Momo).
+            * Notification Lambda – Sends email/SMS confirmations to users.
+    * Average monthly cost for all Lambda functions: ~$15/month (Free Tier included).
+*  Data Layer
+    * Amazon RDS (SQL Server) – Stores passenger accounts, ticket transactions, and schedules.
+    * Amazon DynamoDB – Handles high-speed data like real-time train status and seat availability.
+    * Encrypted using KMS-managed keys for compliance and privacy.
+*  Secret & Encryption Layer
+    * AWS Secrets Manager – Safely stores credentials, database URIs, and API keys.
+    * AWS KMS (Key Management Service) – Manages encryption for S3, RDS, and Lambda data.
+    * Ensures sensitive information never appears in plain text in code or environment variables.
+*  Storage & Backup Layer
+    * Amazon S3 – Hosts frontend web assets (React, Angular), Stores data backups, logs, and user-uploaded receipts.
+    * Lifecycle Policies move old data to S3 Glacier for cost savings.
+    * Estimated cost: ~$5/month.
+*  Monitoring & Alerting Layer
+    * Amazon CloudWatch – Tracks Lambda logs, API Gateway metrics, and error rates.
+*  Data Analytics & Insights (Phase 2)
+    * Amazon Athena – Generate dashboards on passenger volume, route performance, and payment statistics.
+
+![IoT Weather Station Architecture](/images/2-Proposal/aws_metropolitano_train_service.drawio.png)
 
 ### 5. Implementation Plan
-* Week 1–2: Configure AWS core infrastructure (S3, API Gateway, Lambda, RDS)
+* Week 1–2: Configure AWS core infrastructure (S3, API Gateway, Lambda, RDS,dynamoDB)
 * Week 3–4: Build e-ticketing and authentication with Cognito
-* Week 5–6: Enable CloudWatch, dashboards, and WAF/Shield security
+* Week 5–6: Enable CloudWatch, dashboards, and WAF security
 ### 6. Budget & Resources
-* Total Estimated Cloud Cost: ≈ USD 211/month (~USD 1,266/year)
+* Total Estimated Cloud Cost: ≈ USD 100/month 
 * Optimization Tools: AWS Cost Explorer, Auto Scaling, and usage of Free Tier where possible
 * Team Composition:
     * Cloud Architect
@@ -83,9 +88,8 @@ Establish a smart, efficient, and sustainable Metropolitano system that improves
 * Knowledge transfer and skill development in AWS technologies
 
 ### 8. Conclusion
-The Metropolitano Railway System integrated with AWS Cloud Infrastructure represents a forward-looking step toward sustainable transportation in Ho Chi Minh City.
- By adopting core AWS services (API Gateway, Lambda, RDS, S3, Cognito, CloudWatch), the system remains simple, cost-efficient, and secure.
-Future phases can incorporate IoT, AI/ML, and predictive analytics for optimization once the foundational system stabilizes.
+The Metropolitan Railway Service System powered by AWS Cloud establishes a secure, scalable, and affordable foundation for urban transport modernization.
+By leveraging AWS Lambda, API Gateway, RDS, Cognito, and CloudWatch, the solution remains fully serverless, ensuring minimal operational overhead and easy future expansion into smart-city initiatives.
 
 
 
