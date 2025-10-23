@@ -5,53 +5,34 @@ weight: 1
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
+
 
 
 ### Week 6 Objectives:
+- Understand and practice **AWS Backup**, including creating Backup Vaults, Backup Plans, and deploying backup configurations using **AWS CloudFormation**.  
+- Learn how **AWS WAF (Web Application Firewall)** and **AWS PrivateLink** work, including key components such as ACLs, Rules, Rule Groups, VPC Endpoint Services, and Network Load Balancers.  
+- Study **AWS KMS (Key Management Service)** — covering symmetric and asymmetric key management and their role in data encryption.  
+- Gain a solid understanding of **Containerization with Docker**, including how to build and deploy applications using **Docker Images** and **Docker Compose**.  
+- Strengthen skills in **Infrastructure as Code (IaC)** and **container-based deployment** for secure and scalable cloud environments.  
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+
+
 
 ### Tasks to be carried out this week:
 | Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
 | 2   | - Learn AWS Backup: <br>&emsp; + Backup vault <br>&emsp; + Backup plan <br>&emsp; + Using cloudFormation to create backup plan                                                                                                  | 13/10/2025 | 15/10/2025      |<https://000013.awsstudygroup.com/>
-| 3   | - **Practice:** <br>&emsp; + Create backup plan <br>&emsp; +Create on-demand backup <br>&emsp; + Create backup vaults                                             | 13/10/2025 | 15/10/2025      | <https://000013.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 3   | - **Practice:** <br>&emsp; + Create backup plan <br>&emsp; +Create on-demand backup <br>&emsp; + Create backup vaults                                             | 13/10/2025 | 15/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 4   | - Learn AWS WAF and AWS privateLink : <br>&emsp; + ACL <br>&emsp; + Rules <br>&emsp; + Rules groups <br>&emsp; + VPC Endpoint Service <br>&emsp; + VPC Endpoint <br>&emsp; + Network Load Balancer  | 15/10/2025 | 17/10/2025      | <https://000026.awsstudygroup.com/>  <br> <https://000111.awsstudygroup.com/>|
+| 5   | - Learn AWS KMS : <br>&emsp; + Symetric Key <br>&emsp; + Asymetric Key <br> -**Practice:** <br>&emsp; + Create ACLs <br>&emsp; + Create rules and rules group                           | 17/10/2025 | 19/10/2025      | <https://000033.awsstudygroup.com/> |
+| 6   | - Learn Containerization with Docker:  <br>&emsp; + What is Docker <br>&emsp; + Deploy use only Docker Image &emsp; Deploy with Docker compose and push image                                                                                    | 19/10/2025 | 21/10/2025      | <https://000015.awsstudygroup.com/> |
 
 
 ### Week 6 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+- Successfully learned and practiced **AWS Backup**, created **Backup Vaults**, **Backup Plans**, and **On-demand Backups** through both AWS Console and CloudFormation templates.  
+- Configured and tested **AWS WAF**, created **ACLs**, **Rules**, and **Rule Groups** to protect web applications from common attacks.  
+- Gained hands-on experience with **AWS PrivateLink**, implemented **VPC Endpoint Services** and **VPC Endpoints** connected via **Network Load Balancer** for secure private communication.  
+- Practiced using **AWS KMS**, created and managed both **Symmetric** and **Asymmetric Keys** for data encryption and secure key management.  
+- Built and deployed containerized applications using **Docker**, practiced building **Docker Images**, running **containers**, deploying with **Docker Compose**, and pushing images to **Docker Hub**.  
+- Strengthened understanding of **Cloud Security**, **Encryption**, and **Containerization**, forming a strong foundation for deploying real-world applications on **AWS Cloud**.  

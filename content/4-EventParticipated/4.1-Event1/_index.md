@@ -3,124 +3,216 @@ title: "Event 1"
 date: 2025-09-07
 weight: 1
 chapter: false
-pre: " <b> 4.1. </b> "
+pre: "<b> 4.1. </b>"
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Summary Report: “Data Science on AWS”
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+## Event Objectives
 
-### Event Objectives
+- Explore how data challenges can be solved through AWS Services  
+- Overview of Managed AI Services and their use cases  
+- Data preparation with **Amazon SageMaker**  
+- Using **XGBoost** with SageMaker Studio Notebooks  
+- No-code AutoML with **SageMaker Canvas**
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+---
 
-### Speakers
+## Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Van Hoang Kha** – Cloud Solutions Architect, AWS User Group Leader  
+- **Bach Doan Vuong** – Cloud DevOps Engineer, AWS Community Builder  
+- **Doan Nguyen Thanh Hoa** – CF Lecturer, FPT University HCMC  
 
-### Key Highlights
+---
 
-#### Identifying the drawbacks of legacy application architecture
+## Key Highlights
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+### Amazon Comprehend and Amazon Translate
+**Deep learning-powered text analysis and translation**
 
-#### Transitioning to modern application architecture – Microservices
+- Processes various document types (emails, chats, social media, phone calls, etc.) and extracts insights automatically.  
+- **Typical Comprehend use cases:**
+  - Intelligent document processing  
+  - Automated email workflows  
+  - Customer support ticket routing  
+  - Document and media tagging  
+  - Sentiment analysis  
+  - Contact center call analysis  
+  - PII (Personally Identifiable Information) detection and redaction  
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+---
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+### Amazon Translate
+**Neural machine translation service**
 
-#### Domain-Driven Design (DDD)
+**Key Features:**
+- **Broad language coverage:** 4970 X↔Y translation combinations  
+- **Low latency:** <150 ms/sentence on average  
+- **Data security:** Full encryption and ownership retention  
+- **Regional coverage:** Available in 17 AWS regions  
+- **Customizable translation:** Custom Terminologies and Active Custom Translation  
+- **Batch translation:** Supports DOCX, PPTX, XLSX, XML, HTML, and text files  
+- **Broad domain coverage:** Trained on 11 domains  
+- **Pay-per-use:** Simple API model  
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+**Use Cases:**
+- **Localization:** Enterprise content, media subtitling, archives  
+- **Communication:** Customer engagement, in-game chat, social media  
+- **Text analytics:** Voice of Customer, media analysis, eDiscovery  
 
-#### Event-Driven Architecture
+---
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+### Amazon Polly
+**Text-to-speech (TTS) service**
 
-#### Compute Evolution
+Amazon Polly converts text into lifelike speech using deep learning.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+**Features:**
+- Text-to-speech (TTS)  
+- Speech Synthesis Markup Language (SSML)  
+- Custom Lexicons  
+- Speech Marks  
+- Brand Voice  
 
-#### Amazon Q Developer
+**Common Use Cases:**
+- Voiced news articles and training  
+- Telephony/IVR systems  
+- Podcasts and language learning  
+- Navigation, reminders, accessibility tools  
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+---
 
-### Key Takeaways
+### Amazon Transcribe
+**Automatic Speech Recognition (ASR) service**
 
-#### Design Mindset
+- Converts recorded media into text  
+- Supports real-time transcription for live streaming content  
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+---
 
-#### Technical Architecture
+### Amazon Lex
+**Conversational AI service**
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+Builds voice and text-based chatbots.
 
-#### Modernization Strategy
+**Highlights:**
+- Easy to use  
+- High-quality natural language understanding  
+- Built-in integration with AWS services  
+- Cost-effective  
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+---
 
-### Applying to Work
+### Amazon Rekognition
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+![Amazon Rekognition](/images/Rekognition.jpg)
 
-### Event Experience
+Provides image and video analysis for object detection, facial recognition, and scene understanding.
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+---
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+### Amazon Personalize
+**Delivering personalized customer experiences**
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+- Fast deployment of recommendation systems  
+- Real-time response to user behavior  
+- Easy integration with existing systems  
+- Managed ML reduces time-to-market  
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+![Amazon Personalize](/images/Personalize.jpg)
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+---
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+### Feature Engineering
 
-#### Some event photos
-*Add your event photos here*  
+![Feature Engineering](/images/Feature_Engineering.jpg)
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+---
+
+### Data Preparation with Amazon SageMaker Canvas
+
+![SageMaker Canvas](/images/Sagemaker.jpg)
+
+---
+
+## Applying to Work — Lessons Derived from Key Highlights
+
+### 1. Data Understanding & Automation (Amazon Comprehend, Translate)
+**Lesson learned:**  
+The ability to extract insights from unstructured data is crucial for smarter decision-making.  
+
+**Application:**  
+- Use **Amazon Comprehend** for customer feedback sentiment analysis and document classification.  
+- Automate **email or ticket routing** based on detected intent and sentiment.  
+- Apply **Amazon Translate** for multilingual projects and global content localization.
+
+---
+
+### 2. Customer Engagement & Voice Interface (Amazon Polly, Lex, Transcribe)
+**Lesson learned:**  
+Voice and conversational AI make digital experiences more accessible and user-friendly.  
+
+**Application:**  
+- Combine **Lex**, **Polly**, and **Transcribe** to build a voice-enabled chatbot for 24/7 support.  
+- Use **Polly** to generate natural-sounding voiceovers for e-learning materials.  
+- Leverage **Transcribe** to capture and analyze customer service calls and meeting notes.
+
+---
+
+### 3. Image & Video Intelligence (Amazon Rekognition)
+**Lesson learned:**  
+Computer vision enables automation and deeper media insights.  
+
+**Application:**  
+- Use **Rekognition** to auto-tag and moderate multimedia content.  
+- Implement facial recognition for access control or customer analysis in retail environments.
+
+---
+
+### 4. Personalized Experience (Amazon Personalize)
+**Lesson learned:**  
+Personalization drives engagement and retention.  
+
+**Application:**  
+- Integrate **Personalize** to recommend content, services, or products based on user behavior.  
+- Build real-time recommendation systems that evolve as user intent changes.
+
+---
+
+### 5. Machine Learning Simplification (Amazon SageMaker, Canvas)
+**Lesson learned:**  
+Machine learning is no longer limited to experts—AWS simplifies the end-to-end ML lifecycle.  
+
+**Application:**  
+- Use **SageMaker Canvas** for no-code model training and predictions.  
+- Apply **SageMaker Studio** for algorithm experimentation (e.g., XGBoost).  
+- Improve data quality through **feature engineering** to enhance model performance.
+
+---
+
+### 6. Data-driven Modernization Mindset
+**Lesson learned:**  
+AI and AWS services promote a shift toward data-centric and event-driven architecture.  
+
+**Application:**  
+- Combine **DDD (Domain-Driven Design)** with AI workflows to design modular, adaptive systems.  
+- Use **serverless computing** (Lambda, API Gateway) for scalable AI-driven processes.  
+- Introduce event-driven patterns to handle asynchronous data flows efficiently.
+
+---
+
+## 🌟 Overall Reflection
+
+> Through this AWS Data Science event, I learned not just about individual AI services but also about **how to connect them into a cohesive, data-driven ecosystem**.  
+>  
+> Each tool—Comprehend, Translate, Polly, Rekognition, Personalize, and SageMaker—represents a piece of a larger puzzle: building intelligent, automated, and human-centered applications.  
+>  
+> These lessons are directly applicable to my projects, helping me move from manual workflows to **AI-assisted automation and smarter user experiences**.
+
+---
+
+## Event Photos
+
+
+![Event Resources](/images/Resources.jpg)

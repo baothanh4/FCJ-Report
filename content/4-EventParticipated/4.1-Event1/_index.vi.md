@@ -1,125 +1,216 @@
 ---
-title: "Event 1"
+title: "Sự kiện 1"
 date: 2025-09-07
 weight: 1
 chapter: false
-pre: " <b> 4.1. </b> "
+pre: "<b> 4.1. </b>"
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Báo cáo tổng kết: “Data Science on AWS”
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+## Mục tiêu sự kiện
 
-### Mục Đích Của Sự Kiện
+- Khám phá cách AWS giải quyết các bài toán dữ liệu bằng dịch vụ của mình  
+- Giới thiệu tổng quan về các **Managed AI Services** và các trường hợp sử dụng thực tế  
+- Chuẩn bị dữ liệu với **Amazon SageMaker**  
+- Ứng dụng **XGBoost** trong SageMaker Studio Notebooks  
+- Khai thác **AutoML không cần code** với SageMaker Canvas  
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+---
 
-### Danh Sách Diễn Giả
+## Diễn giả
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+- **Văn Hoàng Kha** – Cloud Solutions Architect, AWS User Group Leader  
+- **Bạch Doãn Vương** – Cloud DevOps Engineer, AWS Community Builder  
+- **Đoàn Nguyễn Thanh Hòa** – Giảng viên CF, Đại học FPT TP.HCM  
 
-### Nội Dung Nổi Bật
+---
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+## Nội dung nổi bật (Key Highlights)
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+### Amazon Comprehend và Amazon Translate
+**Phân tích và dịch văn bản bằng công nghệ học sâu (Deep Learning)**  
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+- Xử lý nhiều loại tài liệu như email, chat, mạng xã hội, cuộc gọi... và **tự động trích xuất thông tin hữu ích**.  
+- **Các trường hợp sử dụng phổ biến của Amazon Comprehend:**  
+  - Xử lý tài liệu thông minh  
+  - Tự động hóa quy trình email  
+  - Phân loại và định tuyến ticket hỗ trợ khách hàng  
+  - Gắn thẻ tài liệu và nội dung media  
+  - Phân tích cảm xúc khách hàng  
+  - Phân tích cuộc gọi tổng đài  
+  - Phát hiện và ẩn thông tin nhạy cảm (PII)
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+---
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+### Amazon Translate
+**Dịch máy thần kinh (Neural Machine Translation)**  
 
-#### Domain-Driven Design (DDD)
+**Tính năng chính:**
+- **Hỗ trợ ngôn ngữ rộng:** 4970 cặp ngôn ngữ dịch X↔Y  
+- **Độ trễ thấp:** <150ms cho mỗi câu  
+- **Bảo mật dữ liệu:** mã hóa và quản lý truy cập đầy đủ  
+- **Phủ sóng khu vực rộng:** 17 vùng AWS  
+- **Tùy chỉnh dịch:** dùng Custom Terminologies và Active Custom Translation  
+- **Dịch hàng loạt:** hỗ trợ định dạng DOCX, PPTX, XLSX, XML, HTML, TXT  
+- **Mô hình huấn luyện đa lĩnh vực:** 11 domain khác nhau  
+- **Tính phí theo sử dụng:** dễ tích hợp qua API  
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+**Trường hợp sử dụng:**
+- **Bản địa hóa nội dung:** tài liệu doanh nghiệp, phụ đề video, lưu trữ  
+- **Giao tiếp:** tương tác khách hàng, chat trong game, bài viết mạng xã hội  
+- **Phân tích văn bản:** Voice of Customer, phân tích media, eDiscovery  
 
-#### Event-Driven Architecture
+---
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+### Amazon Polly
+**Dịch vụ chuyển văn bản thành giọng nói (Text-to-Speech)**  
 
-#### Compute Evolution
+Amazon Polly sử dụng công nghệ học sâu để tổng hợp giọng nói tự nhiên như con người.
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+**Tính năng:**
+- Text-to-Speech (TTS)  
+- Ngôn ngữ đánh dấu SSML  
+- Tùy chỉnh từ vựng (Lexicons)  
+- Dấu giọng nói (Speech Marks)  
+- Tạo giọng thương hiệu (Brand Voice)
 
-#### Amazon Q Developer
+**Ứng dụng thực tế:**
+- Đọc tin tức, tài liệu đào tạo  
+- Tổng đài thoại/IVR  
+- Podcast, học ngoại ngữ  
+- Dẫn đường, nhắc việc, công cụ hỗ trợ người khuyết tật  
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+---
 
-### Những Gì Học Được
+### Amazon Transcribe
+**Dịch vụ nhận dạng giọng nói tự động (ASR)**  
 
-#### Tư Duy Thiết Kế
+- Chuyển nội dung âm thanh/video thành văn bản  
+- Hỗ trợ cả **ghi âm sẵn** và **phát trực tiếp theo thời gian thực**
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+---
 
-#### Kiến Trúc Kỹ Thuật
+### Amazon Lex
+**Dịch vụ xây dựng chatbot và giao diện hội thoại thông minh**  
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+**Tính năng:**
+- Dễ sử dụng  
+- Hiểu ngôn ngữ tự nhiên chính xác  
+- Tích hợp sẵn với hệ sinh thái AWS  
+- Tiết kiệm chi phí  
 
-#### Chiến Lược Hiện Đại Hóa
+---
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+### Amazon Rekognition
 
-### Ứng Dụng Vào Công Việc
+![Amazon Rekognition](/images/Rekognition.jpg)
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+Phân tích hình ảnh và video để phát hiện đối tượng, khuôn mặt, cảnh vật và nội dung không phù hợp.
 
-### Trải nghiệm trong event
+---
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+### Amazon Personalize
+**Cá nhân hóa trải nghiệm người dùng**  
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+- Triển khai hệ thống gợi ý nhanh chóng  
+- Phản ứng theo hành vi người dùng theo thời gian thực  
+- Dễ dàng tích hợp với hệ thống hiện có  
+- Giảm thời gian ra thị trường nhờ dịch vụ ML được quản lý  
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+![Amazon Personalize](/images/Personalize.jpg)
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+---
 
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+### Feature Engineering
 
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+![Feature Engineering](/images/Feature_Engineering.jpg)
 
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+---
+
+### Chuẩn bị dữ liệu với Amazon SageMaker Canvas
+
+![SageMaker Canvas](/images/Sagemaker.jpg)
+
+---
+
+## Ứng dụng vào công việc — Bài học rút ra từ Key Highlights
+
+### 1. Hiểu dữ liệu & Tự động hóa (Amazon Comprehend, Translate)
+**Bài học:**  
+Khai thác dữ liệu phi cấu trúc là nền tảng cho việc ra quyết định thông minh.  
+
+**Ứng dụng:**  
+- Sử dụng **Amazon Comprehend** để phân tích cảm xúc khách hàng, phân loại tài liệu hoặc email.  
+- Tự động **định tuyến ticket hỗ trợ** dựa trên nội dung và cảm xúc.  
+- Dùng **Amazon Translate** để dịch nhanh tài liệu trong các dự án đa ngôn ngữ.
+
+---
+
+### 2. Tăng tương tác & Giao diện thoại (Amazon Polly, Lex, Transcribe)
+**Bài học:**  
+AI giọng nói giúp nâng cao trải nghiệm người dùng và khả năng tiếp cận dịch vụ.  
+
+**Ứng dụng:**  
+- Kết hợp **Lex + Transcribe + Polly** để xây dựng chatbot hỗ trợ khách hàng bằng giọng nói 24/7.  
+- Sử dụng **Polly** tạo giọng đọc tự nhiên cho nội dung đào tạo hoặc podcast.  
+- Dùng **Transcribe** để ghi âm, phân tích và tóm tắt nội dung cuộc họp hoặc cuộc gọi.
+
+---
+
+### 3. Phân tích hình ảnh & video (Amazon Rekognition)
+**Bài học:**  
+Thị giác máy tính giúp tự động hóa việc phân tích và kiểm duyệt nội dung đa phương tiện.  
+
+**Ứng dụng:**  
+- Áp dụng **Rekognition** để tự động gắn thẻ, phân loại hình ảnh/video.  
+- Phát hiện khuôn mặt hoặc hành vi bất thường trong hệ thống an ninh hoặc bán lẻ.
+
+---
+
+### 4. Cá nhân hóa trải nghiệm người dùng (Amazon Personalize)
+**Bài học:**  
+Cá nhân hóa là yếu tố cốt lõi để giữ chân người dùng và nâng cao trải nghiệm.  
+
+**Ứng dụng:**  
+- Tích hợp **Personalize** để gợi ý sản phẩm/dịch vụ theo hành vi người dùng.  
+- Xây dựng hệ thống gợi ý phản hồi **theo thời gian thực**, thích ứng liên tục.
+
+---
+
+### 5. Đơn giản hóa Machine Learning (Amazon SageMaker, Canvas)
+**Bài học:**  
+Machine Learning không còn là đặc quyền của chuyên gia — AWS giúp AI trở nên dễ tiếp cận.  
+
+**Ứng dụng:**  
+- Dùng **SageMaker Canvas** để huấn luyện và dự đoán mà không cần viết code.  
+- Ứng dụng **SageMaker Studio** để thử nghiệm các mô hình như **XGBoost**.  
+- Hiểu rõ vai trò của **Feature Engineering** để cải thiện độ chính xác của mô hình.
+
+---
+
+### 6. Tư duy hiện đại hóa dựa trên dữ liệu
+**Bài học:**  
+Các dịch vụ AI của AWS thúc đẩy tư duy **kiến trúc hướng sự kiện (event-driven)** và **tập trung vào dữ liệu**.  
+
+**Ứng dụng:**  
+- Kết hợp **Domain-Driven Design (DDD)** với quy trình AI để xây dựng hệ thống linh hoạt, dễ mở rộng.  
+- Sử dụng **serverless (Lambda, API Gateway)** để triển khai nhanh các pipeline AI.  
+- Thiết kế hệ thống xử lý dữ liệu bất đồng bộ theo mô hình **event streaming** để tăng hiệu năng.
+
+---
+
+## 🌟 Tổng kết
+
+> Qua hội thảo “Data Science on AWS”, tôi không chỉ học về từng dịch vụ AI riêng lẻ mà còn hiểu được cách **liên kết chúng thành một hệ sinh thái dữ liệu thông minh**.  
+>  
+> Mỗi công cụ — từ Comprehend, Translate, Polly, Rekognition, Personalize đến SageMaker — đều góp phần tạo nên hệ thống **tự động, linh hoạt và hướng người dùng**.  
+>  
+> Những kiến thức và bài học này có thể **áp dụng trực tiếp vào dự án thực tế**, giúp chuyển đổi quy trình thủ công sang **mô hình vận hành thông minh dựa trên AI và dữ liệu**.
+
+---
+
+## Hình ảnh sự kiện
+
+*(Thêm ảnh sự kiện của bạn tại đây)*  
+![Event Resources](/images/Resources.jpg)
