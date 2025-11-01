@@ -5,53 +5,36 @@ weight: 1
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
 
 ### Week 8 Objectives:
+* Understand the fundamentals and use cases of AWS Step Functions, including its 7 core state types and how to orchestrate complex workflows.
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Gain hands-on experience creating and testing workflows in AWS Cloud9, focusing on task orchestration and error handling.
+
+* Learn the key features and deployment steps of Amazon FSx, including its different variants (Windows File Server, Lustre, NetApp ONTAP, OpenZFS).
+
+* Practice configuring an FSx file system integrated with AWS Managed Microsoft AD, ensuring proper setup of networking, authentication, and file sharing.
+
+* Explore AWS X-Ray to understand how to trace and visualize requests across distributed applications for performance optimization and debugging.
 
 ### Tasks to be carried out this week:
 | Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | - Learn AWS Step Functions: <br>&emsp; + 7 states: Task state, choice state, a fail or success state, pass state, wait state, parallel state, map state <br>&emsp; + Uses cases to use AWS Step Functions <br>&emsp; + Benefits of AWS Step Functions                                                                                                   | 26/10/2025 | 27/10/2025      |<https://000047.awsstudygroup.com/1-intro/>
+| 3   | - **Practice:**<br>&emsp; + Create Cloud9 enviroment <br>&emsp; + Create sample services <br>&emsp; + Initialize workflow <br>&emsp; + Error handling                                             | 27/10/2025 | 28/10/2025      | <https://000047.awsstudygroup.com/1-intro/> |
+| 4   | - Learn Amazon FSx: <br>&emsp; + FSx for Windows File Server <br>&emsp; + FSx for Lustre <br>&emsp; + FSx for NetApp ONTAP <br>&emsp; + FSx for OpenZFS  | 28/10/2025 | 29/10/2025      | <https://000025.awsstudygroup.com/> |
+| 5   | - **Practice:** <br>&emsp; + Configure File system details <br>&emsp; + Choose existing VPC  <br>&emsp; + Choose AWS Managed Microsoft AD(Provide DNS name of domain, Service account username and password) <br>&emsp; + Define Windows file share name(Choose AWS Managed Microsoft AD) <br>&emsp; Review and create                            | 29/10/2025 | 30/10/2025      | <https://000025.awsstudygroup.com/> |
+| 6   |- Learn AWS X-Ray: <br>&emsp; + Trace <br>&emsp; + Segment <br>&emsp; + Subsegment <br>&emsp; + Annotation / Metadata <br>&emsp; + Service Map                                                                                      | 30/10/2025 | 31/10/2025      | <https://000140.awsstudygroup.com/> |
 
 
 ### Week 8 Achievements:
+* Successfully learned and explained the 7 states of AWS Step Functions, including how each contributes to workflow automation and state transitions.
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* Practiced building a sample workflow using AWS Step Functions in Cloud9, implementing error handling and validating execution flow.
 
-* Successfully created and configured an AWS Free Tier account.
+* Gained a solid understanding of the different Amazon FSx options and their ideal use cases for Windows workloads, high-performance computing, and enterprise storage.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+* Completed hands-on setup of an FSx for Windows File Server, including file system configuration, VPC and AD integration, and file share creation.
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Learned how AWS X-Ray collects traces, segments, and subsegments, and visualized a Service Map to identify performance bottlenecks and errors across AWS services.

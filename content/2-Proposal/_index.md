@@ -51,7 +51,6 @@ Develop a secure, scalable, and user-friendly digital backbone for the Metropoli
     * Average monthly cost for all Lambda functions: ~$15/month (Free Tier included).
 *  Data Layer
     * Amazon RDS (SQL Server) – Stores passenger accounts, ticket transactions, and schedules.
-    * Amazon DynamoDB – Handles high-speed data like real-time train status and seat availability.
     * Encrypted using KMS-managed keys for compliance and privacy.
 *  Secret & Encryption Layer
     * AWS Secrets Manager – Safely stores credentials, database URIs, and API keys.

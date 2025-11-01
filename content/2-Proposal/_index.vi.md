@@ -55,8 +55,7 @@ Phát triển nền tảng số an toàn, có khả năng mở rộng và thân 
     * Chi phí trung bình hàng tháng cho Lambda: khoảng **15 USD** (bao gồm Free Tier).
 
 * **Lớp Dữ liệu (Data Layer)**  
-    * **Amazon RDS (SQL Server)** – Lưu thông tin hành khách, vé và lịch trình.  
-    * **Amazon DynamoDB** – Xử lý dữ liệu tốc độ cao như trạng thái tàu hoặc số ghế trống theo thời gian thực.  
+    * **Amazon RDS (SQL Server)** – Lưu thông tin hành khách, vé và lịch trình.   
     * Dữ liệu được **mã hóa bằng khóa KMS** để đảm bảo tuân thủ bảo mật.
 
 * **Lớp Quản lý Bí mật & Mã hóa (Secret & Encryption Layer)**  
