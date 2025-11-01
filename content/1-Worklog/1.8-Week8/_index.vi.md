@@ -1,59 +1,46 @@
 ---
-title: "Worklog Tuần 8"
+title: "Báo cáo Tuần 8"
 date: 2025-09-07
 weight: 1
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+###  Mục tiêu Tuần 8 (Week 8 Objectives):
+* Hiểu các khái niệm cơ bản và trường hợp sử dụng của **AWS Step Functions**, bao gồm **7 loại trạng thái chính** và cách phối hợp các bước để điều phối các quy trình phức tạp.  
 
-### Mục tiêu tuần 8:
+* Thực hành tạo và kiểm thử **workflow trong AWS Cloud9**, tập trung vào việc điều phối tác vụ (task orchestration) và xử lý lỗi (error handling).  
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Tìm hiểu các tính năng chính và các bước triển khai của **Amazon FSx**, bao gồm các biến thể khác nhau: **FSx for Windows File Server**, **FSx for Lustre**, **FSx for NetApp ONTAP**, và **FSx for OpenZFS**.  
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+* Thực hành cấu hình **hệ thống tệp FSx** tích hợp với **AWS Managed Microsoft AD**, đảm bảo thiết lập đúng về **mạng, xác thực và chia sẻ tệp (file sharing)**.  
 
+* Khám phá **AWS X-Ray** để hiểu cách theo dõi và trực quan hóa các yêu cầu trong ứng dụng phân tán nhằm **tối ưu hóa hiệu năng và xử lý lỗi**.  
 
-### Kết quả đạt được tuần 8:
+---
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+### Nhiệm vụ thực hiện trong tuần (Tasks to be carried out this week):
+| Ngày | Nhiệm vụ                                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Tài liệu tham khảo                        |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
+| 2   | - Học về **AWS Step Functions**: <br>&emsp; + 7 trạng thái: Task state, Choice state, Fail/Success state, Pass state, Wait state, Parallel state, Map state <br>&emsp; + Các trường hợp sử dụng Step Functions <br>&emsp; + Lợi ích của AWS Step Functions | 26/10/2025 | 27/10/2025      | <https://000047.awsstudygroup.com/1-intro/> |
+| 3   | - **Thực hành:** <br>&emsp; + Tạo môi trường **Cloud9** <br>&emsp; + Tạo các dịch vụ mẫu <br>&emsp; + Khởi tạo workflow <br>&emsp; + Xử lý lỗi | 27/10/2025 | 28/10/2025 | <https://000047.awsstudygroup.com/1-intro/> |
+| 4   | - Học về **Amazon FSx**: <br>&emsp; + FSx for Windows File Server <br>&emsp; + FSx for Lustre <br>&emsp; + FSx for NetApp ONTAP <br>&emsp; + FSx for OpenZFS | 28/10/2025 | 29/10/2025 | <https://000025.awsstudygroup.com/> |
+| 5   | - **Thực hành:** <br>&emsp; + Cấu hình chi tiết hệ thống tệp <br>&emsp; + Chọn VPC hiện có <br>&emsp; + Chọn **AWS Managed Microsoft AD** (Cung cấp tên miền DNS, tài khoản dịch vụ và mật khẩu) <br>&emsp; + Đặt tên chia sẻ tệp Windows (chọn AWS Managed Microsoft AD) <br>&emsp; + Kiểm tra và tạo hệ thống | 29/10/2025 | 30/10/2025 | <https://000025.awsstudygroup.com/> |
+| 6   | - Học về **AWS X-Ray**: <br>&emsp; + Trace <br>&emsp; + Segment <br>&emsp; + Subsegment <br>&emsp; + Annotation / Metadata <br>&emsp; + Service Map | 30/10/2025 | 31/10/2025 | <https://000140.awsstudygroup.com/> |
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+---
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+### Thành tựu Tuần 8 (Week 8 Achievements):
+* Đã học và giải thích được **7 trạng thái của AWS Step Functions**, bao gồm vai trò của từng trạng thái trong việc tự động hóa và điều phối quy trình.  
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+* Thực hành **xây dựng workflow mẫu** bằng AWS Step Functions trong Cloud9, triển khai cơ chế **xử lý lỗi và xác minh luồng thực thi** thành công.  
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
+* Nắm vững kiến thức về **các loại Amazon FSx** và trường hợp sử dụng phù hợp cho từng nhu cầu: **hệ thống Windows, tính toán hiệu năng cao, và lưu trữ doanh nghiệp**.  
 
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
+* Hoàn thành thực hành **cấu hình FSx for Windows File Server**, bao gồm: cấu hình hệ thống tệp, tích hợp **VPC và Active Directory**, và tạo chia sẻ file (file share).  
 
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* Hiểu rõ cách **AWS X-Ray thu thập và hiển thị trace, segment, subsegment**, đồng thời **quan sát Service Map** để phát hiện nút thắt hiệu năng và lỗi trong ứng dụng.  
 
+* Hoàn tất toàn bộ mục tiêu học tập và thực hành đề ra cho **tuần 8**.  
 
+---
