@@ -6,169 +6,161 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-
-# Metropolitan Railway Service System with AWS — Secure, Scalable, and Cost-Efficient Cloud Architecture
-
-
+# Metropolitan Railway Service System on AWS — Secure, Scalable, and Cost-Optimized Cloud Architecture
 
 ### 1. Introduction
-As Ho Chi Minh City expands rapidly, its transportation system faces congestion and environmental challenges. The Metropolitan Railway Project aims to provide a smart, sustainable, and efficient public transport solution that reduces private vehicle dependency.
-To ensure reliability and security, this proposal introduces an AWS-based digital architecture that powers ticket booking, payments, scheduling, and operational analytics — all within a serverless, cost-optimized, and beginner-friendly environment.
+As Ho Chi Minh City continues to expand rapidly, transportation challenges such as congestion and air pollution are intensifying.  
+The **Metropolitan Railway Project** represents a strategic initiative to deliver a modern, sustainable, and intelligent public transportation system.  
 
+This proposal introduces a **comprehensive AWS-based cloud architecture** designed to power digital ticket booking, cashless payments, train scheduling, and operational analytics.  
+The solution leverages **serverless**, **event-driven**, and **CI/CD-enabled** AWS services to ensure scalability, cost efficiency, and robust security.
 
+---
 
 ### 2. Objectives
-* <b>General Objective:</b>
-Develop a secure, scalable, and user-friendly digital backbone for the Metropolitan Railway system.
-* <b>Specific Objectives:</b>
-    + Implement a serverless AWS architecture for cost efficiency and elasticity.
-    + Enable cashless e-ticketing, online scheduling, and real-time train updates.
-    + Protect passenger data with encryption, IAM, and WAF security layers.
-    + Establish monitoring and alerting for operational reliability.
+**General Objective:**  
+To build a reliable and secure digital infrastructure for the Ho Chi Minh City Metropolitan Railway using AWS Cloud.
+
+**Specific Objectives:**
+- Deploy a **serverless and event-driven** cloud architecture using AWS Lambda and EventBridge.  
+- Enable **online booking**, **digital payments**, and **real-time train schedule updates**.  
+- Implement **end-to-end security** via WAF, Cognito, KMS, and Secrets Manager.  
+- Integrate **CI/CD automation** with CodePipeline, CodeBuild, and CodeDeploy.  
+- Establish **monitoring and compliance** with CloudWatch and CloudTrail.
+
+---
 
 ### 3. Scope
-+ Location:  Ho Chi Minh City Metro Line 1 (Bến Thành – Suối Tiên)
-+ Target Users: Passengers, Metro staff, Administrators
-+ Duration: 12 years (from deployment to operation)
-+ Limitations: Phase 1 focuses on booking, payment, and schedule management; IoT train automation and predictive analytics will be introduced later.
+- **Location:** Ho Chi Minh City Metro Line 1 (Bến Thành – Suối Tiên)  
+- **Target Users:** Passengers, Metro Staff, Administrators  
+- **Project Duration:** 12 years (from initial deployment to long-term operations)  
+- **Phase 1 Coverage:** Ticket booking, authentication, scheduling, and payments  
+- **Future Phases:** Predictive analytics, IoT-based train monitoring, and passenger flow optimization  
 
+---
 
 ### 4. AWS Cloud Architecture
-* Security Layer
-    * AWS WAF – Protect APIs and endpoints from attacks (SQLi, XSS, DDoS).
-    * Ensures all communication passes through secure HTTPS channels.
-* API & Authentication Layer
-    * Amazon API Gateway – Entry point for mobile/web clients, routing requests to backend functions.
-    * Amazon Cognito – Manages authentication, sign-up, password recovery, and JWT tokens.
-    * Ensures controlled access and user identity verification.
-* Backend Layer (Serverless)
-    * Each function resides inside a VPC for security and connectivity to private resources:
-        * AWS Lambda Functions:
-            * Ticket Booking Lambda – Handles booking creation, validation, and ticket code generation.
-            * Train Schedule Lambda – Manages train timetables and updates.
-            * Payment Lambda – Integrates with third-party payment APIs (e.g., VNPay, Momo).
-            * Notification Lambda – Sends email/SMS confirmations to users.
-    * Average monthly cost for all Lambda functions: ~$15/month (Free Tier included).
-*  Data Layer
-    * Amazon RDS (SQL Server) – Stores passenger accounts, ticket transactions, and schedules.
-    * Encrypted using KMS-managed keys for compliance and privacy.
-*  Secret & Encryption Layer
-    * AWS Secrets Manager – Safely stores credentials, database URIs, and API keys.
-    * AWS KMS (Key Management Service) – Manages encryption for S3, RDS, and Lambda data.
-    * Ensures sensitive information never appears in plain text in code or environment variables.
-*  Storage & Backup Layer
-    * Amazon S3 – Hosts frontend web assets (React, Angular), Stores data backups, logs, and user-uploaded receipts.
-    * Lifecycle Policies move old data to S3 Glacier for cost savings.
-    * Estimated cost: ~$5/month.
-*  Monitoring & Alerting Layer
-    * Amazon CloudWatch – Tracks Lambda logs, API Gateway metrics, and error rates.
-*  Data Analytics & Insights (Phase 2)
-    * Amazon Athena – Generate dashboards on passenger volume, route performance, and payment statistics.
+The proposed system follows a **multi-layered, serverless AWS architecture** combining scalability, automation, and enterprise-grade security.
 
-![IoT Weather Station Architecture](/images/2-Proposal/aws_metropolitano_train_service.drawio.png)
+---
+
+#### **1. Network and Access Layer**
+- **Amazon Route 53:**  
+  Manages domain routing for the Metro web and mobile portals. Ensures global DNS availability and low-latency routing.  
+- **Amazon CloudFront (CDN):**  
+  Distributes static frontend assets globally with low latency, reducing load on backend systems.  
+- **AWS WAF (Web Application Firewall):**  
+  Protects the application from DDoS, SQL injection, and cross-site scripting attacks.  
+- **AWS Shield (Integrated with CloudFront):**  
+  Provides automatic DDoS protection for network and transport layers.  
+
+---
+
+#### **2. CI/CD and Automation Layer**
+- **AWS CodePipeline:**  
+  Automates the entire build–test–deploy workflow, ensuring continuous integration and delivery for all application components.  
+- **AWS CodeBuild:**  
+  Compiles and tests backend and frontend code automatically after each GitHub commit.  
+- **AWS CodeDeploy:**  
+  Deploys new versions of Lambda functions and API configurations without downtime.  
+- **GitHub Integration:**  
+  Serves as the source control repository, triggering CI/CD pipelines via webhook events.  
+
+---
+
+#### **3. Authentication and Security Layer**
+- **Amazon Cognito:**  
+  Manages user registration, login, password recovery, and MFA-based authentication. Issues secure JWT tokens for API access.  
+- **AWS Secrets Manager:**  
+  Stores sensitive credentials (e.g., RDS passwords, API keys) securely and rotates them automatically.  
+- **AWS KMS (Key Management Service):**  
+  Provides encryption for data at rest in RDS, S3, and environment variables in Lambda.  
+- **AWS CloudTrail:**  
+  Logs and monitors every API call across all AWS accounts, ensuring compliance and traceability.  
+
+---
+
+#### **4. Application and API Layer**
+- **Amazon API Gateway:**  
+  Exposes secure RESTful endpoints for mobile/web clients and routes requests to backend Lambda functions.  
+- **AWS Lambda (Serverless Backend):**  
+  Handles all business logic through modular microservices:
+  - `BookingServiceLambda` — Creates bookings and validates requests.  
+  - `PaymentLambda` — Processes VNPay or Momo payments.  
+  - `ScheduleLambda` — Manages timetable queries and updates.  
+  - `NotificationLambda` — Sends email/SMS notifications through SNS.  
+  - `EventBridge` — Triggers automated workflows (e.g., payment success → send receipt).  
+- **Amazon EventBridge:**  
+  Coordinates asynchronous events such as booking confirmation, cancellations, or delayed schedules.  
+
+---
+
+#### **5. Data and Storage Layer**
+- **Amazon RDS (SQL Server):**  
+  Hosts structured data — passenger profiles, bookings, and payment transactions. Runs in private subnets with daily backups to S3.  
+- **Amazon DynamoDB (Optional Extension):**  
+  Provides real-time caching for schedules and session data.  
+- **Amazon S3:**  
+  - Hosts static frontend web assets (React app).  
+  - Stores logs, receipts, and backup files.  
+  - Implements lifecycle policies to archive data to **S3 Glacier** for cost optimization.  
+
+---
+
+#### **6. Monitoring, Logging, and Compliance**
+- **Amazon CloudWatch:**  
+  Tracks performance metrics, Lambda logs, and API Gateway latency. Generates alarms for operational anomalies.  
+- **CloudWatch Alarms + SNS:**  
+  Notifies the DevOps team about threshold breaches (CPU usage, 5XX errors, etc.).  
+- **AWS CloudTrail:**  
+  Records all API activities for auditing and compliance (ISO/GDPR-ready).  
+
+---
 
 ### 5. Implementation Plan
-* Week 1–2: Configure AWS core infrastructure (S3, API Gateway, Lambda, RDS,dynamoDB)
-* Week 3–4: Build e-ticketing and authentication with Cognito
-* Week 5–6: Enable CloudWatch, dashboards, and WAF security
+| **Phase** | **Duration** | **Key Deliverables** |
+|------------|--------------|----------------------|
+| **Phase 1** | Weeks 1–2 | Set up core AWS infrastructure: Route 53, CloudFront, API Gateway, Lambda, RDS |
+| **Phase 2** | Weeks 3–4 | Develop booking and authentication (Cognito, Lambda, EventBridge) |
+| **Phase 3** | Weeks 5–6 | Integrate payments, CloudWatch monitoring, and WAF protection |
+| **Phase 4** | Weeks 7–8 | Configure CI/CD pipelines using CodePipeline, CodeBuild, and CodeDeploy |
+| **Phase 5** | Future | Add analytics layer (Athena, QuickSight) |
+
+---
+
 ### 6. Budget & Resources
-* Total Estimated Cloud Cost: ≈ USD 100/month 
-* Optimization Tools: AWS Cost Explorer, Auto Scaling, and usage of Free Tier where possible
-* Team Composition:
-    * Cloud Architect
-    * Backend Developer (Lambda/API)
-    * Frontend Developer
-    * Metro Operations & Maintenance Engineers
+| **Component** | **Main Services** | **Estimated Monthly Cost (USD)** |
+|----------------|-------------------|----------------------------------|
+| Network & CDN | Route 53, CloudFront, WAF | $15 |
+| Serverless Backend | Lambda, API Gateway, EventBridge | $20 |
+| Database & Storage | RDS, S3 | $35 |
+| CI/CD | CodePipeline, CodeBuild, CodeDeploy | $10 |
+| Security & Monitoring | CloudWatch, CloudTrail, Cognito, Secrets Manager, KMS | $15 |
+| **Total Estimate** | — | **≈ $95–100/month** |
+
+**Human Resources:**
+- Cloud Architect  
+- Backend Developer (Lambda / API Gateway)  
+- Frontend Developer (React)  
+- DevOps Engineer (CI/CD & Monitoring)  
+- Metro Operations Specialist  
+
+---
+
 ### 7. Expected Outcomes
-* Reduced traffic congestion and air pollution.
-* Cashless e-ticketing system powered by AWS backend.
-* Secure, scalable digital foundation for future expansion.
-* Enhanced passenger convenience and operational transparency.
-* Knowledge transfer and skill development in AWS technologies
+- A **secure, cloud-native railway management platform** for passengers and administrators.  
+- Seamless **cashless ticketing** with automated booking confirmations.  
+- Scalable architecture supporting future IoT integration.  
+- Improved transparency and monitoring through analytics dashboards.  
+- Cost-effective operations with pay-as-you-go cloud pricing.  
+
+---
 
 ### 8. Conclusion
-The Metropolitan Railway Service System powered by AWS Cloud establishes a secure, scalable, and affordable foundation for urban transport modernization.
-By leveraging AWS Lambda, API Gateway, RDS, Cognito, and CloudWatch, the solution remains fully serverless, ensuring minimal operational overhead and easy future expansion into smart-city initiatives.
+The proposed **Metropolitan Railway Service System on AWS** establishes a strong foundation for digital transformation in urban transportation.  
+By combining **serverless computing**, **CI/CD automation**, and **end-to-end AWS security**, the system ensures operational excellence, scalability, and compliance with modern data standards.  
+This architecture not only supports current ticketing and scheduling needs but also positions the Metro for **future smart-city integration and data-driven decision-making**.
 
+---
 
-
-
-<!-- ### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
-
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
-
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
-
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
-
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
-
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
-
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
-
-Total: $0.7/month, $8.40/12 months
-
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
-
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
-
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
-
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
-
-### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects. -->
+![AWS Architecture Diagram](/images/2-Proposal/aws_metropolitano_train_service.drawio.png)
