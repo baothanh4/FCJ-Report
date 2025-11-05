@@ -23,13 +23,13 @@ Thông thường và cũng là tiêu chuẩn, một worklog được thực hi�
 
 **Tuần 4:** [Học về AWS DynamoDB và Relational Database Services](1.4-week4/)
 
-**Tuần 5:** [Làm công việc D...](1.5-week5/)
+**Tuần 5:** [Phân quyền và lưu trữ](1.5-week5/)
 
-**Tuần 6:** [Làm công việc E...](1.6-week6/)
+**Tuần 6:** [Mã hóa dữ liệu](1.6-week6/)
 
-**Tuần 7:** [Làm công việc G...](1.7-week7/)
+**Tuần 7:** [Tối ưu hiệu năng](1.7-week7/)
 
-**Tuần 8:** [Làm công việc H...](1.8-week8/)
+**Tuần 8:** [setup networking, Phân quyền, và chia sẻ file](1.8-week8/)
 
 **Tuần 9:** [Làm công việc I...](1.9-week9/)
 

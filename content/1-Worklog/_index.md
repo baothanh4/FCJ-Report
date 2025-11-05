@@ -22,13 +22,13 @@ Typically, and as a standard, a worklog is carried out over about 3 months (thro
 
 **Week 4:** [Learn AWS DynamoDB and Relational Database Services](1.4-week4/)
 
-**Week 5:** [Doing task D...](1.5-week5/)
+**Week 5:** [authentication and storage](1.5-week5/)
 
-**Week 6:** [Doing task E...](1.6-week6/)
+**Week 6:** [Data encrytion](1.6-week6/)
 
-**Week 7:** [Doing task G...](1.7-week7/)
+**Week 7:** [optimized performance](1.7-week7/)
 
-**Week 8:** [Doing task H...](1.8-week8/)
+**Week 8:** [setup of networking, authentication, and file sharing](1.8-week8/)
 
 **Week 9:** [Doing task I...](1.9-week9/)
 
