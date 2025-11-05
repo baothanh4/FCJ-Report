@@ -1,166 +1,277 @@
 ---
-title: "Đề xuất hệ thống"
+title: "Proposal"
 date: 2025-09-07
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# Hệ thống Dịch vụ Đường sắt Đô thị trên AWS — Kiến trúc Đám mây An toàn, Mở rộng và Tối ưu Chi phí
-
-### 1. Giới thiệu
-Khi TP. Hồ Chí Minh tiếp tục phát triển nhanh chóng, các vấn đề giao thông như tắc nghẽn và ô nhiễm không khí ngày càng trở nên nghiêm trọng.  
-Dự án **Đường sắt Đô thị** là một sáng kiến chiến lược nhằm xây dựng hệ thống giao thông công cộng hiện đại, bền vững và thông minh.  
-
-Bản đề xuất này giới thiệu một **kiến trúc điện toán đám mây toàn diện dựa trên AWS**, được thiết kế để hỗ trợ các chức năng như **đặt vé điện tử, thanh toán không tiền mặt, quản lý lịch trình tàu và phân tích hoạt động vận hành**.  
-Giải pháp sử dụng các dịch vụ AWS theo mô hình **phi máy chủ (serverless)**, **hướng sự kiện (event-driven)** và **tự động CI/CD**, nhằm đảm bảo khả năng mở rộng, tối ưu chi phí và bảo mật cao.
+# HỆ THỐNG DỊCH VỤ ĐƯỜNG SẮT ĐÔ THỊ TRÊN AWS  
+### Kiến Trúc Đám Mây An Toàn — Mở Rộng — Tối Ưu Chi Phí
 
 ---
 
-### 2. Mục tiêu
+## Executive Summary
+
+Thành phố Hồ Chí Minh đang đối mặt với các thách thức lớn về giao thông, bao gồm tắc nghẽn, ô nhiễm và áp lực dân số đô thị hóa.  
+Dự án **Đường sắt Đô thị** được xem là bước đột phá trong việc xây dựng hệ thống giao thông thông minh, bền vững và thân thiện với môi trường.
+
+Bản đề xuất này trình bày một **kiến trúc đám mây toàn diện dựa trên AWS**, được thiết kế để hỗ trợ các chức năng cốt lõi như:
+
+-  Đặt vé điện tử & thanh toán không tiền mặt  
+-  Quản lý lịch trình và giám sát vận hành  
+-  Phân tích dữ liệu và tối ưu lưu lượng hành khách  
+
+Kiến trúc tuân thủ các nguyên tắc **serverless, event-driven, và CI/CD automation**, bảo đảm:
+
+- Hiệu suất và khả năng mở rộng linh hoạt.  
+- Bảo mật đầu-cuối đạt tiêu chuẩn doanh nghiệp.  
+- Chi phí vận hành tối ưu theo mô hình pay-as-you-go.
+
+---
+
+##  Key Highlights
+
+* 100% cloud-native & serverless architecture (AWS Lambda, EventBridge) 
+* End-to-end enterprise security (Cognito, WAF, KMS) 
+* Fully automated CI/CD & observability (CodePipeline, CloudWatch) 
+* Seamless e-ticketing & cashless payment (VNPay, MoMo) 
+* Real-time analytics & predictive insights (Athena, QuickSight) 
+
+---
+
+## 1. Mục Tiêu Dự Án
+
 **Mục tiêu tổng quát:**  
-Xây dựng hạ tầng kỹ thuật số đáng tin cậy và an toàn cho hệ thống Đường sắt Đô thị TP. Hồ Chí Minh dựa trên nền tảng AWS Cloud.
+Xây dựng hạ tầng kỹ thuật số đáng tin cậy, an toàn, và có khả năng mở rộng cho hệ thống Đường sắt Đô thị TP. Hồ Chí Minh trên nền tảng AWS Cloud.
 
 **Mục tiêu cụ thể:**
-- Triển khai kiến trúc **serverless và hướng sự kiện** sử dụng AWS Lambda và EventBridge.  
-- Cung cấp tính năng **đặt vé trực tuyến**, **thanh toán điện tử** và **cập nhật lịch trình tàu theo thời gian thực**.  
-- Áp dụng **bảo mật đầu-cuối (end-to-end)** với WAF, Cognito, KMS và Secrets Manager.  
-- Tích hợp quy trình **tự động CI/CD** bằng CodePipeline, CodeBuild và CodeDeploy.  
-- Thiết lập hệ thống **giám sát và tuân thủ** bằng CloudWatch và CloudTrail.
+- Triển khai kiến trúc **serverless & event-driven** sử dụng AWS Lambda và EventBridge.  
+- Cung cấp các tính năng **đặt vé, thanh toán, xác thực và cập nhật lịch trình thời gian thực**.  
+- Áp dụng **bảo mật đầu-cuối** (WAF, Cognito, KMS, Secrets Manager).  
+- Tự động hóa CI/CD với **CodePipeline, CodeBuild, CodeDeploy**.  
+- Thiết lập **giám sát và tuân thủ** qua CloudWatch, CloudTrail.
 
 ---
 
-### 3. Phạm vi
-- **Địa điểm:** Tuyến Metro số 1 (Bến Thành – Suối Tiên), TP. Hồ Chí Minh  
-- **Đối tượng sử dụng:** Hành khách, nhân viên Metro và quản trị viên  
-- **Thời gian triển khai:** 12 năm (từ giai đoạn cài đặt đến vận hành dài hạn)  
-- **Giai đoạn 1:** Tập trung vào đặt vé, xác thực, lịch trình và thanh toán  
-- **Các giai đoạn sau:** Phân tích dữ liệu dự đoán, giám sát IoT và tối ưu lưu lượng hành khách  
+## 2. Phạm Vi Dự Án
+
+| Thành phần | Mô tả |
+|-------------|--------|
+| **Địa điểm** | Tuyến Metro số 1 (Bến Thành – Suối Tiên), TP.HCM |
+| **Người dùng mục tiêu** | Hành khách, nhân viên vận hành, quản trị viên |
+| **Thời gian triển khai** | 12 năm (bao gồm triển khai & vận hành dài hạn) |
+| **Giai đoạn 1** | Đặt vé, xác thực, lịch trình, thanh toán |
+| **Giai đoạn mở rộng** | Phân tích dự đoán, IoT giám sát, tối ưu hành khách |
 
 ---
 
-### 4. Kiến trúc Hệ thống AWS
-Hệ thống được xây dựng dựa trên **kiến trúc nhiều lớp (multi-layered)**, **phi máy chủ**, kết hợp khả năng mở rộng, tự động hóa và bảo mật cấp doanh nghiệp.
+### 2.1 Functional Requirements
+
+| ID | Requirement | Priority |
+|----|--------------|----------|
+| FR-01 | Users can book tickets and pay online | High |
+| FR-02 | Real-time schedule updates via API | High |
+| FR-03 | Automatic maintenance alerting | Medium |
+| FR-04 | Admin can view passenger analytics | Medium |
+| FR-05 | Multi-language (EN, VN) support | Low |
 
 ---
 
-#### **1. Lớp Mạng và Truy cập**
-- **Amazon Route 53:**  
-  Quản lý định tuyến tên miền cho các cổng web và ứng dụng di động của Metro. Đảm bảo độ sẵn sàng toàn cầu và độ trễ thấp.  
-- **Amazon CloudFront (CDN):**  
-  Phân phối nội dung tĩnh của giao diện frontend trên toàn cầu, giảm tải cho hệ thống backend.  
-- **AWS WAF (Web Application Firewall):**  
-  Bảo vệ hệ thống khỏi các cuộc tấn công DDoS, SQL Injection và Cross-Site Scripting.  
-- **AWS Shield (tích hợp với CloudFront):**  
-  Cung cấp khả năng chống DDoS tự động ở tầng mạng và tầng truyền tải.  
+### 2.2 Non-Functional Requirements
+
+- **Availability:** ≥ 99.95% uptime (Multi-AZ)  
+- **Latency:** < 300 ms for booking operations  
+- **Security:** Compliance with ISO 27001 & SOC 2 Type II  
+- **Scalability:** Auto scale to 100k concurrent users  
+- **Cost Efficiency:** ≤ $100/month base infrastructure  
 
 ---
 
-#### **2. Lớp Tự động hóa và CI/CD**
-- **AWS CodePipeline:**  
-  Tự động hóa toàn bộ quy trình xây dựng – kiểm thử – triển khai (build–test–deploy) cho các thành phần ứng dụng.  
-- **AWS CodeBuild:**  
-  Tự động biên dịch và kiểm thử mã nguồn backend/frontend sau mỗi lần commit từ GitHub.  
-- **AWS CodeDeploy:**  
-  Triển khai phiên bản mới của Lambda và API mà không gây gián đoạn dịch vụ.  
-- **GitHub Integration:**  
-  Lưu trữ mã nguồn và kích hoạt pipeline CI/CD thông qua webhook.  
+## 3. Kiến Trúc AWS Đề Xuất
+
+### 3.1 Tổng Quan
+
+Hệ thống được xây dựng theo **mô hình đa lớp (multi-tier)**, **phi máy chủ (serverless)**, và **tự động (automated)**, đảm bảo khả năng mở rộng động, vận hành tin cậy và bảo mật toàn diện.
 
 ---
 
-#### **3. Lớp Xác thực và Bảo mật**
-- **Amazon Cognito:**  
-  Quản lý đăng ký, đăng nhập, khôi phục mật khẩu và xác thực đa yếu tố (MFA). Cung cấp token JWT an toàn cho truy cập API.  
-- **AWS Secrets Manager:**  
-  Lưu trữ an toàn các thông tin nhạy cảm (như mật khẩu RDS, khóa API) và tự động xoay vòng định kỳ.  
-- **AWS KMS (Key Management Service):**  
-  Mã hóa dữ liệu khi lưu trữ (data-at-rest) trong RDS, S3 và các biến môi trường trong Lambda.  
-- **AWS CloudTrail:**  
-  Ghi lại và giám sát mọi hoạt động API trên toàn bộ tài khoản AWS, đảm bảo tính minh bạch và tuân thủ.  
+### Architecture Diagram Summary
+
+| Layer | Service | Role |
+|--------|----------|------|
+|  **Frontend** | CloudFront + S3 | Static hosting, caching, HTTPS delivery |
+|  **API Layer** | API Gateway + Lambda | Business logic, event-driven functions |
+|  **Data** | RDS + S3 + DynamoDB | Persistent and analytical data storage |
+|  **Security** | WAF + Cognito + KMS | Authentication, encryption, protection |
+|  **Monitoring** | CloudWatch + GuardDuty | Metrics, alerts, and anomaly detection |
 
 ---
 
-#### **4. Lớp Ứng dụng và API**
-- **Amazon API Gateway:**  
-  Cung cấp các endpoint RESTful an toàn cho ứng dụng web/di động và định tuyến đến các hàm Lambda.  
-- **AWS Lambda (Serverless Backend):**  
-  Xử lý toàn bộ logic nghiệp vụ thông qua các vi dịch vụ (microservices) như:
-  - `BookingServiceLambda` — Tạo và xác thực yêu cầu đặt vé.  
-  - `PaymentLambda` — Xử lý thanh toán qua VNPay hoặc Momo.  
-  - `ScheduleLambda` — Quản lý và cập nhật lịch trình tàu.  
-  - `NotificationLambda` — Gửi email/SMS xác nhận qua Amazon SNS.  
-  - `EventBridge` — Tự động kích hoạt quy trình (ví dụ: thanh toán thành công → gửi hóa đơn).  
-- **Amazon EventBridge:**  
-  Điều phối các sự kiện bất đồng bộ như xác nhận đặt vé, hủy vé, hoặc báo trễ chuyến.  
+### 3.2 Lớp Mạng & Truy Cập
+- **Amazon Route 53:** Quản lý DNS, đảm bảo độ sẵn sàng toàn cầu.  
+- **Amazon CloudFront (CDN):** Phân phối nội dung tĩnh và giảm tải backend.  
+- **AWS WAF:** Bảo vệ trước các tấn công DDoS, SQL Injection, XSS.
 
 ---
 
-#### **5. Lớp Dữ liệu và Lưu trữ**
-- **Amazon RDS (SQL Server):**  
-  Lưu trữ dữ liệu có cấu trúc — hồ sơ hành khách, đặt vé, và giao dịch thanh toán. Chạy trong subnet riêng và sao lưu hàng ngày lên S3.  
-- **Amazon DynamoDB (Tùy chọn mở rộng):**  
-  Cung cấp bộ nhớ đệm thời gian thực cho dữ liệu lịch trình và phiên người dùng.  
-- **Amazon S3:**  
-  - Lưu trữ giao diện web tĩnh (ứng dụng React).  
-  - Lưu trữ log, biên lai, và tệp sao lưu.  
-  - Áp dụng **Lifecycle Policy** để tự động lưu trữ dữ liệu cũ sang **S3 Glacier** nhằm tiết kiệm chi phí.  
+### 3.3 Lớp Ứng Dụng & API
+- **Amazon API Gateway:** Cung cấp các endpoint RESTful bảo mật.  
+- **AWS Lambda:** Xử lý logic nghiệp vụ chính:
+  - `BookingServiceLambda`: Xử lý đặt vé.  
+  - `PaymentLambda`: Tích hợp thanh toán VNPay/MoMo.  
+  - `ScheduleLambda`: Cập nhật lịch trình.  
+  - `NotificationLambda`: Gửi thông báo (SNS, email, SMS).  
+- **Amazon EventBridge:** Tự động điều phối quy trình (payment → invoice → notify).  
 
 ---
 
-#### **6. Lớp Giám sát, Nhật ký và Tuân thủ**
-- **Amazon CloudWatch:**  
-  Theo dõi hiệu suất, log Lambda và độ trễ của API Gateway. Cảnh báo khi có sự cố bất thường.  
-- **CloudWatch Alarms + SNS:**  
-  Gửi thông báo cho nhóm vận hành khi vượt ngưỡng hiệu năng (CPU, lỗi 5XX, v.v.).  
-- **AWS CloudTrail:**  
-  Ghi lại toàn bộ hoạt động API phục vụ kiểm toán và tuân thủ (ISO/GDPR).  
+### 3.4 Lớp Dữ Liệu & Lưu Trữ
+- **Amazon RDS (SQL Server):** Lưu trữ dữ liệu người dùng, vé, thanh toán.  
+- **Amazon S3:** Lưu trữ file tĩnh, log, hóa đơn, dữ liệu sao lưu.  
+  - Tích hợp **Lifecycle Policy → S3 Glacier** để tiết kiệm chi phí.  
 
 ---
 
-### 5. Kế hoạch Triển khai
-| **Giai đoạn** | **Thời gian** | **Hạng mục chính** |
-|----------------|----------------|----------------------|
-| **Giai đoạn 1** | Tuần 1–2 | Thiết lập hạ tầng: Route 53, CloudFront, API Gateway, Lambda, RDS |
-| **Giai đoạn 2** | Tuần 3–4 | Phát triển chức năng đặt vé và xác thực (Cognito, Lambda, EventBridge) |
-| **Giai đoạn 3** | Tuần 5–6 | Tích hợp thanh toán, giám sát CloudWatch và bảo vệ bằng WAF |
-| **Giai đoạn 4** | Tuần 7–8 | Cấu hình pipeline CI/CD với CodePipeline, CodeBuild và CodeDeploy |
-| **Giai đoạn 5** | Giai đoạn mở rộng | Thêm lớp phân tích dữ liệu (Athena, QuickSight) |
+### 3.5 Lớp Bảo Mật & Xác Thực
+- **Amazon Cognito:** Đăng ký, đăng nhập, MFA, cấp JWT token.  
+- **AWS Secrets Manager:** Lưu trữ và xoay vòng khóa bí mật.  
+- **AWS KMS:** Mã hóa dữ liệu RDS/S3.  
+- **AWS CloudTrail:** Ghi nhật ký và giám sát API, đảm bảo compliance.
 
 ---
 
-### 6. Ngân sách & Nguồn lực
-| **Thành phần** | **Dịch vụ chính** | **Chi phí ước tính (USD/tháng)** |
-|----------------|-------------------|----------------------------------|
+### 3.6 Lớp Giám Sát & Tuân Thủ
+- **Amazon CloudWatch:** Theo dõi hiệu suất và log Lambda/API.  
+- **CloudWatch Alarms + SNS:** Gửi cảnh báo tự động.  
+- **CloudTrail:** Theo dõi thay đổi hệ thống và hoạt động người dùng.
+
+---
+
+### 3.7 Lớp CI/CD & Tự Động Hóa
+- **AWS CodePipeline:** Tự động build–test–deploy.  
+- **AWS CodeBuild:** Kiểm thử mã backend/frontend mỗi lần commit.  
+- **AWS CodeDeploy:** Triển khai an toàn, không downtime.  
+- **GitHub Webhook:** Tự động kích hoạt pipeline sau commit.
+
+---
+
+### Data Flow (Simplified)
+User -> CloudFront ->API Gateway -> Lambda -> RDS<br>
+|v
+EventBridge -> SNS/Email Notification<br>
+|v
+CloudWatch -> Admin Dashboard
+
+---
+
+## 4. Kế Hoạch Triển Khai
+
+| Giai đoạn | Thời gian | Hạng mục chính |
+|------------|------------|----------------|
+| 1 | Tuần 1–2 | Thiết lập Route 53, CloudFront, API Gateway, Lambda, RDS |
+| 2 | Tuần 3–4 | Phát triển đặt vé, xác thực (Cognito, Lambda, EventBridge) |
+| 3 | Tuần 5–6 | Tích hợp thanh toán, giám sát CloudWatch, cấu hình WAF |
+| 4 | Tuần 7–8 | CI/CD (CodePipeline, CodeBuild, CodeDeploy) |
+| 5 | Mở rộng | Phân tích dữ liệu (Athena, QuickSight) |
+
+---
+
+## 5. Ngân Sách & Nhân Sự
+
+| Thành phần | Dịch vụ | Ước tính (USD/tháng) |
+|-------------|----------|------------------------|
 | Mạng & CDN | Route 53, CloudFront, WAF | $15 |
 | Backend Serverless | Lambda, API Gateway, EventBridge | $20 |
-| Cơ sở dữ liệu & Lưu trữ | RDS, S3 | $35 |
+| Dữ liệu & Lưu Trữ | RDS, S3 | $35 |
 | CI/CD | CodePipeline, CodeBuild, CodeDeploy | $10 |
-| Bảo mật & Giám sát | CloudWatch, CloudTrail, Cognito, Secrets Manager, KMS | $15 |
+| Bảo mật & Giám sát | CloudWatch, CloudTrail, Cognito, KMS | $15 |
 | **Tổng cộng** | — | **≈ $95–100/tháng** |
 
-**Nhân sự tham gia:**
-- Kiến trúc sư Cloud (Cloud Architect)  
-- Lập trình viên Backend (Lambda / API Gateway)  
-- Lập trình viên Frontend (React)  
-- Kỹ sư DevOps (CI/CD & Monitoring)  
-- Chuyên viên vận hành Metro  
+**Nhân sự:**
+- Cloud Architect  
+- Backend Developer (Lambda, API Gateway)  
+- Frontend Developer (React, S3/CloudFront)  
+- DevOps Engineer (CI/CD & Monitoring)  
+- Metro Operations Specialist  
 
 ---
 
-### 7. Kết quả Kỳ vọng
-- Hệ thống quản lý đường sắt đô thị **an toàn, hiện đại và dựa trên đám mây**.  
-- Tích hợp **đặt vé không tiền mặt** và xác nhận tự động.  
-- Kiến trúc mở rộng linh hoạt, sẵn sàng tích hợp IoT trong tương lai.  
-- Nâng cao khả năng giám sát và minh bạch hóa hoạt động thông qua dashboard phân tích.  
-- Tối ưu chi phí vận hành nhờ mô hình tính phí theo mức sử dụng (pay-as-you-go).  
+## 6. Kết Quả Kỳ Vọng
+- Nền tảng vận hành **an toàn, hiện đại, dựa trên AWS Cloud**.  
+- **Thanh toán không tiền mặt** và **xác nhận vé tự động**.  
+- **Hạ tầng mở rộng linh hoạt**, sẵn sàng cho tích hợp IoT.  
+- **Minh bạch vận hành** qua dashboard phân tích dữ liệu.  
+- **Chi phí tối ưu** nhờ mô hình trả theo mức sử dụng.
 
 ---
 
-### 8. Kết luận
-Hệ thống **Dịch vụ Đường sắt Đô thị trên AWS** là nền tảng vững chắc cho quá trình **chuyển đổi số giao thông đô thị**.  
-Bằng việc kết hợp **điện toán phi máy chủ (serverless)**, **tự động CI/CD**, và **bảo mật đầu-cuối của AWS**, hệ thống đảm bảo hiệu quả vận hành, khả năng mở rộng và tuân thủ các tiêu chuẩn dữ liệu hiện đại.  
-Kiến trúc này không chỉ đáp ứng nhu cầu đặt vé và quản lý hiện tại, mà còn mở đường cho việc **tích hợp thành phố thông minh và ra quyết định dựa trên dữ liệu** trong tương lai.
+## 7. Rủi Ro & Giải Pháp
+
+| Rủi ro | Giải pháp |
+|--------|------------|
+| Gián đoạn mạng AWS | Thiết lập Multi-AZ, failover tự động |
+| Quá tải Lambda | Bật autoscaling và giới hạn timeout |
+| Tấn công bảo mật | Sử dụng WAF, IAM least privilege, KMS |
+| Sai lệch dữ liệu | Tự động sao lưu và khôi phục RDS |
+| Lỗi triển khai | CI/CD rollback và CloudFormation drift detection |
 
 ---
 
-![Sơ đồ kiến trúc AWS](/images/2-Proposal/aws_metropolitano_train_service.drawio.png)
+### 7.1 Risk Classification Matrix
+
+| Risk | Likelihood | Impact | Mitigation |
+|-------|-------------|---------|-------------|
+| Network outage | Medium | High | Multi-AZ + Failover |
+| API overload | High | Medium | Lambda concurrency + autoscaling |
+| Data breach | Low | High | KMS encryption + WAF |
+| CI/CD failure | Medium | Low | Rollback + versioning |
+
+---
+
+## 8. Tuân Thủ & Bảo Mật
+
+- **Compliance:** ISO 27001, GDPR-ready, SOC2 Type II  
+- **Encryption:** AES-256 (KMS-managed)  
+- **IAM Policies:** Principle of Least Privilege  
+- **Monitoring:** Continuous Audit với CloudTrail & GuardDuty  
+
+---
+
+## 9. Kết Luận
+
+Hệ thống **Đường Sắt Đô Thị Trên AWS** là nền tảng chiến lược giúp chuyển đổi số ngành giao thông công cộng tại TP.HCM.  
+Với kiến trúc **serverless – event-driven – CI/CD automation**, giải pháp này đáp ứng các yêu cầu hiện đại về **bảo mật, hiệu suất và chi phí**.  
+Đây không chỉ là dự án kỹ thuật, mà còn là **bước tiến hướng tới thành phố thông minh trong tương lai**.
+
+---
+
+## 10. Success Metrics
+
+| KPI | Target | Measurement Tool |
+|------|--------|------------------|
+| System Availability | ≥ 99.95% | CloudWatch uptime metrics |
+| API Latency | < 300 ms | CloudWatch logs |
+| Ticket Processing | 10,000+/day | Lambda invocation count |
+| Cost Optimization | < $100/month | AWS Cost Explorer |
+| Security Compliance | 100% | GuardDuty & IAM Audit |
+
+---
+
+## Appendix A — AWS Services Summary
+
+| Category | Services Used | Purpose |
+|-----------|----------------|----------|
+| Networking | Route 53, CloudFront | DNS, CDN, HTTPS |
+| Compute | Lambda | Serverless compute |
+| API | API Gateway | REST API endpoints |
+| Database | RDS (SQL Server) | Transactional data |
+| Storage | S3 + Glacier | File storage & archival |
+| Security | Cognito, WAF, KMS, Secrets Manager | Authentication & protection |
+| DevOps | CodePipeline, CodeBuild, CodeDeploy | CI/CD automation |
+| Monitoring | CloudWatch, CloudTrail, GuardDuty | Observability & compliance |
+
+---
+
+🖼️ *Hình minh họa:*  
+![AWS Architecture Diagram](/images/2-Proposal/aws_metropolitano_train_service.drawio.png)

@@ -21,7 +21,7 @@ pre: " <b> 1.5. </b> "
 | 3   | - **Practice:** Using Amplify authentication and storage for serverless applications                                          | 06/10/2025 | 09/10/2025      | <https://000134.awsstudygroup.com/> |
 | 4   | - Learn AWS SAM : <br>&emsp; +AWS SAM templates and AWS SAM CLI <br>&emsp; +AWS SAM Accelerate and AWS SAM CLI Integration | 09/10/2025 | 10/10/2025      | <https://aws.amazon.com/vi/serverless/sam/> |
 | 5   | - **Practice:** <br>&emsp;+ Install SAM CLI <br>&emsp;+ Deploy front-end and Lambda function <br>&emsp;+ Config API Gateway and Test API by Postman                             | 10/10/2025 | 11/10/2025      | <https://000080.awsstudygroup.com/> |
-| 6   | -Learn: Amazon Cognito <br>-**Practice:**Authentication with Amazon Cognito                                                                                   | 11/10/2025 | 13/10/2025      | <https://000081.awsstudygroup.com/> |
+| 6   | -Learn: Amazon Cognito <br>-**Practice:** Authentication with Amazon Cognito                                                                                   | 11/10/2025 | 13/10/2025      | <https://000081.awsstudygroup.com/> |
 
 
 ### Week 5 Achievements:

@@ -20,7 +20,7 @@ pre: " <b> 1.5. </b> "
 | 3   | - **Thực hành:** Serverless - Sử dụng authentication và storage                                          | 06/10/2025   | 09/10/2025      | <https://000134.awsstudygroup.com/> |
 | 4   | - Tìm hiểu về AWS SAM : <br>&emsp; +AWS SAM templates và AWS SAM CLI <br>&emsp; +AWS SAM Accelerate và AWS SAM CLI Integration | 09/10/2025   | 10/10/2025      | <https://aws.amazon.com/vi/serverless/sam/> |
 | 5   | - **Thực hành:** <br>&emsp;+ Tải SAM CLI <br>&emsp;+ Deploy front-end và Lambda function <br>&emsp;+ Cấu hình API Gateway và kiểm thử API by Postman                    | 10/10/2025   | 11/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | -Tìm hiểu: Amazon Cognito <br>-**Thực hành:**Bảo mật cùng với Amazon Cognito                                                                                      | 11/10/2025   | 13/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 6   | -Tìm hiểu: Amazon Cognito <br>-**Thực hành:** Bảo mật cùng với Amazon Cognito                                                                                      | 11/10/2025   | 13/10/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
 
 ### Kết quả đạt được tuần 5:
