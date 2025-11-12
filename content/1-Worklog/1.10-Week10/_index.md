@@ -5,9 +5,6 @@ weight: 2
 chapter: false
 pre: " <b> 1.10. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
 
 ### Week 10 Objectives:
@@ -18,9 +15,9 @@ pre: " <b> 1.10. </b> "
 ### Tasks to be carried out this week:
 | Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2   | - **Practice:** <br>&emsp; + Creating VPCs <br>&emsp; + Initializing EC2 instances <br>&emsp; + Creating an EBS volume <br>&emsp; + Assigning EBS volume <br>&emsp; Installing Postgres <br>&emsp; Mount EBS EC2 production <br>&emsp; + Postgres backup <br>&emsp; + Mount EBS EC2 test <br>&emsp; + Data recovery                                                                                                 | 08/11/2025 | 10/11/2025      |
+| 3   | - Learn AWS SageMaker AI:<br>&emsp; + What is SageMaker <br>&emsp; + The component <br>&emsp; + End-to-End Workflow                                              | 10/11/2025 | 12/11/2025      | <https://000200.awsstudygroup.com/> |
+| 4   | - **Practice:** Use Amazon SageMaker AI to create analyze the data, import file excel, choose the data types and export to the file include the analyze charts| 10/11/2025 | 12/11/2025      | <https://000200.awsstudygroup.com/> |
 | 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 | 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
