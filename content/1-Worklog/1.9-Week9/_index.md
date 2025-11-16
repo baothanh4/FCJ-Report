@@ -26,7 +26,6 @@ pre: " <b> 1.9. </b> "
 ---
 
 ### Week 9 Achievements: Objectives and Achievements
-During this week, I successfully learned and practiced multiple AWS security and data management services.  
 - **AWS AppSync**: Built a simple GraphQL API integrated with DynamoDB and Lambda, understanding schema design, resolvers, and mapping templates.  
 - **AWS EBS Lifecycle Manager**: Configured automated backup policies to improve reliability and cost-efficiency in EC2 environments.  
 - **AWS GuardDuty**: Gained knowledge of continuous threat detection using ML and anomaly-based analysis.  
