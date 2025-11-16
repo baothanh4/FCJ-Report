@@ -17,9 +17,9 @@ pre: " <b> 1.1. </b> "
 | Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
 | 2   | - Make friends with FCJ member <br> - Pay attention about rule on job training          <br> - <b>Practice:</b> <br>&emsp; +Create AWS Free tier account                                                                                                     | 08/09/2025 | 09/09/2025      |
-| 3   | - Learn AWS and AWS services: <br>&emsp; + AWS EC2 <br>&emsp; + AWS Lambda <br>&emsp; + AWS SQS <br>&emsp; + AWS SNS <br>&emsp; + CLI,SDKs                                           | 09/09/2025 | 10/09/2025      |  |
-| 4   | - Learn AWS ECS, AWS EKS, VPC,and AWS CloudFormation <br>- Cost management  <br>- **Practice:** <br>&emsp; + Create EC2 instance and Lambda function <br>&emsp; +Using AWS CLI | 10/09/2025 | 11/09/2025      |  |
-| 5   | - Learn VPC basic and S3 <br>- **Practice**:  <br>&emsp; +Create Security group <br>&emsp;+Create Internet Gateway <br>&emsp;+Create Subnet <br>&emsp;+Create Route tables   | 11/09/2025 | 12/09/2025      |  |
+| 3   | - Learn **AWS** and **AWS services**: <br>&emsp; + AWS EC2 <br>&emsp; + AWS Lambda <br>&emsp; + AWS SQS <br>&emsp; + AWS SNS <br>&emsp; + CLI,SDKs                                           | 09/09/2025 | 10/09/2025      |  |
+| 4   | - Learn **AWS ECS**, **AWS EKS**, **VPC**,and **AWS CloudFormation** <br>- Cost management  <br>- **Practice:** <br>&emsp; + Create EC2 instance and Lambda function <br>&emsp; +Using AWS CLI | 10/09/2025 | 11/09/2025      |  |
+| 5   | - Learn **VPC basic** and **S3** <br>- **Practice**:  <br>&emsp; +Create Security group <br>&emsp;+Create Internet Gateway <br>&emsp;+Create Subnet <br>&emsp;+Create Route tables   | 11/09/2025 | 12/09/2025      |  |
 | 6   | - **Practice:** <br>&emsp; + Launch S3 bucket                                      | 12/09/2025 | 13/09/2025      |  |
 
 

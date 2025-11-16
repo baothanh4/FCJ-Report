@@ -26,8 +26,6 @@ pre: " <b> 1.9. </b> "
 ---
 
 ### Kết quả đạt được trong tuần:
-Trong tuần này, tôi đã học và thực hành nhiều dịch vụ AWS liên quan đến bảo mật và quản lý dữ liệu:
-
 - **AWS AppSync:** Xây dựng thành công GraphQL API tích hợp với DynamoDB và Lambda, nắm được cách thiết kế schema, resolver và mapping template.  
 - **AWS EBS Lifecycle Manager:** Cấu hình chính sách sao lưu tự động giúp tăng tính tin cậy và giảm chi phí vận hành.  
 - **AWS GuardDuty:** Hiểu cơ chế phát hiện mối đe dọa tự động dựa trên Machine Learning và phân tích hành vi bất thường.  
