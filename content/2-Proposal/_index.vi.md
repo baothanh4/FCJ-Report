@@ -3,275 +3,233 @@ title: "Proposal"
 date: 2025-09-07
 weight: 2
 chapter: false
-pre: " <b> 2. </b> "
+pre: "<b> 2. </b>"
 ---
 
-# HỆ THỐNG DỊCH VỤ ĐƯỜNG SẮT ĐÔ THỊ TRÊN AWS  
-### Kiến Trúc Đám Mây An Toàn — Mở Rộng — Tối Ưu Chi Phí
+# URBAN RAIL TRANSIT SERVICE SYSTEM ON AWS
 
 ---
 
 ## Executive Summary
 
-Thành phố Hồ Chí Minh đang đối mặt với các thách thức lớn về giao thông, bao gồm tắc nghẽn, ô nhiễm và áp lực dân số đô thị hóa.  
-Dự án **Đường sắt Đô thị** được xem là bước đột phá trong việc xây dựng hệ thống giao thông thông minh, bền vững và thân thiện với môi trường.
+Rapid urban development has increased the need for intelligent and sustainable public transportation. A modern Urban Rail Transit System requires a reliable, scalable, and highly available digital platform operating 24/7.
 
-Bản đề xuất này trình bày một **kiến trúc đám mây toàn diện dựa trên AWS**, được thiết kế để hỗ trợ các chức năng cốt lõi như:
+This proposal presents an **AWS microservices architecture using Amazon ECS Fargate**, enabling:
 
--  Đặt vé điện tử & thanh toán không tiền mặt  
--  Quản lý lịch trình và giám sát vận hành  
--  Phân tích dữ liệu và tối ưu lưu lượng hành khách  
-
-Kiến trúc tuân thủ các nguyên tắc **serverless, event-driven, và CI/CD automation**, bảo đảm:
-
-- Hiệu suất và khả năng mở rộng linh hoạt.  
-- Bảo mật đầu-cuối đạt tiêu chuẩn doanh nghiệp.  
-- Chi phí vận hành tối ưu theo mô hình pay-as-you-go.
+- Ticket booking, scheduling, payments, and traffic monitoring  
+- Real-time passenger data ingestion through Amazon Kinesis  
+- BI dashboards and predictive analytics with QuickSight and SageMaker  
+- Full CI/CD automation and comprehensive monitoring  
 
 ---
 
-##  Key Highlights
+## Key Highlights
 
-* 100% cloud-native & serverless architecture (AWS Lambda, EventBridge) 
-* End-to-end enterprise security (Cognito, WAF, KMS) 
-* Fully automated CI/CD & observability (CodePipeline, CloudWatch) 
-* Seamless e-ticketing & cashless payment (VNPay, MoMo) 
-* Real-time analytics & predictive insights (Athena, QuickSight) 
-
----
-
-## 1. Mục Tiêu Dự Án
-
-**Mục tiêu tổng quát:**  
-Xây dựng hạ tầng kỹ thuật số đáng tin cậy, an toàn, và có khả năng mở rộng cho hệ thống Đường sắt Đô thị TP. Hồ Chí Minh trên nền tảng AWS Cloud.
-
-**Mục tiêu cụ thể:**
-- Triển khai kiến trúc **serverless & event-driven** sử dụng AWS Lambda và EventBridge.  
-- Cung cấp các tính năng **đặt vé, thanh toán, xác thực và cập nhật lịch trình thời gian thực**.  
-- Áp dụng **bảo mật đầu-cuối** (WAF, Cognito, KMS, Secrets Manager).  
-- Tự động hóa CI/CD với **CodePipeline, CodeBuild, CodeDeploy**.  
-- Thiết lập **giám sát và tuân thủ** qua CloudWatch, CloudTrail.
+- **Microservices container architecture** powered by Amazon ECS Fargate  
+- End-to-end security: Route53 → CloudFront → WAF → ALB → Private Subnets  
+- Fully automated CI/CD using CodePipeline, CodeBuild, CodeDeploy, ECR  
+- Real-time processing using **Kinesis Data Streams**  
+- Analytics & forecasting with **QuickSight + SageMaker**  
+- Scalability for hundreds of thousands of daily ticket requests  
 
 ---
 
-## 2. Phạm Vi Dự Án
+# 1. Project Objectives
 
-| Thành phần | Mô tả |
-|-------------|--------|
-| **Địa điểm** | Tuyến Metro số 1 (Bến Thành – Suối Tiên), TP.HCM |
-| **Người dùng mục tiêu** | Hành khách, nhân viên vận hành, quản trị viên |
-| **Thời gian triển khai** | 12 năm (bao gồm triển khai & vận hành dài hạn) |
-| **Giai đoạn 1** | Đặt vé, xác thực, lịch trình, thanh toán |
-| **Giai đoạn mở rộng** | Phân tích dự đoán, IoT giám sát, tối ưu hành khách |
+### Primary Objective  
+Build a digital platform for the Urban Rail Transit System with scalability, security, and long-term operational stability.
 
----
-
-### 2.1 Functional Requirements
-
-| ID | Requirement | Priority |
-|----|--------------|----------|
-| FR-01 | Users can book tickets and pay online | High |
-| FR-02 | Real-time schedule updates via API | High |
-| FR-03 | Automatic maintenance alerting | Medium |
-| FR-04 | Admin can view passenger analytics | Medium |
-| FR-05 | Multi-language (EN, VN) support | Low |
+### Specific Objectives
+- Implement ticketing, scheduling, payment, and notification services as microservices  
+- Enable automated operations and system-wide monitoring  
+- Establish a full CI/CD pipeline with zero downtime  
+- Support real-time passenger data ingestion and analytics  
+- Provide multi-AZ architecture with ≥ 99.95% system availability  
 
 ---
 
-### 2.2 Non-Functional Requirements
+# 2. Project Scope
 
-- **Availability:** ≥ 99.95% uptime (Multi-AZ)  
-- **Latency:** < 300 ms for booking operations  
-- **Security:** Compliance with ISO 27001 & SOC 2 Type II  
-- **Scalability:** Auto scale to 100k concurrent users  
-- **Cost Efficiency:** ≤ $100/month base infrastructure  
-
----
-
-## 3. Kiến Trúc AWS Đề Xuất
-
-### 3.1 Tổng Quan
-
-Hệ thống được xây dựng theo **mô hình đa lớp (multi-tier)**, **phi máy chủ (serverless)**, và **tự động (automated)**, đảm bảo khả năng mở rộng động, vận hành tin cậy và bảo mật toàn diện.
+| Component           | Description                              |
+|--------------------|------------------------------------------|
+| Region             | AWS Singapore (ap-southeast-1)           |
+| Users              | Passengers, operators, administrators     |
+| Architecture Style | Microservices on ECS Fargate             |
+| Phase 1            | Ticketing, scheduling, notifications      |
+| Phase 2            | Analytics, BI dashboards, AI forecasting |
 
 ---
 
-### Architecture Diagram Summary
+# 3. Proposed AWS Architecture
 
-| Layer | Service | Role |
-|--------|----------|------|
-|  **Frontend** | CloudFront + S3 | Static hosting, caching, HTTPS delivery |
-|  **API Layer** | API Gateway + Lambda | Business logic, event-driven functions |
-|  **Data** | RDS + S3 + DynamoDB | Persistent and analytical data storage |
-|  **Security** | WAF + Cognito + KMS | Authentication, encryption, protection |
-|  **Monitoring** | CloudWatch + GuardDuty | Metrics, alerts, and anomaly detection |
+## 3.1 Architecture Overview
 
----
+A **multi-tier microservices architecture** will be deployed, including:
 
-### 3.2 Lớp Mạng & Truy Cập
-- **Amazon Route 53:** Quản lý DNS, đảm bảo độ sẵn sàng toàn cầu.  
-- **Amazon CloudFront (CDN):** Phân phối nội dung tĩnh và giảm tải backend.  
-- **AWS WAF:** Bảo vệ trước các tấn công DDoS, SQL Injection, XSS.
+- **Edge Layer:** Route53, CloudFront, AWS WAF  
+- **Application Layer:** ALB → ECS Fargate → ECR  
+- **Data Layer:** RDS SQL Server, ElastiCache Redis  
+- **Event Layer:** EventBridge, SNS, SQS  
+- **Analytics Layer:** Kinesis → S3 → QuickSight → SageMaker  
+- **Monitoring Layer:** CloudWatch, CloudTrail  
+- **CI/CD Layer:** CodePipeline, CodeBuild, CodeDeploy  
 
 ---
 
-### 3.3 Lớp Ứng Dụng & API
-- **Amazon API Gateway:** Cung cấp các endpoint RESTful bảo mật.  
-- **AWS Lambda:** Xử lý logic nghiệp vụ chính:
-  - `BookingServiceLambda`: Xử lý đặt vé.  
-  - `PaymentLambda`: Tích hợp thanh toán VNPay/MoMo.  
-  - `ScheduleLambda`: Cập nhật lịch trình.  
-  - `NotificationLambda`: Gửi thông báo (SNS, email, SMS).  
-- **Amazon EventBridge:** Tự động điều phối quy trình (payment → invoice → notify).  
+## 3.2 Networking & Access Layer
+
+- **Route 53:** Global DNS routing  
+- **CloudFront:** CDN caching and low-latency access  
+- **AWS WAF:** Protection from DDoS, SQL injection, XSS  
+- **Application Load Balancer:** Routes traffic to microservices  
+
+**Traffic Flow:**  
+**User → Route53 → CloudFront → WAF → ALB → Private Subnet → ECS Fargate**
 
 ---
 
-### 3.4 Lớp Dữ Liệu & Lưu Trữ
-- **Amazon RDS (SQL Server):** Lưu trữ dữ liệu người dùng, vé, thanh toán.  
-- **Amazon S3:** Lưu trữ file tĩnh, log, hóa đơn, dữ liệu sao lưu.  
-  - Tích hợp **Lifecycle Policy → S3 Glacier** để tiết kiệm chi phí.  
+## 3.3 Application Layer — Microservices on ECS Fargate
+
+### Why Fargate?
+- No server management  
+- Autoscaling based on CPU/Memory  
+- High security in private subnets  
+
+### Microservices
+- Booking Service  
+- Schedule Service  
+- Payment Service  
+- Notification Service  
+- User Service  
+- Staff & Operation Service  
+
+**Docker Images** stored in **Amazon ECR**
 
 ---
 
-### 3.5 Lớp Bảo Mật & Xác Thực
-- **Amazon Cognito:** Đăng ký, đăng nhập, MFA, cấp JWT token.  
-- **AWS Secrets Manager:** Lưu trữ và xoay vòng khóa bí mật.  
-- **AWS KMS:** Mã hóa dữ liệu RDS/S3.  
-- **AWS CloudTrail:** Ghi nhật ký và giám sát API, đảm bảo compliance.
+## 3.4 Data Layer
+
+### Amazon RDS (SQL Server)
+- Stores tickets, schedules, user accounts, payments  
+- Multi-AZ high availability  
+- Automated backup and failover  
+
+### ElastiCache Redis
+- Cache schedules → reduce RDS load  
+- Increase API performance up to 10×  
+
+### Amazon S3
+- Stores reports, invoices, files  
+- Destination for streaming data from Kinesis  
 
 ---
 
-### 3.6 Lớp Giám Sát & Tuân Thủ
-- **Amazon CloudWatch:** Theo dõi hiệu suất và log Lambda/API.  
-- **CloudWatch Alarms + SNS:** Gửi cảnh báo tự động.  
-- **CloudTrail:** Theo dõi thay đổi hệ thống và hoạt động người dùng.
+## 3.5 Event & Messaging Layer
+
+### Amazon EventBridge
+Automates workflows, including:
+- PaymentSuccess → CreateInvoice → NotifyUser  
+- ScheduleUpdate → BroadcastToMobile  
+
+### Amazon SQS
+- Queue system for notifications and ticket processing  
+- Protects services during traffic spikes  
+
+### Amazon SNS
+- Sends SMS, email, and push notifications  
 
 ---
 
-### 3.7 Lớp CI/CD & Tự Động Hóa
-- **AWS CodePipeline:** Tự động build–test–deploy.  
-- **AWS CodeBuild:** Kiểm thử mã backend/frontend mỗi lần commit.  
-- **AWS CodeDeploy:** Triển khai an toàn, không downtime.  
-- **GitHub Webhook:** Tự động kích hoạt pipeline sau commit.
+## 3.6 Real-Time Analytics
+
+### Kinesis Data Streams
+- Ingests passenger traffic in real time  
+- Application logs → Kinesis → S3  
+
+### QuickSight
+- Dashboards for daily sales, station load, peak hours  
+
+### SageMaker
+- Predict passenger demand  
+- Optimize train frequencies during peak hours  
 
 ---
 
-### Data Flow (Simplified)
-User -> CloudFront ->API Gateway -> Lambda -> RDS<br>
-|v
-EventBridge -> SNS/Email Notification<br>
-|v
-CloudWatch -> Admin Dashboard
+## 3.7 Monitoring & Observability
+
+- **CloudWatch Metrics:** CPU, Memory, ALB latency  
+- **CloudWatch Logs:** Fargate application logs  
+- **SNS Alerts:** Error notifications  
+- **CloudTrail:** Governance & admin activity tracking  
 
 ---
 
-## 4. Kế Hoạch Triển Khai
+## 3.8 CI/CD Pipeline
 
-| Giai đoạn | Thời gian | Hạng mục chính |
-|------------|------------|----------------|
-| 1 | Tuần 1–2 | Thiết lập Route 53, CloudFront, API Gateway, Lambda, RDS |
-| 2 | Tuần 3–4 | Phát triển đặt vé, xác thực (Cognito, Lambda, EventBridge) |
-| 3 | Tuần 5–6 | Tích hợp thanh toán, giám sát CloudWatch, cấu hình WAF |
-| 4 | Tuần 7–8 | CI/CD (CodePipeline, CodeBuild, CodeDeploy) |
-| 5 | Mở rộng | Phân tích dữ liệu (Athena, QuickSight) |
+Developer Commit  
+→ CodePipeline  
+→ CodeBuild  
+→ Build Docker Image  
+→ ECR  
+→ CodeDeploy  
+→ ECS Fargate
 
----
-
-## 5. Ngân Sách & Nhân Sự
-
-| Thành phần | Dịch vụ | Ước tính (USD/tháng) |
-|-------------|----------|------------------------|
-| Mạng & CDN | Route 53, CloudFront, WAF | $15 |
-| Backend Serverless | Lambda, API Gateway, EventBridge | $20 |
-| Dữ liệu & Lưu Trữ | RDS, S3 | $35 |
-| CI/CD | CodePipeline, CodeBuild, CodeDeploy | $10 |
-| Bảo mật & Giám sát | CloudWatch, CloudTrail, Cognito, KMS | $15 |
-| **Tổng cộng** | — | **≈ $95–100/tháng** |
-
-**Nhân sự:**
-- Cloud Architect  
-- Backend Developer (Lambda, API Gateway)  
-- Frontend Developer (React, S3/CloudFront)  
-- DevOps Engineer (CI/CD & Monitoring)  
-- Metro Operations Specialist  
+### Features:
+- Rolling deployments with **zero downtime**  
+- ALB health checks  
+- Automatic rollback on failure  
 
 ---
 
-## 6. Kết Quả Kỳ Vọng
-- Nền tảng vận hành **an toàn, hiện đại, dựa trên AWS Cloud**.  
-- **Thanh toán không tiền mặt** và **xác nhận vé tự động**.  
-- **Hạ tầng mở rộng linh hoạt**, sẵn sàng cho tích hợp IoT.  
-- **Minh bạch vận hành** qua dashboard phân tích dữ liệu.  
-- **Chi phí tối ưu** nhờ mô hình trả theo mức sử dụng.
+# 4. Deployment Plan
+
+| Phase | Duration | Deliverables                        |
+|-------|----------|-------------------------------------|
+| 1     | 1 week   | Route53, CloudFront, WAF, VPC, ALB |
+| 2     | 3 weeks  | ECS, ECR, RDS, ElastiCache          |
+| 3     | 1 week   | EventBridge, SQS, SNS               |
+| 4     | 3 weeks  | Kinesis, S3, QuickSight             |
+| 5     | 2 weeks  | CI/CD Pipeline                      |
+| 6     | 2 weeks  | Security hardening, cost tuning     |
 
 ---
 
-## 7. Rủi Ro & Giải Pháp
+# 5. Estimated Monthly Operational Cost
 
-| Rủi ro | Giải pháp |
-|--------|------------|
-| Gián đoạn mạng AWS | Thiết lập Multi-AZ, failover tự động |
-| Quá tải Lambda | Bật autoscaling và giới hạn timeout |
-| Tấn công bảo mật | Sử dụng WAF, IAM least privilege, KMS |
-| Sai lệch dữ liệu | Tự động sao lưu và khôi phục RDS |
-| Lỗi triển khai | CI/CD rollback và CloudFormation drift detection |
-
----
-
-### 7.1 Risk Classification Matrix
-
-| Risk | Likelihood | Impact | Mitigation |
-|-------|-------------|---------|-------------|
-| Network outage | Medium | High | Multi-AZ + Failover |
-| API overload | High | Medium | Lambda concurrency + autoscaling |
-| Data breach | Low | High | KMS encryption + WAF |
-| CI/CD failure | Medium | Low | Rollback + versioning |
+| Service                         | Cost/Month |
+|--------------------------------|------------|
+| CloudFront + Route53 + WAF     | $24        |
+| ECS Fargate                    | $40        |
+| RDS                             | $19        |
+| ElastiCache Redis              | $73        |
+| S3 + Kinesis                   | $1         |
+| Monitoring                     | $37        |
+| CI/CD                          | $18        |
+| **Total Estimated Cost**       | **$212**   |
 
 ---
 
-## 8. Tuân Thủ & Bảo Mật
+# 6. Expected Outcomes
 
-- **Compliance:** ISO 27001, GDPR-ready, SOC2 Type II  
-- **Encryption:** AES-256 (KMS-managed)  
-- **IAM Policies:** Principle of Least Privilege  
-- **Monitoring:** Continuous Audit với CloudTrail & GuardDuty  
-
----
-
-## 9. Kết Luận
-
-Hệ thống **Đường Sắt Đô Thị Trên AWS** là nền tảng chiến lược giúp chuyển đổi số ngành giao thông công cộng tại TP.HCM.  
-Với kiến trúc **serverless – event-driven – CI/CD automation**, giải pháp này đáp ứng các yêu cầu hiện đại về **bảo mật, hiệu suất và chi phí**.  
-Đây không chỉ là dự án kỹ thuật, mà còn là **bước tiến hướng tới thành phố thông minh trong tương lai**.
+- Stable 24/7 rail transit operations  
+- 1,000+ concurrent users supported  
+- Secure and automated payment processing  
+- Accurate passenger demand forecasting  
+- Reduced operation costs through autoscaling and CI/CD  
 
 ---
 
-## 10. Success Metrics
+# Appendix A — AWS Services Summary
 
-| KPI | Target | Measurement Tool |
-|------|--------|------------------|
-| System Availability | ≥ 99.95% | CloudWatch uptime metrics |
-| API Latency | < 300 ms | CloudWatch logs |
-| Ticket Processing | 10,000+/day | Lambda invocation count |
-| Cost Optimization | < $100/month | AWS Cost Explorer |
-| Security Compliance | 100% | GuardDuty & IAM Audit |
+| Category     | AWS Services                                      |
+|--------------|---------------------------------------------------|
+| Edge         | Route53, CloudFront, WAF                          |
+| Networking   | VPC, ALB                                          |
+| Compute      | ECS Fargate, ECR                                  |
+| Database     | RDS SQL Server, ElastiCache                       |
+| Event        | EventBridge, SNS, SQS                             |
+| Analytics    | Kinesis, S3, QuickSight, SageMaker                |
+| Monitoring   | CloudWatch, CloudTrail                            |
+| CI/CD        | CodePipeline, CodeBuild, CodeDeploy               |
 
----
-
-## Appendix A — AWS Services Summary
-
-| Category | Services Used | Purpose |
-|-----------|----------------|----------|
-| Networking | Route 53, CloudFront | DNS, CDN, HTTPS |
-| Compute | Lambda | Serverless compute |
-| API | API Gateway | REST API endpoints |
-| Database | RDS (SQL Server) | Transactional data |
-| Storage | S3 + Glacier | File storage & archival |
-| Security | Cognito, WAF, KMS, Secrets Manager | Authentication & protection |
-| DevOps | CodePipeline, CodeBuild, CodeDeploy | CI/CD automation |
-| Monitoring | CloudWatch, CloudTrail, GuardDuty | Observability & compliance |
-
----
-
-🖼️ *Hình minh họa:*  
-![AWS Architecture Diagram](/images/2-Proposal/aws_metropolitano_train_service.drawio.png)
+![AWS-architecture](/images/2-Proposal/aws_architecture.png)
