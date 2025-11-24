@@ -18,7 +18,7 @@ Typically, and as a standard, a worklog is carried out over about 3 months (thro
 
 **Week 2:** [Learn Amazon RDS,AWS DynamoDB, LightSail and EC2 Auto Scaling ](1.2-week2/)
 
-**Week 3:** [Learn AWS security](1.3-week3/)
+**Week 3:** [Learn security](1.3-week3/)
 
 **Week 4:** [Learn AWS DynamoDB and Relational Database Services](1.4-week4/)
 
@@ -30,10 +30,10 @@ Typically, and as a standard, a worklog is carried out over about 3 months (thro
 
 **Week 8:** [setup of networking, authentication, and file sharing](1.8-week8/)
 
-**Week 9:** [Doing task I...](1.9-week9/)
+**Week 9:** [Practice with security and operations](1.9-week9/)
 
-**Week 10:** [Doing task L...](1.10-week10/)
+**Week 10:** [Learn monitoring performance](1.10-week10/)
 
-**Week 11:** [Doing task M...](1.11-week11/)
+**Week 11:** [Learn Redis and more AWS Security ](1.11-week11/)
 
 **Week 12:** [Doing task N...](1.12-week12/)
