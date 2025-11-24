@@ -31,10 +31,10 @@ Thông thường và cũng là tiêu chuẩn, một worklog được thực hi�
 
 **Tuần 8:** [setup networking, Phân quyền, và chia sẻ file](1.8-week8/)
 
-**Tuần 9:** [Làm công việc I...](1.9-week9/)
+**Tuần 9:** [Thực hành với bảo mật và vận hành](1.9-week9/)
 
-**Tuần 10:** [Làm công việc L...](1.10-week10/)
+**Tuần 10:** [Học về quan sát hiệu năng](1.10-week10/)
 
-**Tuần 11:** [Làm công việc M...](1.11-week11/)
+**Tuần 11:** [Học về Redis và những dịch vụ bảo mật](1.11-week11/)
 
 **Tuần 12:** [Làm công việc N...](1.12-week12/)
