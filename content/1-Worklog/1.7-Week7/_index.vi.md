@@ -1,5 +1,5 @@
 ---
-title: "Tuần 7 Worklog"
+title: "Worklog tuần 7"
 date: 2025-09-07
 weight: 1
 chapter: false
@@ -23,32 +23,32 @@ pre: " <b> 1.7. </b> "
 
 ### Thành tựu Tuần 7:
 
-* Học **AWS EKS**:  
+#### 1. Học **AWS EKS**:  
   * Hiểu kiến trúc EKS bao gồm Control Plane (AWS quản lý) và Worker Nodes (người dùng quản lý).  
   * Hiểu định nghĩa Cluster, Node Group, Pod, Deployment, Service.  
   * Hiểu cách kết nối kubectl với EKS Cluster và quản lý workloads.
 
-* Thực hành trên **EKS**:  
+#### 2. Thực hành trên **EKS**:  
   * Tạo VPC, Subnets, Internet Gateway, Route Table.  
   * Cấu hình Authentication cho EKS Control Plane (IAM Role).  
   * Tạo EKS Cluster và cài addon: VPC-CNI, kube-proxy.  
   * Tạo Node Group cho Worker Node và cài addon CoreDNS.  
   * Triển khai thành công Nginx Deployment trên EKS và truy cập qua LoadBalancer.
 
-* Học **AWS ECS**:  
+#### 3. Học **AWS ECS**:  
   * Hiểu cách ECS Cluster hoạt động, Task Definition, Service, Container Agent.  
   * Phân biệt ECS Launch Type (EC2 / Fargate).  
   * Hiểu cách cấu hình mạng trong ECS (bridge, host, awsvpc).  
   * Hiểu cách tích hợp ECS với CloudWatch, Load Balancer và Auto Scaling.
 
-* Thực hành triển khai **ECS**:  
+#### 4. Thực hành triển khai **ECS**:  
   * Tạo **ECS Cluster** (Fargate).  
   * Build và push Docker Image lên ECR.  
   * Tạo Task Definition và Service chạy container.  
   * Đăng ký Namespace trên Cloud Map để ECS có thể thực hiện Service Discovery.  
   * Hiểu cơ bản về **AWS Storage Gateway** và mô hình lưu trữ hybrid.
 
-* Học **AWS CodePipeline**:  
+#### 5. Học **AWS CodePipeline**:  
   * Hiểu pipeline CI/CD gồm 3 stage: Source → Build → Deploy.  
   * Hiểu cách tích hợp CodePipeline với GitHub, CodeBuild và CodeDeploy.  
   * Hiểu tự động build và deploy ứng dụng Spring Boot hoặc React lên EC2/S3.  
