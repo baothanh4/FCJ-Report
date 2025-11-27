@@ -17,7 +17,7 @@ pre: " <b> 1.12. </b> "
 | 2   | - Learn AWS QuickSight:<br>&emsp; + What is QuickSight <br>&emsp; + Architecture of QuickSight <br>&emsp; + Component <br>&emsp; SPICE                                                                                                  | 25/11/2025 | 26/11/2025      |<https://000073.awsstudygroup.com/>
 | 3   | - **Pratice with AWS QuickSight**      |26/11/2025 |27/11/2025|<https://000073.awsstudygroup.com/>|
 | 4   | - Learn **AWS Athena** and **Practice** | 27/11/2025 | 28/11/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - **Practice**: Building a data lake with data                            | 08/14/2025 | 08/15/2025      | <https://000070.awsstudygroup.com/> |
+| 5   | - **Practice**: Building a data lake with data| 08/14/2025 | 08/15/2025      | <https://000070.awsstudygroup.com/> |
 | 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
 
