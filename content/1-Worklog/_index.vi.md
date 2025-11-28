@@ -29,4 +29,4 @@ pre: " <b> 1. </b> "
 
 **Tuần 11:** [Học về Redis và những dịch vụ bảo mật](1.11-week11/)
 
-**Tuần 12:** [Làm công việc N...](1.12-week12/)
+**Tuần 12:** [Học về QuickSight, Athena và data lake](1.12-week12/)
