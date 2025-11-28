@@ -1,58 +1,45 @@
 ---
-title: "Worklog Tuần 12"
+title: "Tuần 12 Worklog"
 date: 2025-09-07
 weight: 2
 chapter: false
-pre: " <b> 1.12 </b> "
+pre: " <b> 1.12. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-### Mục tiêu tuần 12:
+### Mục tiêu Tuần 12
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+- Hiểu và thực hành **AWS QuickSight** và **AWS Athena**.  
+- Xây dựng **data lake** từ nhiều nguồn dữ liệu.  
+- Triển khai ứng dụng web với **Elastic Beanstalk** và pipeline **CDK CI/CD**.
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+---
 
+### Nhiệm vụ trong tuần
+| Ngày | Nhiệm vụ | Ngày bắt đầu | Ngày kết thúc | Tài liệu tham khảo |
+| --- | --- | --- | --- | --- |
+| 2 | Học AWS QuickSight:<br>&emsp; + Tổng quan QuickSight <br>&emsp; + Kiến trúc <br>&emsp; + Thành phần <br>&emsp; + SPICE | 25/11/2025 | 26/11/2025 | <https://000073.awsstudygroup.com/> |
+| 3 | Thực hành với AWS QuickSight | 26/11/2025 | 27/11/2025 | <https://000073.awsstudygroup.com/> |
+| 4 | Học và thực hành **AWS Athena** | 27/11/2025 | 28/11/2025 | <https://cloudjourney.awsstudygroup.com/> |
+| 5 | Thực hành xây dựng **data lake** | 29/11/2025 | 30/11/2025 | <https://000070.awsstudygroup.com/> |
+| 6 | Thực hành triển khai web app với **Elastic Beanstalk** và **CDK pipeline** | 01/12/2025 | 02/12/2025 | <https://000113.awsstudygroup.com/> |
 
-### Kết quả đạt được tuần 12:
+---
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+### Thành tích Tuần 12
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+1. **AWS QuickSight**  
+   - Hiểu tổng quan, kiến trúc và các thành phần chính (Dashboard, Analysis, Dataset).  
+   - Hiểu cách hoạt động của **SPICE engine** giúp tăng tốc truy vấn.  
+   - Thực hành tạo dashboard cơ bản và kết nối dữ liệu từ S3/Athena.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+2. **AWS Athena**  
+   - Học cách truy vấn dữ liệu trên **S3** bằng SQL.  
+   - Thực hành tạo bảng, view và chạy truy vấn mẫu.
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+3. **Data Lake**  
+   - Xây dựng thử nghiệm **data lake** trên S3 để tổng hợp nhiều nguồn dữ liệu.  
+   - Làm sạch và chuyển đổi dữ liệu trước khi phân tích.
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+4. **Elastic Beanstalk & CDK**  
+   - Triển khai demo web app trên **Elastic Beanstalk**.  
+   - Cấu hình pipeline CDK cơ bản để tự động triển khai code.
