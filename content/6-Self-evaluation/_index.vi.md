@@ -1,40 +1,35 @@
 ---
-title: "Tự đánh giá"
+title: "Tự Đánh Giá"
 date: 2025-09-07
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+Trong thời gian thực tập tại **Công ty TNHH Amazon Web Services Vietnam** từ **09/2025** đến **12/2025**, tôi đã có cơ hội học hỏi, thực hành và áp dụng kiến thức đã học ở trường vào môi trường làm việc thực tế.  
+Tôi tham gia vào **việc học cách sử dụng tất cả các dịch vụ và cách chúng hoạt động trên AWS**, qua đó tôi cải thiện kỹ năng **thực hành workshop, áp dụng các dịch vụ AWS vào ứng dụng của mình**. Đồng thời, tôi còn phải tối ưu hóa chi phí, hiệu năng và tăng cường các lớp bảo mật.
 
-Trong suốt thời gian thực tập tại **[Tên công ty/tổ chức]** từ **[ngày bắt đầu]** đến **[ngày kết thúc]**, tôi đã có cơ hội học hỏi, rèn luyện và áp dụng kiến thức đã được trang bị tại trường vào môi trường làm việc thực tế.  
-Tôi đã tham gia **[mô tả ngắn gọn dự án hoặc công việc chính]**, qua đó cải thiện kỹ năng **[liệt kê kỹ năng: lập trình, phân tích, viết báo cáo, giao tiếp…]**.  
+Khi ở công ty, tôi luôn kiểm tra danh sách công việc (to-do list) và kiểm tra tất cả các nhiệm vụ chưa hoàn thành từ hôm trước. Bên cạnh đó, tôi có cơ hội gặp gỡ mentor và nhờ họ giúp đỡ khi gặp vấn đề. Trong quá trình học tập, tôi cùng các đồng đội đã xây dựng các website và sử dụng các dịch vụ AWS.
 
-Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân thủ nội quy, và tích cực trao đổi với đồng nghiệp để nâng cao hiệu quả công việc.
+Để phản ánh khách quan về thời gian thực tập, tôi đánh giá bản thân dựa trên các tiêu chí sau:
 
-Để phản ánh một cách khách quan quá trình thực tập, tôi xin tự đánh giá bản thân dựa trên các tiêu chí dưới đây:
+| STT | Tiêu chí                           | Mô tả                                                                                          | Tốt | Khá | Trung bình |
+| --- | --------------------------------- | ---------------------------------------------------------------------------------------------- | --- | --- | ---------- |
+| 1   | **Kiến thức & kỹ năng chuyên môn** | Hiểu biết về lĩnh vực, áp dụng kiến thức vào thực tế, thành thạo công cụ, chất lượng công việc | ☐   | ✅  | ☐         |
+| 2   | **Khả năng học hỏi**               | Khả năng tiếp thu kiến thức mới và học nhanh                                                   | ☐   | ✅  | ☐         |
+| 3   | **Tính chủ động**                  | Chủ động, tìm kiếm nhiệm vụ mà không chờ hướng dẫn                                              | ✅  | ☐   | ☐         |
+| 4   | **Tinh thần trách nhiệm**          | Hoàn thành công việc đúng hạn và đảm bảo chất lượng                                            | ☐   | ✅  | ☐         |
+| 5   | **Kỷ luật**                        | Tuân thủ lịch trình, quy tắc và quy trình làm việc                                             | ✅  | ☐   | ☐         |
+| 6   | **Tư duy tiến bộ**                 | Sẵn sàng nhận phản hồi và cải thiện bản thân                                                  | ☐   | ☐   | ✅         |
+| 7   | **Kỹ năng giao tiếp**              | Trình bày ý tưởng và báo cáo công việc rõ ràng                                               | ☐   | ✅  | ☐         |
+| 8   | **Làm việc nhóm**                  | Làm việc hiệu quả với đồng nghiệp và tham gia nhóm                                            | ☐   | ✅  | ☐         |
+| 9   | **Hành vi chuyên nghiệp**          | Tôn trọng đồng nghiệp, đối tác và môi trường làm việc                                         | ✅  | ☐   | ☐         |
+| 10  | **Kỹ năng giải quyết vấn đề**      | Xác định vấn đề, đề xuất giải pháp và thể hiện sự sáng tạo                                    | ☐   | ✅  | ☐         |
+| 11  | **Đóng góp cho dự án/nhóm**       | Hiệu quả công việc, ý tưởng sáng tạo, được đồng đội công nhận                                 | ✅  | ☐   | ☐         |
+| 12  | **Tổng quan**                      | Đánh giá tổng thể về toàn bộ thời gian thực tập                                               | ☐   | ✅  | ☐         |
 
+### Những điểm cần cải thiện
 
-| STT | Tiêu chí                            | Mô tả                                                                                            | Tốt | Khá | Trung bình |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --- | --- | ---------- |
-| 1   | **Kiến thức và kỹ năng chuyên môn** | Hiểu biết về ngành, áp dụng kiến thức vào thực tế, kỹ năng sử dụng công cụ, chất lượng công việc | ✅   | ☐   | ☐          |
-| 2   | **Khả năng học hỏi**                | Tiếp thu kiến thức mới, học hỏi nhanh                                                            | ☐   | ✅   | ☐          |
-| 3   | **Chủ động**                        | Tự tìm hiểu, nhận nhiệm vụ mà không chờ chỉ dẫn                                                  | ✅   | ☐   | ☐          |
-| 4   | **Tinh thần trách nhiệm**           | Hoàn thành công việc đúng hạn, đảm bảo chất lượng                                                | ✅   | ☐   | ☐          |
-| 5   | **Kỷ luật**                         | Tuân thủ giờ giấc, nội quy, quy trình làm việc                                                   | ☐   | ☐   | ✅          |
-| 6   | **Tính cầu tiến**                   | Sẵn sàng nhận feedback và cải thiện bản thân                                                     | ☐   | ✅   | ☐          |
-| 7   | **Giao tiếp**                       | Trình bày ý tưởng, báo cáo công việc rõ ràng                                                     | ☐   | ✅   | ☐          |
-| 8   | **Hợp tác nhóm**                    | Làm việc hiệu quả với đồng nghiệp, tham gia nhóm                                                 | ✅   | ☐   | ☐          |
-| 9   | **Ứng xử chuyên nghiệp**            | Tôn trọng đồng nghiệp, đối tác, môi trường làm việc                                              | ✅   | ☐   | ☐          |
-| 10  | **Tư duy giải quyết vấn đề**        | Nhận diện vấn đề, đề xuất giải pháp, sáng tạo                                                    | ☐   | ✅   | ☐          |
-| 11  | **Đóng góp vào dự án/tổ chức**      | Hiệu quả công việc, sáng kiến cải tiến, ghi nhận từ team                                         | ✅   | ☐   | ☐          |
-| 12  | **Tổng thể**                        | Đánh giá chung về toàn bộ quá trình thực tập                                                     | ✅   | ☐   | ☐          |
-
-### Cần cải thiện
-
-* Nâng cao tính kỹ luật, chấp hành nghiêm chỉnh nội quy của công ty hoặc bất kỳ trong một tổ chức nào
-* Cải thiện trong cách tư duy giải quyết vấn đề
-* Học cách giao tiếp tốt hơn trong giao tiếp hằng ngày và trong công việc, xử lý tình huống
+* Tôi là người hướng nội, nên giao tiếp với mentor còn hạn chế. Tôi cần thay đổi cách giao tiếp và dành thời gian gặp mentor để hỏi về các vấn đề của mình.  
+* Tôi cần cải thiện kỹ năng quản lý dự án vì phải hướng dẫn đồng đội và giao nhiệm vụ cho họ, nhưng hiện tại tôi chưa áp dụng phương pháp như Agile hoặc Scrum để phát triển phần mềm cùng đồng đội.  
+* Tôi luôn suy nghĩ về cách các dịch vụ hoạt động và áp dụng vào ứng dụng của mình nhưng vẫn chưa hiểu cách thức hoạt động của những dịch vụ đó, do đó tôi cần dành thời gian cải thiện tư duy logic để hiểu rõ hơn.
