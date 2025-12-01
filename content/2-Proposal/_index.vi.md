@@ -1,99 +1,99 @@
 ---
-title: "Proposal"
+title: "Đề xuất"
 date: 2025-09-07
 weight: 2
 chapter: false
 pre: "<b> 2. </b>"
 ---
 
-# URBAN RAIL TRANSIT SERVICE SYSTEM ON AWS
+# HỆ THỐNG DỊCH VỤ ĐƯỜNG SẮT ĐÔ THỊ TRÊN AWS
 
 ---
 
-## Executive Summary
+## Tóm tắt điều hành
 
-Rapid urban development has increased the need for intelligent and sustainable public transportation. A modern Urban Rail Transit System requires a reliable, scalable, and highly available digital platform operating 24/7.
+Sự phát triển nhanh của đô thị đã làm tăng nhu cầu về giao thông công cộng thông minh và bền vững. Một Hệ thống Đường sắt Đô thị hiện đại cần một **nền tảng số tin cậy, có khả năng mở rộng và luôn hoạt động 24/7**.
 
-This proposal presents an **AWS microservices architecture using Amazon ECS Fargate**, enabling:
+Đề xuất này trình bày **kiến trúc microservices trên AWS sử dụng Amazon ECS Fargate**, cho phép:
 
-- Ticket booking, scheduling, payments, and traffic monitoring  
-- Real-time passenger data ingestion through Amazon Kinesis  
-- BI dashboards and predictive analytics with QuickSight and SageMaker  
-- Full CI/CD automation and comprehensive monitoring  
-
----
-
-## Key Highlights
-
-- **Microservices container architecture** powered by Amazon ECS Fargate  
-- End-to-end security: Route53 → CloudFront → WAF → ALB → Private Subnets  
-- Fully automated CI/CD using CodePipeline, CodeBuild, CodeDeploy, ECR  
-- Real-time processing using **Kinesis Data Streams**  
-- Analytics & forecasting with **QuickSight + SageMaker**  
-- Scalability for hundreds of thousands of daily ticket requests  
+- Đặt vé, lập lịch, thanh toán và giám sát giao thông  
+- Nhập dữ liệu hành khách theo thời gian thực qua Amazon Kinesis  
+- Báo cáo BI và phân tích dự đoán với QuickSight và SageMaker  
+- Tự động hóa CI/CD đầy đủ và giám sát toàn diện  
 
 ---
 
-# 1. Project Objectives
+## Điểm nổi bật chính
 
-### Primary Objective  
-Build a digital platform for the Urban Rail Transit System with scalability, security, and long-term operational stability.
-
-### Specific Objectives
-- Implement ticketing, scheduling, payment, and notification services as microservices  
-- Enable automated operations and system-wide monitoring  
-- Establish a full CI/CD pipeline with zero downtime  
-- Support real-time passenger data ingestion and analytics  
-- Provide multi-AZ architecture with ≥ 99.95% system availability  
+- **Kiến trúc microservices container** chạy trên Amazon ECS Fargate  
+- Bảo mật end-to-end: Route53 → CloudFront → WAF → ALB → Private Subnets  
+- CI/CD tự động hoàn toàn bằng CodePipeline, CodeBuild, CodeDeploy, ECR  
+- Xử lý dữ liệu theo thời gian thực với **Kinesis Data Streams**  
+- Phân tích và dự đoán với **QuickSight + SageMaker**  
+- Khả năng mở rộng cho hàng trăm nghìn yêu cầu đặt vé mỗi ngày  
 
 ---
 
-# 2. Project Scope
+# 1. Mục tiêu dự án
 
-| Component           | Description                              |
-|--------------------|------------------------------------------|
-| Region             | AWS Singapore (ap-southeast-1)           |
-| Users              | Passengers, operators, administrators     |
-| Architecture Style | Microservices on ECS Fargate             |
-| Phase 1            | Ticketing, scheduling, notifications      |
-| Phase 2            | Analytics, BI dashboards, AI forecasting |
+### Mục tiêu chính  
+Xây dựng nền tảng số cho Hệ thống Đường sắt Đô thị với khả năng mở rộng, bảo mật và ổn định vận hành dài hạn.
 
----
-
-# 3. Proposed AWS Architecture
-
-## 3.1 Architecture Overview
-
-A **multi-tier microservices architecture** will be deployed, including:
-
-- **Edge Layer:** Route53, CloudFront, AWS WAF  
-- **Application Layer:** ALB → ECS Fargate → ECR  
-- **Data Layer:** RDS SQL Server, ElastiCache Redis  
-- **Event Layer:** EventBridge, SNS, SQS  
-- **Analytics Layer:** Kinesis → S3 → QuickSight → SageMaker  
-- **Monitoring Layer:** CloudWatch, CloudTrail  
-- **CI/CD Layer:** CodePipeline, CodeBuild, CodeDeploy  
+### Mục tiêu cụ thể
+- Triển khai các dịch vụ vé, lịch trình, thanh toán và thông báo dưới dạng microservices  
+- Hỗ trợ vận hành tự động và giám sát hệ thống toàn diện  
+- Thiết lập pipeline CI/CD hoàn chỉnh với zero downtime  
+- Hỗ trợ nhập dữ liệu hành khách theo thời gian thực và phân tích  
+- Cung cấp kiến trúc đa AZ với ≥ 99,95% độ sẵn sàng hệ thống  
 
 ---
 
-## 3.2 Networking & Access Layer
+# 2. Phạm vi dự án
 
-- **Route 53:** Global DNS routing  
-- **CloudFront:** CDN caching and low-latency access  
-- **AWS WAF:** Protection from DDoS, SQL injection, XSS  
-- **Application Load Balancer:** Routes traffic to microservices  
-
-**Traffic Flow:**  
-**User → Route53 → CloudFront → WAF → ALB → Private Subnet → ECS Fargate**
+| Thành phần           | Mô tả                                   |
+|---------------------|----------------------------------------|
+| Khu vực (Region)    | AWS Singapore (ap-southeast-1)         |
+| Người dùng          | Hành khách, nhân viên vận hành, quản trị viên |
+| Kiến trúc            | Microservices trên ECS Fargate         |
+| Giai đoạn 1         | Vé, lịch trình, thông báo               |
+| Giai đoạn 2         | Phân tích, dashboard BI, dự báo AI     |
 
 ---
 
-## 3.3 Application Layer — Microservices on ECS Fargate
+# 3. Kiến trúc AWS đề xuất
 
-### Why Fargate?
-- No server management  
-- Autoscaling based on CPU/Memory  
-- High security in private subnets  
+## 3.1 Tổng quan kiến trúc
+
+Một **kiến trúc microservices nhiều tầng** sẽ được triển khai, bao gồm:
+
+- **Lớp Edge:** Route53, CloudFront, AWS WAF  
+- **Lớp ứng dụng:** ALB → ECS Fargate → ECR  
+- **Lớp dữ liệu:** RDS SQL Server, ElastiCache Redis  
+- **Lớp sự kiện:** EventBridge, SNS, SQS  
+- **Lớp phân tích:** Kinesis → S3 → QuickSight → SageMaker  
+- **Lớp giám sát:** CloudWatch, CloudTrail  
+- **Lớp CI/CD:** CodePipeline, CodeBuild, CodeDeploy  
+
+---
+
+## 3.2 Mạng và lớp truy cập
+
+- **Route 53:** Định tuyến DNS toàn cầu  
+- **CloudFront:** CDN, caching, truy cập độ trễ thấp  
+- **AWS WAF:** Bảo vệ khỏi DDoS, SQL injection, XSS  
+- **Application Load Balancer:** Phân phối traffic tới các microservices  
+
+**Luồng traffic:**  
+**Người dùng → Route53 → CloudFront → WAF → ALB → Private Subnet → ECS Fargate**
+
+---
+
+## 3.3 Lớp ứng dụng — Microservices trên ECS Fargate
+
+### Vì sao chọn Fargate?
+- Không quản lý server  
+- Autoscaling dựa trên CPU/Memory  
+- Bảo mật cao trong private subnet  
 
 ### Microservices
 - Booking Service  
@@ -103,133 +103,134 @@ A **multi-tier microservices architecture** will be deployed, including:
 - User Service  
 - Staff & Operation Service  
 
-**Docker Images** stored in **Amazon ECR**
+**Docker Images** lưu trữ trong **Amazon ECR**
 
 ---
 
-## 3.4 Data Layer
+## 3.4 Lớp dữ liệu
 
 ### Amazon RDS (SQL Server)
-- Stores tickets, schedules, user accounts, payments  
-- Multi-AZ high availability  
-- Automated backup and failover  
+- Lưu vé, lịch trình, tài khoản người dùng, thanh toán  
+- Multi-AZ để đảm bảo tính sẵn sàng cao  
+- Backup và failover tự động  
 
 ### ElastiCache Redis
-- Cache schedules → reduce RDS load  
-- Increase API performance up to 10×  
+- Cache lịch trình → giảm tải RDS  
+- Tăng hiệu năng API lên đến 10×  
 
 ### Amazon S3
-- Stores reports, invoices, files  
-- Destination for streaming data from Kinesis  
+- Lưu báo cáo, hóa đơn, tệp tin  
+- Là nơi lưu dữ liệu streaming từ Kinesis  
 
 ---
 
-## 3.5 Event & Messaging Layer
+## 3.5 Lớp sự kiện & messaging
 
 ### Amazon EventBridge
-Automates workflows, including:
+Tự động hóa workflow, ví dụ:  
 - PaymentSuccess → CreateInvoice → NotifyUser  
 - ScheduleUpdate → BroadcastToMobile  
 
 ### Amazon SQS
-- Queue system for notifications and ticket processing  
-- Protects services during traffic spikes  
+- Hệ thống queue cho thông báo và xử lý vé  
+- Bảo vệ dịch vụ khi lưu lượng tăng đột biến  
 
 ### Amazon SNS
-- Sends SMS, email, and push notifications  
+- Gửi SMS, email, push notification  
 
 ---
 
-## 3.6 Real-Time Analytics
+## 3.6 Phân tích thời gian thực
 
 ### Kinesis Data Streams
-- Ingests passenger traffic in real time  
-- Application logs → Kinesis → S3  
+- Thu thập dữ liệu hành khách theo thời gian thực  
+- Logs ứng dụng → Kinesis → S3  
 
 ### QuickSight
-- Dashboards for daily sales, station load, peak hours  
+- Dashboard cho doanh thu hàng ngày, tải trạm, giờ cao điểm  
 
 ### SageMaker
-- Predict passenger demand  
-- Optimize train frequencies during peak hours  
+- Dự đoán nhu cầu hành khách  
+- Tối ưu tần suất chạy tàu trong giờ cao điểm  
 
 ---
 
-## 3.7 Monitoring & Observability
+## 3.7 Giám sát & quan sát
 
-- **CloudWatch Metrics:** CPU, Memory, ALB latency  
-- **CloudWatch Logs:** Fargate application logs  
-- **SNS Alerts:** Error notifications  
-- **CloudTrail:** Governance & admin activity tracking  
+- **CloudWatch Metrics:** CPU, Memory, độ trễ ALB  
+- **CloudWatch Logs:** logs ứng dụng Fargate  
+- **SNS Alerts:** thông báo lỗi  
+- **CloudTrail:** theo dõi hoạt động quản trị & tuân thủ  
 
 ---
 
-## 3.8 CI/CD Pipeline
+## 3.8 Pipeline CI/CD
 
-Developer Commit  
+Commit của developer  
 → CodePipeline  
 → CodeBuild  
 → Build Docker Image  
-→ ECR  
+→ Push ECR  
 → CodeDeploy  
-→ ECS Fargate
+→ ECS Fargate  
 
-### Features:
-- Rolling deployments with **zero downtime**  
-- ALB health checks  
-- Automatic rollback on failure  
-
----
-
-# 4. Deployment Plan
-
-| Phase | Duration | Deliverables                        |
-|-------|----------|-------------------------------------|
-| 1     | 1 week   | Route53, CloudFront, WAF, VPC, ALB |
-| 2     | 3 weeks  | ECS, ECR, RDS, ElastiCache          |
-| 3     | 1 week   | EventBridge, SQS, SNS               |
-| 4     | 3 weeks  | Kinesis, S3, QuickSight             |
-| 5     | 2 weeks  | CI/CD Pipeline                      |
-| 6     | 2 weeks  | Security hardening, cost tuning     |
+### Tính năng:
+- Rolling deployments **zero downtime**  
+- Kiểm tra sức khỏe ALB  
+- Tự động rollback khi thất bại  
 
 ---
 
-# 5. Estimated Monthly Operational Cost
+# 4. Kế hoạch triển khai
 
-| Service                         | Cost/Month |
-|--------------------------------|------------|
-| CloudFront + Route53 + WAF     | $24        |
-| ECS Fargate                    | $40        |
-| RDS                             | $19        |
-| ElastiCache Redis              | $73        |
-| S3 + Kinesis                   | $1         |
-| Monitoring                     | $37        |
-| CI/CD                          | $18        |
-| **Total Estimated Cost**       | **$212**   |
+| Giai đoạn | Thời gian | Kết quả bàn giao                       |
+|-----------|-----------|---------------------------------------|
+| 1         | 1 tuần    | Route53, CloudFront, WAF, VPC, ALB    |
+| 2         | 3 tuần    | ECS, ECR, RDS, ElastiCache           |
+| 3         | 1 tuần    | EventBridge, SQS, SNS                 |
+| 4         | 3 tuần    | Kinesis, S3, QuickSight               |
+| 5         | 2 tuần    | Pipeline CI/CD                         |
+| 6         | 2 tuần    | Tăng cường bảo mật, tối ưu chi phí     |
 
 ---
 
-# 6. Expected Outcomes
+# 5. Ước tính chi phí vận hành hàng tháng
 
-- Stable 24/7 rail transit operations  
-- 1,000+ concurrent users supported  
-- Secure and automated payment processing  
-- Accurate passenger demand forecasting  
-- Reduced operation costs through autoscaling and CI/CD  
+| Dịch vụ                          | Chi phí/Tháng |
+|---------------------------------|---------------|
+| CloudFront + Route53 + WAF       | $24           |
+| ECS Fargate                       | $40           |
+| RDS                               | $19           |
+| ElastiCache Redis                | $73           |
+| S3 + Kinesis                     | $1            |
+| Giám sát                          | $37           |
+| CI/CD                             | $18           |
+| **Tổng chi phí ước tính**        | **$212**      |
 
 ---
 
-# Appendix A — AWS Services Summary
+# 6. Kết quả kỳ vọng
 
-| Category     | AWS Services                                      |
-|--------------|---------------------------------------------------|
-| Edge         | Route53, CloudFront, WAF                          |
-| Networking   | VPC, ALB                                          |
-| Compute      | ECS Fargate, ECR                                  |
-| Database     | RDS SQL Server, ElastiCache                       |
-| Event        | EventBridge, SNS, SQS                             |
-| Analytics    | Kinesis, S3, QuickSight, SageMaker                |
-| Monitoring   | CloudWatch, CloudTrail                            |
-| CI/CD        | CodePipeline, CodeBuild, CodeDeploy               |
+- Hoạt động đường sắt ổn định 24/7  
+- Hỗ trợ ≥ 1.000 người dùng đồng thời  
+- Thanh toán an toàn và tự động  
+- Dự báo nhu cầu hành khách chính xác  
+- Giảm chi phí vận hành nhờ autoscaling và CI/CD  
+
+---
+
+# Phụ lục A — Tóm tắt dịch vụ AWS
+
+| Danh mục      | Dịch vụ AWS                                      |
+|---------------|--------------------------------------------------|
+| Edge          | Route53, CloudFront, WAF                         |
+| Networking    | VPC, ALB                                         |
+| Compute       | ECS Fargate, ECR                                 |
+| Database      | RDS SQL Server, ElastiCache                      |
+| Event         | EventBridge, SNS, SQS                            |
+| Analytics     | Kinesis, S3, QuickSight, SageMaker              |
+| Giám sát      | CloudWatch, CloudTrail                            |
+| CI/CD         | CodePipeline, CodeBuild, CodeDeploy              |
+
 
 ![AWS-architecture](/images/2-Proposal/aws_architecture.png)
