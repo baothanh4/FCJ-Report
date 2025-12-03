@@ -14,7 +14,9 @@ pre: "<b> 2. </b>"
 
 Rapid urban development has increased the need for intelligent and sustainable public transportation. A modern Urban Rail Transit System requires a reliable, scalable, and highly available digital platform operating 24/7.
 
-This proposal presents an **AWS microservices architecture using Amazon ECS Fargate**, enabling:
+This proposal presents an **AWS architecture built on Amazon EC2**, ensuring full control, high performance, and flexibility for mission-critical workloads.
+
+The platform supports:
 
 - Ticket booking, scheduling, payments, and traffic monitoring  
 - Real-time passenger data ingestion through Amazon Kinesis  
@@ -25,12 +27,12 @@ This proposal presents an **AWS microservices architecture using Amazon ECS Farg
 
 ## Key Highlights
 
-- **Microservices container architecture** powered by Amazon ECS Fargate  
-- End-to-end security: Route53 → CloudFront → WAF → ALB → Private Subnets  
-- Fully automated CI/CD using CodePipeline, CodeBuild, CodeDeploy, ECR  
+- **EC2-based architecture** with Auto Scaling & ALB  
+- End-to-end security: Route53 → CloudFront → WAF → ALB → Private EC2  
+- Fully automated CI/CD using CodePipeline, CodeBuild, CodeDeploy  
 - Real-time processing using **Kinesis Data Streams**  
-- Analytics & forecasting with **QuickSight + SageMaker**  
-- Scalability for hundreds of thousands of daily ticket requests  
+- Analytics with **QuickSight**  
+- High availability & scalability across multiple AZs  
 
 ---
 
@@ -40,23 +42,23 @@ This proposal presents an **AWS microservices architecture using Amazon ECS Farg
 Build a digital platform for the Urban Rail Transit System with scalability, security, and long-term operational stability.
 
 ### Specific Objectives
-- Implement ticketing, scheduling, payment, and notification services as microservices  
+- Implement ticketing, scheduling, payment, and notification services  
 - Enable automated operations and system-wide monitoring  
-- Establish a full CI/CD pipeline with zero downtime  
+- Establish a full CI/CD pipeline with zero downtime deployment to EC2  
 - Support real-time passenger data ingestion and analytics  
-- Provide multi-AZ architecture with ≥ 99.95% system availability  
+- Provide multi-AZ architecture with ≥ 99.95% availability  
 
 ---
 
 # 2. Project Scope
 
 | Component           | Description                              |
-|--------------------|------------------------------------------|
-| Region             | AWS Singapore (ap-southeast-1)           |
-| Users              | Passengers, operators, administrators     |
-| Architecture Style | Microservices on ECS Fargate             |
-| Phase 1            | Ticketing, scheduling, notifications      |
-| Phase 2            | Analytics, BI dashboards, AI forecasting |
+|---------------------|------------------------------------------|
+| Region              | AWS Singapore (ap-southeast-1)           |
+| Users               | Passengers, operators, administrators    |
+| Architecture Style  | Multi-tier architecture on EC2           |
+| Phase 1             | Ticketing, scheduling, notifications     |
+| Phase 2             | Analytics, BI dashboards                 |
 
 ---
 
@@ -64,10 +66,10 @@ Build a digital platform for the Urban Rail Transit System with scalability, sec
 
 ## 3.1 Architecture Overview
 
-A **multi-tier microservices architecture** will be deployed, including:
+A **multi-tier architecture** will be deployed, including:
 
 - **Edge Layer:** Route53, CloudFront, AWS WAF  
-- **Application Layer:** ALB → ECS Fargate → ECR  
+- **Application Layer:** ALB → EC2 Auto Scaling Group  
 - **Data Layer:** RDS SQL Server, ElastiCache Redis  
 - **Event Layer:** EventBridge, SNS, SQS  
 - **Analytics Layer:** Kinesis → S3 → QuickSight → SageMaker  
@@ -79,31 +81,36 @@ A **multi-tier microservices architecture** will be deployed, including:
 ## 3.2 Networking & Access Layer
 
 - **Route 53:** Global DNS routing  
-- **CloudFront:** CDN caching and low-latency access  
-- **AWS WAF:** Protection from DDoS, SQL injection, XSS  
-- **Application Load Balancer:** Routes traffic to microservices  
+- **CloudFront:** CDN caching and global acceleration  
+- **AWS WAF:** Security filtering (SQLi, XSS, bots)  
+- **Application Load Balancer:** Routes traffic to EC2  
 
 **Traffic Flow:**  
-**User → Route53 → CloudFront → WAF → ALB → Private Subnet → ECS Fargate**
+**User → Route53 → CloudFront → WAF → ALB → Private Subnet → EC2 Instances**
 
 ---
 
-## 3.3 Application Layer — Microservices on ECS Fargate
+## 3.3 Application Layer — EC2 Auto Scaling
 
-### Why Fargate?
-- No server management  
-- Autoscaling based on CPU/Memory  
-- High security in private subnets  
+### Why EC2?
+- Full control over OS, runtime, and application environment  
+- Suitable for monolithic or microservice deployments  
+- Reliable for long-running backend services  
+- Auto Scaling based on CPU, network, request count  
+- EC2 roles for secure access to AWS resources  
 
-### Microservices
+### Application Deployment Model
+- Backend components deployed on **EC2 Auto Scaling Group**  
+- EC2 instances in **Private Subnets** for security  
+- Deployed via **CodeDeploy (Blue/Green or Rolling)**  
+
+### Backend Services Include:
 - Booking Service  
 - Schedule Service  
 - Payment Service  
 - Notification Service  
 - User Service  
-- Staff & Operation Service  
-
-**Docker Images** stored in **Amazon ECR**
+- Operation & Reporting Service  
 
 ---
 
@@ -111,56 +118,52 @@ A **multi-tier microservices architecture** will be deployed, including:
 
 ### Amazon RDS (SQL Server)
 - Stores tickets, schedules, user accounts, payments  
-- Multi-AZ high availability  
-- Automated backup and failover  
-
-### ElastiCache Redis
-- Cache schedules → reduce RDS load  
-- Increase API performance up to 10×  
+- Multi-AZ deployment ensures HA  
+- Automated backups and failover  
+- IAM authentication + encryption  
 
 ### Amazon S3
-- Stores reports, invoices, files  
-- Destination for streaming data from Kinesis  
+- Stores documents, reports, logs, analytics data  
+- Destination for Kinesis stream data  
+- Lifecycle storage tiering for cost reduction  
 
 ---
 
 ## 3.5 Event & Messaging Layer
 
 ### Amazon EventBridge
-Automates workflows, including:
+Automates operations, e.g.:
 - PaymentSuccess → CreateInvoice → NotifyUser  
-- ScheduleUpdate → BroadcastToMobile  
+- TrainDelay → PushNotifications → Dashboard Update  
 
 ### Amazon SQS
-- Queue system for notifications and ticket processing  
-- Protects services during traffic spikes  
+- Buffer queue for heavy workloads  
+- Prevents overload during peak hours  
 
 ### Amazon SNS
-- Sends SMS, email, and push notifications  
+- Sends multi-channel notifications (SMS, email, push)  
 
 ---
 
 ## 3.6 Real-Time Analytics
 
 ### Kinesis Data Streams
-- Ingests passenger traffic in real time  
-- Application logs → Kinesis → S3  
+- Real-time ingestion of passenger flow data  
+- App logs → Kinesis → S3 for analytics  
 
 ### QuickSight
-- Dashboards for daily sales, station load, peak hours  
+- Business dashboards: ticket sales, peak traffic, service delays  
 
-### SageMaker
-- Predict passenger demand  
-- Optimize train frequencies during peak hours  
+
 
 ---
 
 ## 3.7 Monitoring & Observability
 
-- **CloudWatch Metrics:** CPU, Memory, ALB latency  
-- **CloudWatch Logs:** Fargate application logs  
-- **SNS Alerts:** Error notifications  
-- **CloudTrail:** Governance & admin activity tracking  
+- **CloudWatch Metrics:** EC2 performance, ALB latency, RDS metrics  
+- **CloudWatch Logs:** Application logs from EC2 via CloudWatch Agent  
+- **SNS Alerts:** Critical system alerts  
+- **CloudTrail:** Governance and audit logs  
 
 ---
 
@@ -168,16 +171,16 @@ Automates workflows, including:
 
 Developer Commit  
 → CodePipeline  
-→ CodeBuild  
-→ Build Docker Image  
-→ ECR  
+→ CodeBuild (build + test)  
+→ Artifact Storage  
 → CodeDeploy  
-→ ECS Fargate
+→ EC2 Auto Scaling Group
 
-### Features:
-- Rolling deployments with **zero downtime**  
-- ALB health checks  
+### Deployment Features
+- Blue/Green or Rolling EC2 deployment  
+- Health check via ALB  
 - Automatic rollback on failure  
+- Zero downtime upgrade capability  
 
 ---
 
@@ -185,37 +188,37 @@ Developer Commit
 
 | Phase | Duration | Deliverables                        |
 |-------|----------|-------------------------------------|
-| 1     | 1 week   | Route53, CloudFront, WAF, VPC, ALB |
-| 2     | 3 weeks  | ECS, ECR, RDS, ElastiCache          |
+| 1     | 1 week   | Route53, CloudFront, WAF, VPC, ALB  |
+| 2     | 3 weeks  | EC2 ASG, RDS                        |
 | 3     | 1 week   | EventBridge, SQS, SNS               |
 | 4     | 3 weeks  | Kinesis, S3, QuickSight             |
-| 5     | 2 weeks  | CI/CD Pipeline                      |
-| 6     | 2 weeks  | Security hardening, cost tuning     |
+| 5     | 2 weeks  | CI/CD Pipeline (CodeDeploy)         |
+| 6     | 2 weeks  | Hardening, cost optimization        |
 
 ---
 
-# 5. Estimated Monthly Operational Cost
+# 5. Estimated Monthly Operational Cost (EC2 Architecture)
 
 | Service                         | Cost/Month |
 |--------------------------------|------------|
 | CloudFront + Route53 + WAF     | $24        |
-| ECS Fargate                    | $40        |
+| EC2 ASG (t3.micro x 2 AZ)       | $38        |
 | RDS                             | $19        |
-| ElastiCache Redis              | $73        |
 | S3 + Kinesis                   | $1         |
 | Monitoring                     | $37        |
 | CI/CD                          | $18        |
-| **Total Estimated Cost**       | **$212**   |
+| **Total Estimated Cost**       | **$210**   |
 
 ---
 
 # 6. Expected Outcomes
 
-- Stable 24/7 rail transit operations  
-- 1,000+ concurrent users supported  
-- Secure and automated payment processing  
-- Accurate passenger demand forecasting  
-- Reduced operation costs through autoscaling and CI/CD  
+- Reliable 24/7 transit system operations  
+- High-availability EC2 backend with autoscaling  
+- Secure payment processing and protected endpoints  
+- Real-time passenger analytics  
+- Optimized operational cost with correctly sized instances  
+- Zero-downtime deployment and easy maintenance  
 
 ---
 
@@ -225,12 +228,11 @@ Developer Commit
 |--------------|---------------------------------------------------|
 | Edge         | Route53, CloudFront, WAF                          |
 | Networking   | VPC, ALB                                          |
-| Compute      | ECS Fargate, ECR                                  |
-| Database     | RDS SQL Server, ElastiCache                       |
+| Compute      | EC2, Auto Scaling Group                           |
+| Database     | RDS SQL Server                 |
 | Event        | EventBridge, SNS, SQS                             |
-| Analytics    | Kinesis, S3, QuickSight, SageMaker                |
+| Analytics    | Kinesis, S3, QuickSight                           |
 | Monitoring   | CloudWatch, CloudTrail                            |
 | CI/CD        | CodePipeline, CodeBuild, CodeDeploy               |
 
-
-![AWS-architecture](/images/2-Proposal/aws_architecture.png)
+![AWS-architecture](/images/2-Proposal/aws_metropolitano_train_service.png)
