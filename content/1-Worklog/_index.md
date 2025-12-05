@@ -29,3 +29,5 @@ pre: " <b> 1. </b> "
 **Week 11:** [Learn Redis and more AWS Security ](1.11-week11/)
 
 **Week 12:** [Learn QuickSight, Athena, and data lake](1.12-week12/)
+
+**Week 13:** [Learn how to migrate to AWS](1.13-Week13/)
