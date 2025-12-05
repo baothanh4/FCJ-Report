@@ -25,3 +25,23 @@ pre: " <b> 4. </b> "
 &emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City   
 
 &emsp;**Role:** Attendee  
+
+
+## [Event 3](4.3-Event3/)
+&emsp;**Event Name:**AWS Cloud Mastery Series #2 – DevOps on AWS
+
+&emsp;**Date & Time:**9:00, November 17, 2025
+
+&emsp;**Location:**26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+
+&emsp;**Role"**Attendee
+
+
+## [Event 4](4.3-Event4/)
+&emsp;**Event Name:**AWS Cloud Mastery Series #3 - ​Theo AWS Well-Architected Security Pillar
+
+&emsp;**Date & Time:**9:00, November 29. 2025
+
+&emsp;**Location:**26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City 
+
+&emsp;**Role"**Attendee
