@@ -10,7 +10,7 @@ pre : " <b> 5.2. </b> "
 * Region
 <br>&emsp; + Choose region to deploy(ap-southeast-1)
 <br>
-![region](/images/5-Workshop/5.2-Prerequisite/region.png)
+![region](/images/5-Workshop/5.2-Prerequisite/image.png)
 <br>
 * IAM baseline
 <br>&emsp; + Infra/Admin group: Administrator, Prefer to separate by environment (dev/stg/prod). 

@@ -11,7 +11,7 @@ pre : " <b> 5.2. </b> "
 * **Region**
 <br>&emsp; + Chọn region để triển khai (ap-southeast-1)
 <br>
-![region](/images/5-Workshop/5.2-Prerequisite/region.png)
+![region](/images/5-Workshop/5.2-Prerequisite/image.png)
 <br>
 
 * **Cấu hình IAM cơ bản**

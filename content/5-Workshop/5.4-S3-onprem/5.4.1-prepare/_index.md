@@ -5,53 +5,216 @@ weight : 1
 chapter : false
 pre : " <b> 5.4.1 </b> "
 ---
+# Part 1: Networking & Security
 
-To prepare for this part of the workshop you will need to:
-+ Deploying a CloudFormation stack 
-+ Modifying a VPC route table. 
+## 1.1 Create VPC
 
-These components work together to simulate on-premises DNS forwarding and name resolution.
+**Steps:**
 
-#### Deploy the CloudFormation stack
+1. Go to **VPC Console → Your VPCs → Create VPC**
 
-The CloudFormation template will create additional services to support an on-premises simulation:
-+ One Route 53 Private Hosted Zone that hosts Alias records for the PrivateLink S3 endpoint
-+ One Route 53 Inbound Resolver endpoint that enables "VPC Cloud" to resolve inbound DNS resolution requests to the Private Hosted Zone
-+ One Route 53 Outbound Resolver endpoint that enables "VPC On-prem" to forward DNS requests for S3 to "VPC Cloud"
+![create vpc](/images/5-Workshop/5.4-S3-onprem/image.png)
 
-![route 53 diagram](/images/5-Workshop/5.4-S3-onprem/route53.png)
+2. Select **VPC and more**
+3. Name: `metropolitano`
+4. Create **public/private subnets** across at least 2 Availability Zones
+5. VPC Endpoints: None (baseline)
 
-1. Click the following link to open the [AWS CloudFormation console](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.amazonaws.com/reinvent-endpoints-builders-session/R53CF.yaml&stackName=PLOnpremSetup). The required template will be pre-loaded into the menu. Accept all default and click Create stack.
+![choose the vpc and more](/images/5-Workshop/5.4-S3-onprem/image_1.png)
+![VPC endpoints](/images/5-Workshop/5.4-S3-onprem/image_2.png)
+---
 
-![Create stack](/images/5-Workshop/5.4-S3-onprem/create-stack.png)
+## 1.2 Enable Auto-assign Public IPv4 for Public Subnet
 
-![Button](/images/5-Workshop/5.4-S3-onprem/create-stack-button.png)
+**Steps:**
 
-It may take a few minutes for stack deployment to complete. You can continue with the next step without waiting for the deployemnt to finish.
+1. VPC → Subnets → Select public subnet → Edit subnet settings  
+2. Enable **Auto-assign Public IPv4** → Save  
 
-#### Update on-premise private route table
+![Enable public IPv4](/images/5-Workshop/5.4-S3-onprem/image_3.png)
+![Enable public IPv4](/images/5-Workshop/5.4-S3-onprem/image_4.png)
 
-This workshop uses a strongSwan VPN running on an EC2 instance to simulate connectivty between an on-premises datacenter and the AWS cloud. Most of the required components are provisioned before your start. To finalize the VPN configuration, you will modify the "VPC On-prem" routing table to direct traffic destined for the cloud to the strongSwan VPN instance.
+---
 
-1. Open the Amazon EC2 console 
+## 1.3 Security Groups
 
-2. Select the instance named infra-vpngw-test. From the Details tab, copy the Instance ID and paste this into your text editor
+### 1.3.1 Public Web/EC2 Security Group
 
-![ec2 id](/images/5-Workshop/5.4-S3-onprem/ec2-onprem-id.png)
+- Name: `public-web-sg`
+- Inbound rules:
+  - HTTP/HTTPS from Internet
+  - SSH from admin IP only
 
-3. Navigate to the VPC menu by using the Search box at the top of the browser window.
+  ![Inbound](/images/5-Workshop/5.4-S3-onprem/image_5.png)
 
-4. Click on Route Tables, select the RT Private On-prem route table, select the Routes tab, and click Edit Routes.
+### 1.3.2 Private Database Security Group
 
-![rt](/images/5-Workshop/5.4-S3-onprem/rt.png)
+- Name: `private-db-sg`
+- Inbound rules:
+  - MS SQL Server (1433) **only** from `public-web-sg`
 
-5. Click Add route.
-+ Destination: your Cloud VPC cidr range
-+ Target: ID of your infra-vpngw-test instance (you saved in your editor at step 1)
+![Inbound](/images/5-Workshop/5.4-S3-onprem/image_6.png)
+---
 
-![add route](/images/5-Workshop/5.4-S3-onprem/add-route.png)
+# Part 2: Database Setup (RDS SQL Server)
 
-6. Click Save changes
+## 2.1 Create DB Subnet Group
+
+- RDS → Subnet Groups → Create  
+- Name: `private-db-metropolitano`  
+- VPC: `metropolitano-vpc`  
+- Subnets: private subnets across 2 AZs
+
+---
+
+## 2.2 Create RDS SQL Server Instance
+
+**Steps:**
+
+1. RDS → Databases → Create database  
+![Create database](/images/5-Workshop/5.4-S3-onprem/image_8.png)
+2. Engine: **Microsoft SQL Server**
+3. Template: **Dev/Test**
+4. Credentials: Self-managed  
+5. Public access: **No**
+6. Security group: `private-db-sg`
+![Create database](/images/5-Workshop/5.4-S3-onprem/image_9.png)
+---
+
+# Part 3: Compute – EC2 Application Server
+
+**Steps:**
+
+1. Go to EC2 → Instances → Launch instance 
+
+![Create Instance](/images/5-Workshop/5.4-S3-onprem/image_10.png)
+2. Name: `metropolitano-version-1`  
+3. AMI: **Amazon Linux**  
+4. Instance type: **t3.medium**  
+5. Key pair: `myKey.pm`  
+![Create Instance](/images/5-Workshop/5.4-S3-onprem/image_11.png)
+6. Network:
+   - VPC: `metropolitano-vpc`
+   - Subnet: Public subnet
+   - Security Group: `public-web-sg`
+
+   ![Create Instance](/images/5-Workshop/5.4-S3-onprem/image_12.png)
+7. Wait until instance status = **3/3 checks passed**
+![Create Instance](/images/5-Workshop/5.4-S3-onprem/image_13.png)
+---
+
+# Part 4: Storage – S3 Bucket
+
+## 4.1 Create S3 Bucket
+
+1. Go to S3 → Buckets → Create bucket  
+![Create Instance](/images/5-Workshop/5.4-S3-onprem/image_14.png)
+2. Name: `metropolitano-2025`
+3. Object Ownership: **ACLs disabled (recommended)**  
+4. Block Public Access: Disable **Block all public access** 
+![Create bucket ](/images/5-Workshop/5.4-S3-onprem/image_15.png) 
+5. Click **Create bucket**  
+6. Upload the **dist** folder from frontend
+![Create bucket ](/images/5-Workshop/5.4-S3-onprem/image_16.png)
+
+---
+
+# Part 5: CloudFront
+
+**Steps:**
+
+1. CloudFront Console → Distributions → Create distribution 
+![Create bucket ](/images/5-Workshop/5.4-S3-onprem/image_17.png) 
+2. Plan: Free tier  
+3. Name: `Metropolitano`  
+4. Origin type: **Amazon S3**  
+5. Origin: `metropolitano-2025`  
+6. Origin path: `/dist`  
+7. Cache settings:
+   - Viewer protocol policy: **Redirect HTTP to HTTPS**
+   - Allowed HTTP methods: `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`
+   ![Create cloudfront](/images/5-Workshop/5.4-S3-onprem/image_18.png)
+
+Wait 3–5 minutes for deployment.
+
+    ![Create cloudfront](/images/5-Workshop/5.4-S3-onprem/image_19.png)
+
+    ![Websites](/images/5-Workshop/5.4-S3-onprem/image_20.png)
+
+---
+
+# Part 6: Kinesis – Event Stream
+
+**Steps:**
+
+1. Console → Kinesis → Create Data Stream  
+
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_21.png)
+2. Name: `metropolitano-stream`  
+3. Shards: Select based on expected data volume  
+4. Producers (EC2) will send data; Consumers will process data 
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_22.png) 
+
+---
+
+# Part 7: EventBridge – Event Automation
+
+**Steps:**
+
+1. Console → EventBridge → Create Rule  
+2. Name: `metropolitano-event-rule`  
+3. Event source: AWS services (CloudWatch Alarm, S3 Object Created)  
+4. Target: **SQS**, **SNS**
+
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_26.png)
+---
+
+# Part 8: SQS – Message Queue
+
+**Steps:**
+
+1. Console → SQS → Create Queue  
+2. Name: `metropolitano-queue`  
+3. Queue type: **Standard** or **FIFO**
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_28.png)
+---
+
+# Part 9: SNS – Notification Service
+
+**Steps:**
+
+1. Console → SNS → Create Topic  
+2. Name: `metropolitano-alerts`  
+3. Add subscriptions: Email, SMS
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_30.png)
+---
+
+# Part 10: CloudWatch – Monitoring & Alerts
+
+**Steps:**
+
+1. Console → CloudWatch → Create Alarm  
+2. Metrics:
+   - EC2 CPU utilization
+   - RDS instance status
+   - Kinesis throughput
+3. Actions:
+   - Send notification via SNS when threshold is exceeded  
 
 
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_31.png)
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_32.png)
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_33.png)
 
+---
+
+# Part 11: Analytics & Visualization
+
+**Steps:**
+
+1. Console → QuickSight → Sign up / Create account  
+2. Dataset sources: **RDS**, **S3**, or **Athena**  
+3. Create Analysis → Build dashboards & visual reports  
+
+![Websites](/images/5-Workshop/5.4-S3-onprem/image_34.png)
+---
