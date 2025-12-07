@@ -1,236 +1,333 @@
 ---
-title: "Đề xuất"
+title: "Bản đề xuất"
 date: 2025-09-07
 weight: 2
 chapter: false
-pre: "<b> 2. </b>"
+pre: " <b> 2. </b> "
 ---
 
-# HỆ THỐNG DỊCH VỤ ĐƯỜNG SẮT ĐÔ THỊ TRÊN NỀN TẢNG AWS
 
----
 
-## Tóm tắt điều hành
+# AWS First Cloud AI Journey – Metropolitano Railways
 
-Sự phát triển nhanh của đô thị làm gia tăng nhu cầu về hệ thống giao thông công cộng thông minh và bền vững. Một hệ thống Đường Sắt Đô Thị hiện đại cần một nền tảng số **ổn định, mở rộng linh hoạt và sẵn sàng 24/7**.
-
-Tài liệu này trình bày một **kiến trúc AWS xây dựng trên Amazon EC2**, mang lại khả năng kiểm soát hoàn toàn, hiệu suất cao và độ linh hoạt cho các hệ thống quan trọng.
-
-Nền tảng hỗ trợ:
-
-- Đặt vé, lập lịch, thanh toán và giám sát lưu lượng  
-- Thu thập dữ liệu hành khách thời gian thực với Amazon Kinesis  
-- Dashboard BI và phân tích dự đoán bằng QuickSight và SageMaker  
-- Tự động hóa CI/CD và giám sát toàn diện  
+**Nhóm thực hiện:** FPT HCM University  
+**Khách hàng (Client):** Metropolitano Railway Systems  
+**Ngày tài liệu:** 12/09/2025  
 
 ---
 
-## Điểm nhấn chính
-
-- Kiến trúc **EC2** với Auto Scaling & ALB  
-- Chuỗi bảo mật đầu-cuối: Route53 → CloudFront → WAF → ALB → Private EC2  
-- Tự động hóa CI/CD với CodePipeline, CodeBuild, CodeDeploy  
-- Xử lý thời gian thực bằng **Kinesis Data Streams**  
-- Phân tích dữ liệu với **QuickSight**  
-- Đảm bảo HA & khả năng mở rộng trên nhiều AZ  
-
----
-
-# 1. Mục tiêu dự án
-
-### Mục tiêu chính  
-Xây dựng nền tảng số cho hệ thống Đường Sắt Đô Thị với khả năng mở rộng, bảo mật và vận hành ổn định dài hạn.
-
-### Mục tiêu cụ thể
-- Triển khai dịch vụ đặt vé, lập lịch, thanh toán, thông báo  
-- Kích hoạt vận hành tự động và giám sát toàn hệ thống  
-- Xây dựng pipeline CI/CD với khả năng triển khai không downtime lên EC2  
-- Hỗ trợ thu thập và phân tích dữ liệu thời gian thực  
-- Cung cấp kiến trúc đa-AZ với độ sẵn sàng ≥ 99.95%  
+## MỤC LỤC
+1. [BỐI CẢNH VÀ ĐỘNG LỰC](#1-bối-cảnh-và-động-lực)  
+   1.1 [TÓM TẮT ĐIỀU HÀNH](#11-tóm-tắt-điều-hành)  
+   1.2 [TIÊU CHÍ THÀNH CÔNG CỦA DỰ ÁN](#12-tiêu-chí-thành-công-của-dự-án)  
+   1.3 [CÁC GIẢ ĐỊNH](#13-các-giả-định)  
+2. [KIẾN TRÚC GIẢI PHÁP / SƠ ĐỒ KIẾN TRÚC](#2-kiến-trúc-giải-pháp--sơ-đồ-kiến-trúc)  
+   2.1 [SƠ ĐỒ KIẾN TRÚC KỸ THUẬT](#21-sơ-đồ-kiến-trúc-kỹ-thuật)  
+   2.2 [KẾ HOẠCH KỸ THUẬT](#22-kế-hoạch-kỹ-thuật)  
+   2.3 [KẾ HOẠCH DỰ ÁN](#23-kế-hoạch-dự-án)  
+   2.4 [CÂN NHẮC BẢO MẬT](#24-cân-nhắc-bảo-mật)  
+3. [HOẠT ĐỘNG VÀ SẢN PHẨM BÀN GIAO](#3-hoạt-động-và-sản-phẩm-bàn-giao)  
+   3.1 [HOẠT ĐỘNG VÀ SẢN PHẨM BÀN GIAO](#31-hoạt-động-và-sản-phẩm-bàn-giao)  
+   3.2 [NGOÀI PHẠM VI](#32-ngoài-phạm-vi)  
+   3.3 [LỘ TRÌNH LÊN PRODUCTION](#33-lộ-trình-lên-production)  
+4. [DỰ KIẾN CHI PHÍ AWS THEO DỊCH VỤ](#4-dự-kiến-chi-phí-aws-theo-dịch-vụ)  
+5. [NHÂN SỰ](#5-nhân-sự)  
+6. [TÀI NGUYÊN & ƯỚC TÍNH CHI PHÍ](#6-tài-nguyên--ước-tính-chi-phí)  
+7. [XÁC NHẬN / NGHIỆM THU](#7-xác-nhận--nghiệm-thu)  
 
 ---
 
-# 2. Phạm vi dự án
+## 1. BỐI CẢNH VÀ ĐỘNG LỰC
 
-| Thành phần         | Mô tả                                        |
-|--------------------|----------------------------------------------|
-| Region             | AWS Singapore (ap-southeast-1)               |
-| Người dùng         | Hành khách, nhân viên vận hành, quản trị     |
-| Kiến trúc          | Multi-tier trên EC2                          |
-| Giai đoạn 1        | Đặt vé, lập lịch, thông báo                  |
-| Giai đoạn 2        | Analytics, dashboard BI                      |
+### 1.1 TÓM TẮT ĐIỀU HÀNH
 
----
+**Bối cảnh khách hàng:**  
+Quá trình đô thị hóa nhanh làm tăng áp lực lên hệ thống giao thông công cộng. Metropolitano Railway Systems đang hiện đại hóa vận hành nhằm cải thiện **độ tin cậy**, **trải nghiệm hành khách** và **hiệu quả khai thác**. Các hệ thống on-premises hiện tại gặp khó khăn về **khả năng mở rộng**, **tính sẵn sàng cao**, và **xử lý dữ liệu thời gian thực**.
 
-# 3. Kiến trúc AWS đề xuất
+**Mục tiêu kinh doanh & kỹ thuật:**
+- Đảm bảo **tính sẵn sàng cao (high availability)** và vận hành **24/7** cho các dịch vụ trọng yếu (bán vé, điều phối, giám sát).
+- **Mở rộng linh hoạt (elastic scalability)** để đáp ứng tải cao điểm theo mùa/khung giờ.
+- Cải thiện **độ tin cậy (reliability)** và **khả năng khôi phục thảm họa (disaster recovery)**.
+- Hỗ trợ xử lý dữ liệu thời gian thực cho **giám sát giao dịch bán vé và thanh toán**, bao gồm theo dõi trạng thái thanh toán và đối soát.
+- Tăng cường **bảo mật & tuân thủ (security & compliance)** theo tiêu chuẩn lĩnh vực vận tải công.
+- Giảm chi phí vận hành thông qua **tự động hóa cloud-native**.
+- Đẩy nhanh chu kỳ đổi mới: bán vé mobile, bảo trì dự đoán (**predictive maintenance**).
 
-## 3.1 Tổng quan kiến trúc
+**Các use case (phạm vi POC):**
+- Digital ticketing & fare collection (web/app booking, QR/IC card integration).
+- Train scheduling & dispatch management *(use case mang tính bối cảnh; không phải trọng tâm chính của POC này)*.
+- Real-time payment/transaction event analytics thông qua **Amazon Kinesis** (ví dụ: cập nhật trạng thái thanh toán, sự kiện settlement, phát hiện bất thường).
+- BI dashboards cho quản trị thông qua **Amazon QuickSight**.
+- Incident response & alerting bằng monitoring/logging tập trung.
 
-Kiến trúc **đa tầng** bao gồm:
-
-- **Tầng Edge:** Route53, CloudFront, AWS WAF  
-- **Tầng Ứng dụng:** ALB → EC2 Auto Scaling Group  
-- **Tầng Dữ liệu:** RDS SQL Server, ElastiCache Redis  
-- **Tầng sự kiện:** EventBridge, SNS, SQS  
-- **Tầng phân tích:** Kinesis → S3 → QuickSight → SageMaker  
-- **Giám sát:** CloudWatch, CloudTrail  
-- **CI/CD:** CodePipeline, CodeBuild, CodeDeploy  
-
----
-
-## 3.2 Tầng mạng và truy cập
-
-- **Route 53:** DNS toàn cầu  
-- **CloudFront:** CDN tăng tốc và cache nội dung  
-- **AWS WAF:** Lọc bảo mật (SQLi, XSS, bot)  
-- **Application Load Balancer:** Điều phối traffic vào EC2  
-
-**Luồng truy cập:**  
-**Người dùng → Route53 → CloudFront → WAF → ALB → Private Subnet → EC2**
+**Tóm tắt dịch vụ chuyên môn của nhóm dự án (Project Team):**
+- Thiết kế kiến trúc AWS **an toàn – mở rộng – chịu lỗi** dựa trên **Amazon EC2** và managed services.
+- Migration một phần workload từ on-premises lên AWS phục vụ POC.
+- Triển khai pipeline sự kiện giao dịch bán vé/thanh toán thời gian thực bằng **Amazon Kinesis**, lưu trữ và tạo dataset phân tích trên **Amazon S3**.
+- Triển khai analytics và dashboard bằng **QuickSight**.
+- Thiết lập CI/CD bằng **CodePipeline, CodeBuild, CodeDeploy**.
+- Knowledge transfer/training để đảm bảo vận hành cho đội kỹ thuật phía Client.
 
 ---
 
-## 3.3 Tầng ứng dụng — EC2 Auto Scaling
+### 1.2 TIÊU CHÍ THÀNH CÔNG CỦA DỰ ÁN
 
-### Vì sao chọn EC2?
-- Kiểm soát toàn bộ hệ điều hành và môi trường chạy  
-- Phù hợp cho cả monolithic và microservice  
-- Ổn định cho backend chạy dài hạn  
-- Tự động scaling theo CPU, network, request count  
-- EC2 role đảm bảo truy cập an toàn vào tài nguyên AWS  
+**Độ tin cậy & tính sẵn sàng dịch vụ**
+- Hệ thống đạt **≥ 99.9% uptime** cho các dịch vụ trọng yếu trong phạm vi POC (ticketing, payment monitoring, analytics).
 
-### Mô hình triển khai ứng dụng
-- Backend chạy trên **Auto Scaling Group**  
-- EC2 đặt trong **Private Subnet** để tăng bảo mật  
-- Triển khai qua **CodeDeploy (Blue/Green hoặc Rolling)**  
+**Khả năng mở rộng & hiệu năng**
+- Nền tảng **auto-scale** để đáp ứng peak traffic mà không suy giảm hiệu năng.
+- Response time end-to-end cho booking và payment APIs **< 300 ms** trong bài test tải cao *(mức mục tiêu)*.
 
-### Các backend service:
-- Booking Service  
-- Schedule Service  
-- Payment Service  
-- Notification Service  
-- User Service  
-- Operation & Reporting Service  
+**Xử lý dữ liệu thời gian thực**
+- Sự kiện giao dịch bán vé và thanh toán được xử lý với độ trễ **< 5 giây** bằng **Amazon Kinesis**.
+- Ingestion pipeline hỗ trợ tối thiểu **10,000 events/second** và có khả năng auto-scale *(mức mục tiêu)*.
 
----
+**Cung cấp phân tích & insight**
+- Dashboard QuickSight cung cấp dữ liệu chính xác, được refresh **≤ 5 phút** sau khi dữ liệu đến S3.
 
-## 3.4 Tầng dữ liệu
+**CI/CD & vận hành**
+- Tất cả deployment thực hiện qua CI/CD tự động và có **rollback**.
 
-### Amazon RDS (SQL Server)
-- Lưu vé, lịch, tài khoản người dùng, thanh toán  
-- Multi-AZ đảm bảo HA  
-- Tự động backup, tự động failover  
-- Hỗ trợ IAM authentication & mã hóa dữ liệu  
-
-### Amazon S3
-- Lưu tài liệu, báo cáo, log, dữ liệu phân tích  
-- Lưu dữ liệu stream từ Kinesis  
-- Tự động tối ưu chi phí nhờ lifecycle  
+**Tối ưu chi phí**
+- Cơ chế tối ưu chi phí (Auto Scaling, RI/Savings Plans, lifecycle policies) hướng tới giảm **≥ 20%** so với vận hành on-premises *(mức mục tiêu)*.
+- Cấu hình **Cost Explorer** và **Billing Alarms** để tránh vượt ngân sách.
 
 ---
 
-## 3.5 Tầng sự kiện & nhắn tin
+### 1.3 CÁC GIẢ ĐỊNH
 
-### Amazon EventBridge
-Tự động hóa quy trình, ví dụ:
-- PaymentSuccess → CreateInvoice → NotifyUser  
-- TrainDelay → PushNotifications → Cập nhật dashboard  
+**Điều kiện tiên quyết & phụ thuộc**
+- Client cung cấp kịp thời quyền truy cập môi trường, hệ thống và nhân sự liên quan.
+- Client cung cấp credentials, API documentation, integration endpoints cho on-prem/third-party.
+- Dữ liệu vận hành (ticketing, scheduling, payment transactions) sẵn sàng để migration/integration.
+- Vendor bên thứ ba (payment gateways, fare systems, transit card systems) có API ổn định và tài liệu đầy đủ.
+- AWS accounts/org/billing được thiết lập trước khi bắt đầu.
+- Client chỉ định SMEs theo domain (operations, IT, ticketing, scheduling).
 
-### Amazon SQS
-- Hàng đợi buffer cho workload lớn  
-- Ngăn hệ thống quá tải giờ cao điểm  
+**Ràng buộc kỹ thuật**
+- Một số legacy systems có thể vẫn ở on-prem → cần hybrid connectivity (VPN/Direct Connect).
+- Một số ứng dụng chưa cloud-optimized → giới hạn mức độ modernization trong scope POC.
+- Chất lượng dữ liệu legacy có thể ảnh hưởng kết quả analytics.
+- Mạng vận hành và hệ thống ticketing/payment phải hỗ trợ kết nối cloud an toàn và ổn định.
+- Hiệu năng real-time analytics phụ thuộc độ trễ và độ ổn định ingestion từ payment gateways và nguồn giao dịch ticketing.
 
-### Amazon SNS
-- Gửi thông báo đa kênh (SMS, email, push)  
+**Ràng buộc kinh doanh**
+- Timeline phụ thuộc phê duyệt nội bộ của Client/procurement.
+- Mức sẵn sàng và thời gian của nhân sự Client ảnh hưởng tiến độ.
+- Giới hạn ngân sách có thể thu hẹp scope.
+- Một số yêu cầu compliance có thể giới hạn data residency/retention.
 
----
-
-## 3.6 Phân tích thời gian thực
-
-### Kinesis Data Streams
-- Thu thập dữ liệu hành khách theo thời gian thực  
-- Ứng dụng ghi log → Kinesis → S3  
-
-### QuickSight
-- Dashboard kinh doanh: doanh thu vé, giờ cao điểm, sự cố  
-
----
-
-## 3.7 Giám sát & quan sát
-
-- **CloudWatch Metrics:** Theo dõi EC2, ALB, RDS  
-- **CloudWatch Logs:** Nhận log từ EC2  
-- **SNS Alerts:** Cảnh báo sự cố  
-- **CloudTrail:** Giám sát thao tác hệ thống  
+**Rủi ro (tổng quan)**
+- Integration risk (legacy undocumented behaviors).
+- Data migration risk (inconsistent/incomplete data).
+- Operational risk (hybrid/on-prem failures).
+- Security risk (misconfigured third-party endpoints).
+- Timeline & dependency risk (vendor approvals/API throughput).
 
 ---
 
-## 3.8 CI/CD Pipeline
+## 2. KIẾN TRÚC GIẢI PHÁP / SƠ ĐỒ KIẾN TRÚC
 
-Developer Commit  
-→ CodePipeline  
-→ CodeBuild  
-→ Artifact Storage  
-→ CodeDeploy  
-→ EC2 Auto Scaling Group
+### 2.1 SƠ ĐỒ KIẾN TRÚC KỸ THUẬT
 
-### Tính năng triển khai
-- Blue/Green hoặc Rolling  
-- Kiểm tra sức khỏe qua ALB  
-- Tự động rollback  
-- Cập nhật không downtime  
+**Hình 1. Sơ đồ kiến trúc kỹ thuật AWS – Metropolitano Railways (POC)**
 
----
+<img src="/images/2-Proposal/aws_metropolitano_train_service.png" alt="Hình 1 - Sơ đồ kiến trúc kỹ thuật" />
 
-# 4. Kế hoạch triển khai
+**Hình 1 (Kết quả POC & tóm tắt kiến trúc):**  
+POC cho phép giám sát và đối soát gần thời gian thực các giao dịch bán vé/thanh toán. Sự kiện trạng thái thanh toán được stream vào **Amazon Kinesis** và đẩy về **Amazon S3 (data lake)** phục vụ phân tích. Dashboard **Amazon QuickSight** cung cấp insight doanh thu (ngày/tháng) và làm nổi bật các giao dịch chưa thanh toán/chưa hoàn tất để theo dõi. Lưu lượng người dùng được định tuyến qua **Route 53 → CloudFront → AWS WAF** tới ứng dụng chạy trên **Amazon EC2**, trong khi dữ liệu giao dịch lưu trên **Amazon RDS (private subnet)**. **Amazon CloudWatch** hỗ trợ giám sát và cảnh báo. Các luồng xử lý bất đồng bộ được tách rời bằng **SNS/SQS** (và **EventBridge** khi cần). Mã nguồn quản lý trên **GitLab**; CI/CD triển khai bằng **CodePipeline/CodeBuild/CodeDeploy**.
 
-| Giai đoạn | Thời gian | Kết quả bàn giao                         |
-|-----------|-----------|-------------------------------------------|
-| 1         | 1 tuần    | Route53, CloudFront, WAF, VPC, ALB       |
-| 2         | 3 tuần    | EC2 ASG, RDS                              |
-| 3         | 1 tuần    | EventBridge, SQS, SNS                     |
-| 4         | 3 tuần    | Kinesis, S3, QuickSight                   |
-| 5         | 2 tuần    | CI/CD (CodeDeploy)                        |
-| 6         | 2 tuần    | Hardening & tối ưu chi phí                |
+**Ghi chú Production (khuyến nghị khi triển khai Production):**
+- Bật **Multi-AZ**, đặt workload trong **private subnets** phía sau **ALB**.
+- Kiểm soát egress bằng **NAT Gateway** và/hoặc **VPC Endpoints**.
+- Bắt buộc **TLS (ACM)**, IAM least privilege, dùng **Secrets Manager/SSM**.
+- Bật **CloudTrail/Config**, tăng cường logging (WAF/CloudFront logs).
+- Dùng **blue/green** hoặc **canary deployments** + rollback.
 
 ---
 
-# 5. Ước tính chi phí hàng tháng (Kiến trúc EC2)
+### 2.2 KẾ HOẠCH KỸ THUẬT
 
-| Dịch vụ                       | Chi phí/tháng |
-|-------------------------------|---------------|
-| CloudFront + Route53 + WAF   | $24           |
-| EC2 ASG (t3.micro x 2 AZ)     | $38           |
-| RDS                           | $19           |
-| S3 + Kinesis                 | $1            |
-| Monitoring                   | $37           |
-| CI/CD                        | $18           |
-| **Tổng cộng**                | **$210**      |
+**Các hoạt động chính:**
+- Provision hạ tầng bằng IaC (CloudFormation/CDK/Terraform — tùy team chọn) để triển khai:
+  - **Amazon EC2** (application workloads)
+  - **Amazon RDS** (database services)
+  - **Amazon S3** (static content + data lake)
+  - **Amazon Route 53** (DNS routing)
+  - **Amazon CloudFront** và **AWS WAF** (global access & security)
+  - **Amazon Kinesis** (real-time ingestion)
+  - **Amazon SQS/SNS** (asynchronous messaging)
+  - **Amazon EventBridge** (event-driven workflows)
+  - **Amazon CloudWatch** (logging, monitoring, alarms, dashboards)
+  - **Amazon QuickSight** (analytics/BI)
+- POC **không** sử dụng AWS Lambda; các consumer streaming và xử lý bất đồng bộ/background được triển khai trên EC2 (hoặc container) và tích hợp qua SNS/SQS/EventBridge khi phù hợp.
+- Tự động hóa build/release bằng **CodePipeline, CodeBuild, CodeDeploy**, hỗ trợ rolling hoặc blue/green và rollback.
+
+**Hạng mục thay đổi cần phê duyệt (change management):**
+- DNS production (Route 53), cập nhật CloudFront, rule WAF, RDS parameter, Security Group…
+- Thực hiện theo quy trình Change Management/CAB của Client (nếu có) và lưu record.
+
+**Cách tiếp cận kiểm thử:**
+- Unit / Integration / Load / Failover tests cho các luồng trọng yếu:
+  - Ticketing workflows, payment integrations,
+  - Real-time ingestion, analytics refresh,
+  - Monitoring/alerting.
+- Test scenarios & acceptance criteria: ghi ở **Appendix (nếu có)**.
 
 ---
 
-# 6. Kết quả kỳ vọng
+### 2.3 KẾ HOẠCH DỰ ÁN
 
-- Hệ thống đường sắt vận hành ổn định 24/7  
-- Backend EC2 HA với autoscaling  
-- Bảo mật thanh toán và endpoint  
-- Phân tích dữ liệu hành khách thời gian thực  
-- Tối ưu chi phí vận hành  
-- Triển khai không downtime + dễ bảo trì  
+**Sự tham gia của stakeholder (Client):**
+- Sprint reviews (demo/feedback) và retrospectives,
+- UAT & sign-off,
+- Technical design workshops.
+
+**Phân công trách nhiệm (high-level):**
+- Cloud Architect: solution design, security, scalability & HA patterns.
+- DevOps Engineer: CI/CD, IaC, automated deployments.
+- Application Engineer: refactor/integration.
+- Data Engineer: Kinesis pipelines, SQS/SNS integration, data modeling.
+- BI Engineer: QuickSight dashboards & dataset automation.
+- Client IT Lead: access provisioning, governance alignment.
+- Client Operations: validation, UAT.
+- Client Security Officer: compliance & security controls review.
+
+**Nhịp giao tiếp (communication cadence):**
+- Daily: standup (Project Team).
+- Weekly: status update to Client stakeholders.
+- Bi-weekly: sprint review + sprint planning.
+- Monthly: steering committee.
+- Ad-hoc: incident response, change approvals, deep-dive design.
+
+**Chuyển giao kiến thức (knowledge transfer):**
+- Overview kiến trúc AWS
+- Quản trị CI/CD
+- Monitoring & incident response (CloudWatch)
+- Vận hành data pipeline (Kinesis → S3 → QuickSight)
+- Lifecycle hạ tầng & IaC
+- IAM & security operations
 
 ---
 
-# Phụ lục A — Danh sách dịch vụ AWS
+### 2.4 CÂN NHẮC BẢO MẬT
 
-| Nhóm          | Dịch vụ AWS                                      |
-|---------------|---------------------------------------------------|
-| Edge          | Route53, CloudFront, WAF                          |
-| Networking    | VPC, ALB                                          |
-| Compute       | EC2, Auto Scaling Group                           |
-| Database      | RDS SQL Server                                    |
-| Event         | EventBridge, SNS, SQS                             |
-| Analytics     | Kinesis, S3, QuickSight                           |
-| Monitoring    | CloudWatch, CloudTrail                            |
-| CI/CD         | CodePipeline, CodeBuild, CodeDeploy               |
+**Bảo mật truy cập (Access security)**
+- IAM least privilege, RBAC theo role, policy theo best practices.
+- Bật MFA cho account đặc quyền.
+- CI/CD access dùng IAM roles scoped permissions.
+- DNS/WAF/CloudFront changes theo quy trình phê duyệt.
 
-![AWS-architecture](/images/2-Proposal/aws_metropolitano_train_service.png)
+**Bảo mật hạ tầng (Infrastructure security)**
+- (Production target) EC2 trong private subnet; public access qua ALB/CloudFront.
+- WAF bảo vệ endpoints, SG/NACL enforce boundaries.
+- RDS Multi-AZ, encrypted storage, automated backups.
+- EventBridge có thể dùng cho security-trigger automation (vi phạm config, alert…) khi phù hợp.
+
+**Bảo mật dữ liệu (Data security)**
+- Encrypt at rest: S3/RDS/Kinesis/SQS bằng **AWS KMS CMKs**.
+- Encrypt in transit: **TLS 1.2+**.
+- S3 lifecycle + versioning theo retention/compliance.
+- Data lake theo layer raw/processed/curated (nếu có trong scope).
+
+**Phát hiện & giám sát (Detection & monitoring)**
+- Bật CloudTrail + Config cho auditing/compliance.
+- CloudWatch logs/metrics/alarms/dashboards.
+- WAF logs + CloudFront access logs về S3 phục vụ security analytics.
+
+**Quản lý sự cố (Incident management)**
+- Playbooks cho system failure/security breach/data exposure/pipeline errors.
+- SNS/EventBridge gửi alert đúng nhóm on-call.
+- DR procedures cho EC2/RDS workloads.
+- Backup snapshots theo retention policy của Client.
+
+---
+
+## 3. HOẠT ĐỘNG VÀ SẢN PHẨM BÀN GIAO
+
+### 3.1 HOẠT ĐỘNG VÀ SẢN PHẨM BÀN GIAO
+
+> **Căn cứ timeline:** Thời gian thực tập **08/09/2025 – 22/11/2025** (~11 tuần)
+
+| Giai đoạn | Timeline | Hoạt động | Sản phẩm bàn giao / Cột mốc | Tổng man-day |
+|---|---|---|---|---|
+| Assessment | Tuần 1–2 (08/09–21/09) | Workshop yêu cầu (business/technical/security); phân tích hiện trạng; xác định điểm tích hợp (payments, ticketing, analytics); kiểm tra readiness môi trường | Assessment Report; Architecture Blueprint v1; Backlog & Sprint Plan | TBD |
+| Setup base infrastructure | Tuần 3–4 (22/09–05/10) | VPC, subnets, routing, SGs; IAM baseline; S3 data lake foundation; CloudFront + WAF + Route53; RDS setup; CloudWatch | Infrastructure Provisioned; IaC templates delivered; Networking & Security Baseline | TBD |
+| Setup component 1 | Tuần 5–6 (06/10–19/10) | EC2 Auto Scaling setup; deploy application backend; cấu hình CI/CD (CodePipeline/CodeBuild/CodeDeploy); observability dashboards | Application Deployed; CI/CD Pipelines Operational; Monitoring Dashboard | TBD |
+| Setup component 2 | Tuần 7–8 (20/10–02/11) | Kinesis streaming pipelines; SQS/SNS messaging; ETL to S3 Data Lake; QuickSight dashboards; EventBridge workflows | Data Pipeline Operational; Event-driven Architecture; Revenue dashboards (daily/monthly); Unpaid/incomplete payments report (with alert thresholds) | TBD |
+| Testing & Go-live (POC) | Tuần 9–10 (03/11–16/11) | Unit/Integration/Load testing; go-live readiness review; (POC) DNS cutover; monitoring & rollback plans | UAT Sign-off; Go-live Checklist; POC Launch | TBD |
+| Handover | Tuần 11 (17/11–22/11) | Hoàn thiện tài liệu; training vận hành; knowledge transfer; chuyển sang BAU | Runbooks & SOPs; Admin Training Completion; Final Acceptance | TBD |
+
+**Cách tính man-day (gợi ý):**
+- **Man-day = số người tham gia × số ngày công thực tế dành cho giai đoạn đó.**  
+- Ví dụ: 5 người làm 3 ngày cho “Assessment” → **5 × 3 = 15 man-days**.  
+- Nếu theo giờ: **1 man-day ≈ 8 giờ làm việc** (quy ước phổ biến).  
+  - Ví dụ: tổng 120 giờ → **120 / 8 = 15 man-days**.
+
+---
+
+### 3.2 NGOÀI PHẠM VI
+- Phát triển tính năng mới hoặc chỉnh sửa lớn ngoài Scope of Work.
+- Nâng cấp hạ tầng on-prem, redesign network, hoặc mua sắm phần cứng.
+- Performance tuning cho hệ thống vendor bên thứ ba.
+- Phát triển mobile app hoặc UI/UX redesign ngoài phạm vi.
+- Machine Learning model development ngoài QuickSight & basic SageMaker patterns.
+- Pen-test/third-party security audits (nếu không ký thêm).
+- Vận hành 24/7 sau go-live (nếu không ký thêm).
+- Hỗ trợ legacy networks hoặc component không cloud compatible.
+- Migration các data sources không nằm trong assessment ban đầu.
+- AWS Lambda–based serverless compute (event consumers/functions) không nằm trong scope POC này.
+
+---
+
+### 3.3 LỘ TRÌNH LÊN PRODUCTION
+POC sẽ demo các use cases đã nêu tại mục 1.1 và 2.2, nhưng **chưa bao gồm đầy đủ production-grade capabilities**.
+
+**Các điểm cần bổ sung trước khi production:**
+- Full resilience design (multi-AZ, failover, scaling policies).
+- Observability coverage (metrics, tracing, WAF logs, dashboards).
+- Hardened security baselines (IAM advanced controls, WAF tuning, encryption policies).
+- Comprehensive testing (integration/performance/DR simulation).
+- CI/CD hardening + automated rollback.
+- Production-approved DNS/WAF/network change processes.
+- Enhanced error handling & exception flows.
+
+---
+
+## 4. DỰ KIẾN CHI PHÍ AWS THEO DỊCH VỤ
+
+**Các yếu tố cần cân nhắc (high-level):**
+- EC2: On-Demand + RI/Savings Plans (production).
+- RDS: Multi-AZ + automated backups.
+- CloudFront + WAF: request filtering + edge charges.
+- S3: tiering (Standard/Intelligent-Tiering) + lifecycle.
+- CloudWatch: logs/metrics storage.
+- Kinesis: ingest & processing units.
+- Data transfer giữa các components.
+- QuickSight: Author/Reader licenses.
+- SQS/SNS/EventBridge: theo throughput.
+- Route 53: DNS queries + health checks.
+
+**Giả định (cần số liệu thực để tính chi phí chính xác):**
+- Daily ingestion volume: X GB/day via Kinesis (payment/ticketing events).
+- EC2 sizing theo user load ticketing/payment workloads.
+- S3 retention: 12 months (baseline).
+- Moderate WAF rules usage.
+- QuickSight: 1 Author + X Readers.
+
+---
+
+## 5. NHÂN SỰ
+
+| Họ tên | Vai trò | Mô tả | Email / Liên hệ |
+|---|---|---|---|
+| Tào Bảo Thành | Team Leader | Quản lý dự án, cấu hình AWS services, code Backend, viết tài liệu, thiết kế kiến trúc | taobaothanh365@gmail.com |
+| Nguyễn Thị Nhã Uyên | Member | Thiết kế UI và code Frontend | uyenntnse183774@fpt.edu.vn |
+| Nguyễn Bảo Khánh | Member | Thiết kế UI và code Frontend | baokhanhtcv2005@gmail.com |
+| Trần Văn Quyết | Member | Code Backend | quyettvse181574@fpt.edu.vn |
+| Nguyễn Văn Cường | Member | Code Backend | cuongnvse183645@fpt.edu.vn |
+
+---
+
+[Tải Proposal Template](/document/Proposal-Template.docx)
