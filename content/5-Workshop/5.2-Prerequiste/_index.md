@@ -6,8 +6,26 @@ chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Add the following IAM permission policy to your user account to deploy and cleanup this workshop.
+#### 3.1 AWS account, Region & IAM
+* Region
+<br>&emsp; + Choose region to deploy(ap-southeast-1)
+<br>
+![region](/images/5-Workshop/5.2-Prerequisite/region.png)
+<br>
+* IAM baseline
+<br>&emsp; + Infra/Admin group: Administrator, Prefer to separate by environment (dev/stg/prod). 
+<br>&emsp; + Stakeholders: ReadOnlyAccess
+<br>&emsp; + CI/CD (service roles): CodePipeline, CodeBuild, CodeDeploy
+<br>&emsp; + EC2 instance profile rule(run time): Read secrets from Secrets Manager follow prefix(example: metro/<env>/*),push log/metrics into CloudWatch, S3/Kinesis/SNS for function
+<br>
+![use case](/images/5-Workshop/5.2-Prerequisite/use_cases.png)
+<br>
+* Security Notes
+<br>&emsp; + Do not give AdministratorAccess for EC2 Role
+<br>&emsp; + Using least privilege: policy for ARN resource + prefix
+<br>&emsp; + Turn the MFA for importmant IAM Users/roles
+<br>&emsp; + Activate the baseline guardrails
+
 ```
 {
     "Version": "2012-10-17",
@@ -216,27 +234,3 @@ Add the following IAM permission policy to your user account to deploy and clean
 
 ```
 
-#### Provision resources using CloudFormation
-
-In this lab, we will use **N.Virginia region (us-east-1)**.
-
-To prepare the workshop environment, deploy this **CloudFormation Template** (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Accept all of the defaults when deploying the template. 
-
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
-
-+ Tick 2 acknowledgement boxes
-+ Choose **Create stack**
-
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
-
-The **ClouddFormation** deployment requires about 15 minutes to complete.
-
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
-
-+ **2 VPCs** have been created
-
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
-
-+ **3 EC2s** have been created
-
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)

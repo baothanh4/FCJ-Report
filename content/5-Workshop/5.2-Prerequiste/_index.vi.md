@@ -1,14 +1,40 @@
 ---
-title : "Các bước chuẩn bị"
+title : "Yêu cầu tiên quyết"
 date: 2025-09-07 
-weight : 2
+weight : 2 
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
-```
+#### 3.1 Tài khoản AWS, Region & IAM
+
+* **Region**
+<br>&emsp; + Chọn region để triển khai (ap-southeast-1)
+<br>
+![region](/images/5-Workshop/5.2-Prerequisite/region.png)
+<br>
+
+* **Cấu hình IAM cơ bản**
+<br>&emsp; + Nhóm Infra/Admin: quyền Administrator, nên tách riêng theo từng môi trường (dev/stg/prod).  
+<br>&emsp; + Stakeholders: quyền ReadOnlyAccess  
+<br>&emsp; + CI/CD (service roles): CodePipeline, CodeBuild, CodeDeploy  
+<br>&emsp; + EC2 instance profile (quyền chạy runtime): đọc secrets từ Secrets Manager theo prefix (ví dụ: metro/<env>/*), đẩy log/metrics vào CloudWatch, quyền truy cập S3/Kinesis/SNS cần thiết cho chức năng ứng dụng  
+<br>
+![use case](/images/5-Workshop/5.2-Prerequisite/use_cases.png)
+<br>
+
+* **Ghi chú bảo mật**
+<br>&emsp; + Không cấp AdministratorAccess cho EC2 Role  
+<br>&emsp; + Áp dụng nguyên tắc least privilege: phân quyền theo ARN và prefix rõ ràng  
+<br>&emsp; + Bật MFA cho các IAM User/Role quan trọng  
+<br>&emsp; + Kích hoạt baseline guardrails (Control Tower / Security Hub nếu có)  
+
+---
+
+### Ví dụ chính sách IAM
+Dưới đây là ví dụ policy dùng cho vai trò vận hành hạ tầng (Infrastructure role):
+
+
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -213,30 +239,3 @@ Gắn IAM permission policy sau vào tài khoản aws user của bạn để tri
         }
     ]
 }
-
-```
-
-#### Khởi tạo tài nguyên bằng CloudFormation
-
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
-
-Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
-
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
-
-+ Lựa chọn 2 mục acknowledgement 
-+ Chọn Create stack
-
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
-
-Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thành.
-
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
-
-+ 2 VPCs đã được tạo
-
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
-
-+ 3 EC2s đã được tạo
-
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
