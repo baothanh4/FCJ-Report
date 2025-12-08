@@ -13,5 +13,5 @@ Trong phần này, bạn sẽ tạo **Secrets Manager** để lưu **một secre
 
 #### Nội dung
 
-- [Tạo secret manager](3.1-create-gwe/)
+- [Create secret manager ](5.3.1-create-secrets-manager/)
 
