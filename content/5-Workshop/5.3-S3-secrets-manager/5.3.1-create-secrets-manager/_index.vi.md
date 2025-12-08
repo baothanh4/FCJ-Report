@@ -15,7 +15,7 @@ pre: " <b> 5.3.1 </b> "
 + Chọn `'Other type of secret'`
 + Trong phần Key/value pairs, chúng ta sẽ có 5 tên secret
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/image.png)
+
 ![dev/metro/google](/images/5-Workshop/5.3-S3-vpc/image_copy_2.png)
 ![dev/metro/ddd](/images/5-Workshop/5.3-S3-vpc/image_copy_3.png)
 
