@@ -16,7 +16,7 @@ pre : " <b> 5.3.1 </b> "
 + Choose 'Other type of secret'
 + In Key/value pairs, we will have 5 secret names
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/image.png)
+
 ![dev/metro/google](/images/5-Workshop/5.3-S3-vpc/image_copy2.png)
 ![dev/metro/ddd](/images/5-Workshop/5.3-S3-vpc/image_copy_3.png)
 
