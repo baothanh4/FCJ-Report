@@ -14,5 +14,5 @@ In this section, you will create **secrets manager** to store **a secret**. **Th
 
 #### Content
 
-- [Create secret manager ](3.1-create-gwe/)
+- [Create secret manager ](5.3.1-create-secrets-manager/)
 
