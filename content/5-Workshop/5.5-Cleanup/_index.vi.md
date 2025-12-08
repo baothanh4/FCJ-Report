@@ -3,7 +3,7 @@ title : "Dọn dẹp tài nguyên"
 date: 2025-09-07
 weight : 6
 chapter : false
-pre : " <b> 5.6. </b> "
+pre : " <b> 5.5. </b> "
 ---
 # Dọn dẹp tài nguyên (Clean Up)
 
