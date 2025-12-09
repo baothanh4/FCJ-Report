@@ -326,4 +326,6 @@ The POC environment will not contain all production-grade capabilities.
 
 ---
 
-[Download Proposal Template](/document/Proposal-Template.docx)
+<a href="/document/Proposal-Template.docx" download>
+  Download Proposal Template
+</a>
