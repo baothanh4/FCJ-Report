@@ -330,4 +330,6 @@ POC sẽ demo các use cases đã nêu tại mục 1.1 và 2.2, nhưng **chưa b
 
 ---
 
-[Tải Proposal Template](/document/Proposal-Template.docx)
+<a href="/document/Proposal-Template.docx" download>
+  Tải Proposal template
+</a>
